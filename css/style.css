@@ -58,7 +58,6 @@ nav ul li a:hover {
     color: #e6e5e5;
     border-bottom: 2px solid #d8c6cb;
 }
-
 /* Sections */
 section {
     padding: 4rem 2rem;
@@ -82,44 +81,19 @@ h2 {
     margin-bottom: 1.5rem;
 }
 
-/* Skills */
-.skill-set {
+/* Projects */
+.projects-container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 15px;
-}
-
-.skill {
-    background-color: #00ccff;
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    text-align: center;
-    font-size: 1.2rem;
-    transition: transform 0.3s;
-}
-
-.skill:hover {
-    background-color: #0b2deb;
-    transform: translateY(-5px);
-}
-
-/* Projects */
-#projects {
-    padding: 20px;
-}
-
-.projects-container {
-    display: flex;
-    flex-direction: column; 
-    gap: 20px; 
+    gap: 20px;
 }
 
 .project {
-    width: 50%; 
+    width: 35%;
+    text-align: center;
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.096);
+    background: rgba(255, 255, 255, 0.158);
     padding: 1rem;
     transition: transform 0.3s;
 }
@@ -129,52 +103,55 @@ h2 {
 }
 
 .project img {
-    width: 50%; 
-    height: auto;
-    object-fit: cover; 
+    width: 100%;
     border-radius: 12px;
 }
 
 .project p {
-    margin: 0; 
     font-size: 16px;
-    text-align: left; 
+    color: #fff;
 }
 
+/* Project Details */
+.project-details {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
 
-
-/* Contact Form */
-#contact-form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 400px;
+.project-details img {
+    max-width: 100%;
+    height: auto;
+    display: block;
     margin: 0 auto;
 }
 
-#contact-form input,
-#contact-form textarea {
-    margin-bottom: 1rem;
-    padding: 1rem;
-    border-radius: 8px;
-    border: none;
-    font-size: 1rem;
+.project-details h2,
+.project-details h3 {
+    color: #f5f6f8;
 }
 
-button {
-    padding: 1rem;
-    background-color: #00ccff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.3s;
+.project-details ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-button:hover {
-    background-color: #0b2deb;
-    transform: translateY(-3px);
+.project-details ul li {
+    margin: 5px 0;
+    color: #f5f6f8;
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    color: #00ccff;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 /* Footer */
