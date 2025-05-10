@@ -1,32 +1,25 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Get the form element
     const form = document.getElementById('contact-form');
-    
-    // Handle form submission event
+
     form.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
-        
-        // Get form data
+        event.preventDefault();
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const message = document.getElementById('message').value;
-        
-        // Log the data to the console (for testing purposes)
+
         console.log('Form Submitted:');
         console.log('Name:', name);
         console.log('Email:', email);
         console.log('Message:', message);
-        
-        // Display a thank you message
+
         alert('Thank you for reaching out, ' + name + '! I will get back to you soon.');
-        
-        // Clear the form after submission
         form.reset();
     });
 
-    // Mobile navbar toggle
-    window.toggleMenu = function() {
-        const navLinks = document.querySelector('.nav-links');
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', function () {
         navLinks.classList.toggle('active');
-    };
+    });
 });
