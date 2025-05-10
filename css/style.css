@@ -52,6 +52,7 @@ nav ul {
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
+    flex-direction: row; /* Mobile-first assumes row layout */
 }
 
 nav ul li a {
@@ -130,6 +131,7 @@ h2 {
     gap: 1.5rem;
     justify-content: center;
     padding: 1rem;
+    align-items: center; /* Center projects on mobile */
 }
 
 .project {
@@ -220,6 +222,8 @@ footer {
     .projects-container {
         flex-direction: row; /* Horizontal layout for larger screens */
         gap: 2rem;
+        align-items: stretch;
+        flex-wrap: wrap;
     }
 
     .project {

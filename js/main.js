@@ -23,4 +23,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Optionally, clear the form after submission
         form.reset();
     });
+
+    // Mobile navbar toggle
+    window.toggleMenu = function() {
+        const navLinks = document.querySelector('.nav-links');
+        navLinks.classList.toggle('active');
+    };
 });
