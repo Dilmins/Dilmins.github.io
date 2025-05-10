@@ -205,25 +205,32 @@ footer {
     font-size: 0.9rem;
 }
 
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth; /* Enable smooth scrolling */
+}
+
 /* Mobile specific styles */
 @media (max-width: 768px) {
-    /* Hide the hamburger icon and navigation menu */
-    .hamburger {
-        display: block;
-    }
-
     /* Initially hide the nav links */
     .nav-links {
         display: none;
         flex-direction: column;
         align-items: center;
+        gap: 1rem;
     }
 
-    /* When the hamburger is clicked, show the nav links */
+    /* Show nav links when 'active' class is added */
     .nav-links.active {
         display: flex;
     }
 
+    /* Make hamburger visible */
+    .hamburger {
+        display: block;
+    }
+
+    /* Align menu items */
     .nav-links li a {
         color: #222;
         text-decoration: none;
@@ -238,6 +245,7 @@ footer {
         color: #000;
     }
 }
+
 
 @media (min-width: 769px) {
     header h1 {

@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Contact form submission
     const form = document.getElementById('contact-form');
-
     form.addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent form from submitting the default way
 
@@ -21,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Toggle Hamburger Menu
     window.toggleMenu = function() {
+        console.log('Hamburger clicked'); // Debugging
         const navLinks = document.querySelector('.nav-links');
         navLinks.classList.toggle('active'); // Toggle 'active' class to show/hide menu
     };
