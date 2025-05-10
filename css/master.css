@@ -85,181 +85,15 @@ nav ul li a:hover {
     color: #000000;
 }
 
-/* Section Styling */
-section {
-    padding: 3rem 2rem; /* Adjusted padding for mobile */
-    max-width: 100%;
-    margin: 0 auto;
-    background-color: #ffffff;
-    margin-top: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
-}
-
-h2 {
-    font-size: 1.5rem;
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: #2a2a2a;
-}
-
-/* Skills */
-.skill-set {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-}
-
-.skill {
-    padding: 0.75rem 1.5rem;
-    background-color: #e7f1fd;
-    color: #2a77f0;
-    border-radius: 50px;
-    font-size: 1rem;
-    transition: transform 0.3s ease;
-}
-
-.skill:hover {
-    transform: scale(1.05);
-}
-
-/* Projects */
-.projects-container {
-    display: flex;
-    flex-direction: column; /* Stacked layout on mobile */
-    gap: 1.5rem;
-    justify-content: center;
-    padding: 1rem;
-    align-items: center; /* Center projects on mobile */
-}
-
-.project {
-    text-align: center;
-    width: 90%;
-    max-width: 350px; /* Fixed max width for project containers */
-    background: #f9f9f9;
-    border-radius: 12px;
-    padding: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
-}
-
-.project:hover {
-    transform: scale(1.03);
-}
-
-.project img {
-    width: 100%;
-    max-width: 300px; /* Prevent images from being too large */
-    height: auto;
-    border-radius: 12px;
-}
-
-/* Contact Form */
-#contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-#contact-form input,
-#contact-form textarea {
-    padding: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
-    background-color: #fff;
-    transition: border-color 0.3s;
-}
-
-#contact-form input:focus,
-#contact-form textarea:focus {
-    border-color: #2a77f0;
-    outline: none;
-}
-
-button {
-    background-color: #2a77f0;
-    color: white;
-    padding: 1rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #1459c9;
-}
-
-/* Footer */
-footer {
-    background-color: #f1f1f1;
-    padding: 2rem;
-    text-align: center;
-    color: #666;
-    font-size: 0.9rem;
-}
-
-/* Larger Screens (Desktops, Laptops, Tablets) */
-@media (min-width: 769px) {
-    header h1 {
-        font-size: 2.5rem;
-    }
-
-    header p {
-        font-size: 1.2rem;
-    }
-
-    h2 {
-        font-size: 2rem;
-    }
-
-    .projects-container {
-        flex-direction: row; /* Horizontal layout for larger screens */
-        gap: 2rem;
-        align-items: stretch;
-        flex-wrap: wrap;
-    }
-
-    .project {
-        width: 32%; /* Limit project size for desktop */
-    }
-
-    .project img {
-        max-width: 350px; /* Ensure images don't get too large */
-    }
-
-    .skill {
-        font-size: 1rem;
-    }
-
-    .skill-set {
-        gap: 1rem;
-    }
-
-    nav ul {
-        flex-direction: row;
-    }
-}
-
-/* Hamburger Menu (Mobile Only) */
+/* Hamburger Menu */
 .hamburger {
     display: none;
-    font-size: 1.8rem;
+    font-size: 2rem;
     cursor: pointer;
 }
 
-/* Mobile Navigation Behavior */
+/* Mobile Navigation */
 @media (max-width: 768px) {
-    nav .nav-container {
-        position: relative;
-    }
-
     nav ul.nav-links {
         display: none;
         flex-direction: column;
@@ -280,5 +114,42 @@ footer {
 
     .hamburger {
         display: block;
+    }
+}
+
+/* Section Styling */
+section {
+    padding: 3rem 2rem; /* Adjusted padding for mobile */
+    max-width: 100%;
+    margin: 0 auto;
+    background-color: #ffffff;
+    margin-top: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #2a2a2a;
+}
+
+/* Larger Screens (Desktops, Laptops, Tablets) */
+@media (min-width: 769px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+
+    header p {
+        font-size: 1.2rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    nav ul {
+        flex-direction: row; /* Horizontal layout for larger screens */
     }
 }
