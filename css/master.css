@@ -56,6 +56,7 @@ nav {
     margin-top: 1rem;
 }
 
+/* Display the nav links when the active class is added */
 .nav-links.active {
     display: flex;
 }
@@ -202,6 +203,40 @@ footer {
     text-align: center;
     color: #666;
     font-size: 0.9rem;
+}
+
+/* Mobile specific styles */
+@media (max-width: 768px) {
+    /* Hide the hamburger icon and navigation menu */
+    .hamburger {
+        display: block;
+    }
+
+    /* Initially hide the nav links */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* When the hamburger is clicked, show the nav links */
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li a {
+        color: #222;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 500;
+        position: relative;
+        padding-bottom: 4px;
+        transition: color 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+        color: #000;
+    }
 }
 
 @media (min-width: 769px) {
