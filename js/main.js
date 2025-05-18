@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Contact form submission
     const form = document.getElementById('contact-form');
-    form.addEventListener('submit', function(event) {
+    form.addEventListener('submit', function (event) {
         event.preventDefault(); // Prevent form from submitting the default way
 
         const name = document.getElementById('name').value;
@@ -19,14 +19,22 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Toggle Hamburger Menu
-    window.toggleMenu = function() {
-        console.log('Hamburger clicked'); // Debugging
+    window.toggleMenu = function () {
         const navLinks = document.querySelector('.nav-links');
-        navLinks.classList.toggle('active'); // Toggle 'active' class to show/hide menu
+        const hamburger = document.getElementById('hamburger');
+
+        navLinks.classList.toggle('active'); // Show/hide menu
+
+        // Toggle icon
+        if (navLinks.classList.contains('active')) {
+            hamburger.innerHTML = '&#10005;'; // ✖
+        } else {
+            hamburger.innerHTML = '&#9776;'; // ☰
+        }
     };
 
     // Smooth Scrolling Function
-    const smoothScroll = function(target) {
+    const smoothScroll = function (target) {
         document.querySelector(target).scrollIntoView({
             behavior: 'smooth'
         });
@@ -35,14 +43,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Adding smooth scrolling for each link
     const navLinks = document.querySelectorAll('.nav-links li a');
     navLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
+        link.addEventListener('click', function (event) {
             event.preventDefault(); // Prevent the default anchor click action
             const target = this.getAttribute('href'); // Get the href of the clicked link
             smoothScroll(target); // Perform smooth scrolling to the target
 
             // Close the menu after clicking on mobile
             if (window.innerWidth <= 768) {
-                document.querySelector('.nav-links').classList.remove('active'); // Hide menu on mobile after click
+                const navLinksElement = document.querySelector('.nav-links');
+                navLinksElement.classList.remove('active'); // Hide menu
+                document.getElementById('hamburger').innerHTML = '&#9776;'; // Reset to ☰
             }
         });
     });
