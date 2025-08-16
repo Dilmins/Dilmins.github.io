@@ -9,30 +9,51 @@
     <link rel="stylesheet" href="css/master.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Dilmin Siriwardana</h1>
-            <p>Mechatronic Engineering Undergraduate | AI/ML Enthusiast | Freelancer </p>
-        </div>
-    </header>
-
     <nav>
         <div class="nav-container">
-            <div class="hamburger" id="hamburger" onclick="toggleMenu()">☰</div>
-            <ul class="nav-links">
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#extra-curricular-activities">Extra Curricular Activities</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+            <a href="#" class="nav-brand">Dilmin Siriwardana</a>
+            
+            <div class="nav-center">
+                <ul class="nav-links">
+                    <li><a href="#about">About Me</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#extra-curricular-activities">Extra Curricular Activities</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-right">
+                <a href="D:\Personal\Portfolio-main\Portfolio-main\Dilmins.github.io\assets\My CV.pdf" class="download-cv-btn" download="My CV.pdf">Download CV</a>
+            </div>
+            
+            <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+        </div>
+        
+        <div class="mobile-nav" id="mobileNav">
+            <ul class="mobile-nav-links">
+                <li><a href="#about" onclick="closeMobileMenu()">About Me</a></li>
+                <li><a href="#education" onclick="closeMobileMenu()">Education</a></li>
+                <li><a href="#extra-curricular-activities" onclick="closeMobileMenu()">Extra Curricular Activities</a></li>
+                <li><a href="#skills" onclick="closeMobileMenu()">Skills</a></li>
+                <li><a href="#projects" onclick="closeMobileMenu()">Projects</a></li>
+                <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
+                <li><a href="assets/My CV.pdf" class="mobile-download-cv-btn" download="My CV.pdf" onclick="closeMobileMenu()">Download CV</a></li>
             </ul>
         </div>
     </nav>
 
+    <header>
+        <div class="container">
+            <h1>Dilmin Siriwardana</h1>
+            <p>Mechatronic Engineering Undergraduate | AI/ML Enthusiast | Freelancer</p>
+        </div>
+    </header>
+
     <section id="about">
         <h2>About Me</h2>
-        <p>As an undergraduate in Mechatronics Engineering with a passion for innovation, I specialize in utilizing my skills in Python/Ladder programming , AutoCAD and in PCB designing to develop and design engineering solutions that cater to a wide range of industries. Machine Learning /AI and PCB designing are my current interests of learning. Additionally, my strengths in team collaboration and presentation skills allow me to effectively communicate and implement project objectives. With previous experience working at Vidullanka PLC and New Diamond Motors as a volunteer, and as a Mechatronic Engineer at C3Labs Pvt Ltd, I have gained valuable insight into the importance of strong work ethics and attention to detail, while also refining my abilities to work under pressure and meet deadlines. As a person with a growth mindset, I am highly motivated in continuing to expand my skillset and utilizing my knowledge to drive success and growth within the engineering industry.</p>
+        <p>As an undergraduate in Mechatronics Engineering with a passion for innovation, I specialize in utilizing my skills in Python/Ladder programming, AutoCAD and in PCB designing to develop and design engineering solutions that cater to a wide range of industries. Machine Learning /AI and PCB designing are my current interests of learning. Additionally, my strengths in team collaboration and presentation skills allow me to effectively communicate and implement project objectives. With previous experience working at Vidullanka PLC and New Diamond Motors as a volunteer, and as a Mechatronic Engineer at C3Labs Pvt Ltd, I have gained valuable insight into the importance of strong work ethics and attention to detail, while also refining my abilities to work under pressure and meet deadlines. As a person with a growth mindset, I am highly motivated in continuing to expand my skillset and utilizing my knowledge to drive success and growth within the engineering industry.</p>
         <div style="text-align: center; margin-top: 50px;">
             <img src="images/profile1.jpg" alt="Dilmin Siriwardana" width="350" height="550">
         </div>
@@ -106,6 +127,43 @@
         <p>&copy; 2025 Dilmin Siriwardana. All Rights Reserved.</p>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script>
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.remove('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const mobileNav = document.getElementById('mobileNav');
+            
+            if (!nav.contains(event.target)) {
+                mobileNav.classList.remove('active');
+            }
+        });
+
+        // Handle smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href.length > 1) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
