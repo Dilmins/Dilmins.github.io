@@ -25,24 +25,24 @@
             </div>
             
             <div class="nav-right">
-                <a href="D:\Personal\Portfolio-main\Portfolio-main\Dilmins.github.io\assets\My CV.pdf" class="download-cv-btn" download="My CV.pdf">Download CV</a>
+                <a href="assets/My_CV.pdf" class="download-cv-btn" download="Dilmin_Siriwardana_CV.pdf">Download CV</a>
             </div>
             
             <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
         </div>
-        
-        <div class="mobile-nav" id="mobileNav">
-            <ul class="mobile-nav-links">
-                <li><a href="#about" onclick="closeMobileMenu()">About Me</a></li>
-                <li><a href="#education" onclick="closeMobileMenu()">Education</a></li>
-                <li><a href="#extra-curricular-activities" onclick="closeMobileMenu()">Extra Curricular Activities</a></li>
-                <li><a href="#skills" onclick="closeMobileMenu()">Skills</a></li>
-                <li><a href="#projects" onclick="closeMobileMenu()">Projects</a></li>
-                <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
-                <li><a href="assets/My CV.pdf" class="mobile-download-cv-btn" download="My CV.pdf" onclick="closeMobileMenu()">Download CV</a></li>
-            </ul>
-        </div>
     </nav>
+    
+    <div class="mobile-nav" id="mobileNav">
+        <ul class="mobile-nav-links">
+            <li><a href="#about" onclick="closeMobileMenu()">About Me</a></li>
+            <li><a href="#education" onclick="closeMobileMenu()">Education</a></li>
+            <li><a href="#extra-curricular-activities" onclick="closeMobileMenu()">Extra Curricular Activities</a></li>
+            <li><a href="#skills" onclick="closeMobileMenu()">Skills</a></li>
+            <li><a href="#projects" onclick="closeMobileMenu()">Projects</a></li>
+            <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
+            <li><a href="assets/My_CV.pdf" class="mobile-download-cv-btn" download="Dilmin_Siriwardana_CV.pdf" onclick="closeMobileMenu()">Download CV</a></li>
+        </ul>
+    </div>
 
     <header>
         <div class="container">
@@ -130,21 +130,27 @@
     <script>
         function toggleMobileMenu() {
             const mobileNav = document.getElementById('mobileNav');
+            const hamburger = document.querySelector('.hamburger');
             mobileNav.classList.toggle('active');
+            hamburger.classList.toggle('active');
         }
 
         function closeMobileMenu() {
             const mobileNav = document.getElementById('mobileNav');
+            const hamburger = document.querySelector('.hamburger');
             mobileNav.classList.remove('active');
+            hamburger.classList.remove('active');
         }
 
         // Close mobile menu when clicking outside
         document.addEventListener('click', function(event) {
             const nav = document.querySelector('nav');
             const mobileNav = document.getElementById('mobileNav');
+            const hamburger = document.querySelector('.hamburger');
             
-            if (!nav.contains(event.target)) {
+            if (!nav.contains(event.target) && !mobileNav.contains(event.target)) {
                 mobileNav.classList.remove('active');
+                hamburger.classList.remove('active');
             }
         });
 
