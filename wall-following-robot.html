@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wall Following Robot Car - Dilmin Siriwardana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/master.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="nav-center">
+                <ul class="nav-links">
+                    <li><a href="index.html#about">About Me</a></li>
+                    <li><a href="index.html#education">Education</a></li>
+                    <li><a href="index.html#extra-curricular-activities">Extra Curricular Activities</a></li>
+                    <li><a href="index.html#skills">Skills</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="assets/My_CV.pdf" class="download-cv-btn" download="Dilmin_Siriwardana_CV.pdf">Download CV</a></li>
+                </ul>
+            </div>
+            
+            <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+        </div>
+    </nav>
+    
+    <div class="mobile-nav" id="mobileNav">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html#about" onclick="closeMobileMenu()">About Me</a></li>
+            <li><a href="index.html#education" onclick="closeMobileMenu()">Education</a></li>
+            <li><a href="index.html#extra-curricular-activities" onclick="closeMobileMenu()">Extra Curricular Activities</a></li>
+            <li><a href="index.html#skills" onclick="closeMobileMenu()">Skills</a></li>
+            <li><a href="index.html#projects" onclick="closeMobileMenu()">Projects</a></li>
+            <li><a href="index.html#contact" onclick="closeMobileMenu()">Contact</a></li>
+            <li><a href="assets/My_CV.pdf" class="mobile-download-cv-btn" download="Dilmin_Siriwardana_CV.pdf" onclick="closeMobileMenu()">Download CV</a></li>
+        </ul>
+    </div>
+
+    <section class="project-hero">
+        <a href="index.html" class="back-btn">← Back to Portfolio</a>
+        <h1>Wall Following Robot Car</h1>
+        <p>An autonomous wall-following robot capable of maintaining a consistent distance from a wall using real-time sensor feedback and intelligent control algorithms, designed for the robotic competition held within university premises.</p>
+    </section>
+
+    <div class="project-content">
+        <section class="project-section">
+            <h3>Project Overview</h3>
+            <p>This innovative autonomous navigation project demonstrates the integration of embedded systems, sensor technology, and intelligent control algorithms. The wall-following robot showcases advanced skills in real-time sensor processing, motor control, and autonomous decision-making using Arduino-based microcontroller technology.</p>
+            
+            <div style="display: flex; flex-direction: column; gap: 2rem; align-items: center; margin-top: 2rem;">
+                <img src="images/Projects/Project1.0.jpeg" alt="Wall Following Robot Car System" class="project-image">
+                <img src="images/Projects/meandsumz.jpeg" alt="Myself with the Wall Following Robot Car" class="project-image">
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h3>🔧 Key Components & Features</h3>
+            <div class="components-grid">
+                <div class="component-card">
+                    <h4>Arduino Uno Microcontroller</h4>
+                    <p>Acts as the main control unit, running the navigation algorithm and processing sensor data for real-time decision-making and autonomous operation.</p>
+                </div>
+                
+                <div class="component-card">
+                    <h4>Ultrasonic Sensor (HC-SR04)</h4>
+                    <p>Enables precise distance measurement from surrounding walls, providing accurate wall tracking capabilities with real-time feedback for navigation control.</p>
+                </div>
+                
+                <div class="component-card">
+                    <h4>L298N Motor Driver</h4>
+                    <p>Powers and controls the DC motors with precise speed modulation, allowing smooth directional changes and optimal navigation performance.</p>
+                </div>
+                
+                <div class="component-card">
+                    <h4>DC Gear Motors</h4>
+                    <p>Provide reliable locomotion with sufficient torque for smooth movement and responsive directional control during autonomous navigation.</p>
+                </div>
+                
+                <div class="component-card">
+                    <h4>Chassis & Wheel Assembly</h4>
+                    <p>Robust mechanical platform designed for stability and maneuverability, optimized for competition environments and various surface conditions.</p>
+                </div>
+                
+                <div class="component-card">
+                    <h4>Power Management System</h4>
+                    <p>Efficient battery management ensuring consistent performance throughout competition runs with stable voltage regulation for all components.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h3>Technical Implementation</h3>
+            <p><strong>Control Algorithm:</strong> The Arduino Uno runs a sophisticated control algorithm that continuously processes ultrasonic sensor data to maintain optimal wall-following distance through proportional control mechanisms.</p>
+            
+            <p><strong>Navigation Logic:</strong> The system employs real-time sensor feedback to make intelligent navigation decisions, adjusting motor speeds dynamically to maintain consistent wall tracking while avoiding obstacles.</p>
+            
+            <p><strong>Sensor Integration:</strong> Advanced sensor fusion techniques ensure reliable distance measurement and environmental awareness, enabling smooth autonomous operation in various competition scenarios.</p>
+        </section>
+
+        <section class="project-section">
+            <h3>Skills & Technologies</h3>
+            <div class="skills-grid">
+                <span class="skill-tag">Arduino IDE</span>
+                <span class="skill-tag">Motor Control</span>
+                <span class="skill-tag">Sensor Integration</span>
+                <span class="skill-tag">Embedded Systems</span>
+                <span class="skill-tag">Autonomous Navigation</span>
+                <span class="skill-tag">Real-time Processing</span>
+                <span class="skill-tag">Control Algorithms</span>
+                <span class="skill-tag">Robotics</span>
+                <span class="skill-tag">Mechanical Design</span>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h3>Project Outcomes</h3>
+            <p>This project successfully demonstrates the integration of multiple engineering disciplines:</p>
+            <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                <li><strong>Embedded Programming:</strong> Efficient real-time control algorithms and sensor data processing</li>
+                <li><strong>Sensor Technology:</strong> Precise ultrasonic distance measurement and environmental sensing</li>
+                <li><strong>Motor Control:</strong> Smooth speed regulation and directional control for optimal navigation</li>
+                <li><strong>Autonomous Systems:</strong> Intelligent decision-making capabilities for independent operation</li>
+            </ul>
+            
+            <p style="margin-top: 1.5rem;">The completed robot successfully navigates along walls with consistent distance maintenance, demonstrating advanced skills in autonomous robotics, embedded systems design, and algorithmic thinking for competitive robotics applications.</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Dilmin Siriwardana. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            const hamburger = document.querySelector('.hamburger');
+            mobileNav.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            const hamburger = document.querySelector('.hamburger');
+            mobileNav.classList.remove('active');
+            hamburger.classList.remove('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const mobileNav = document.getElementById('mobileNav');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (!nav.contains(event.target) && !mobileNav.contains(event.target)) {
+                mobileNav.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href.length > 1) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
