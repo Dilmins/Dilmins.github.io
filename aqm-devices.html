@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Portfolio - Dilmin Siriwardana</title>
+    <title>E-paper Air Quality Monitoring Devices - Dilmin Siriwardana</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/master.css">
 </head>
@@ -13,12 +13,12 @@
         <div class="nav-container">
             <div class="nav-center">
                 <ul class="nav-links">
-                    <li><a href="#about">About Me</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#extra-curricular-activities">Extra Curricular Activities</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="index.html#about">About Me</a></li>
+                    <li><a href="index.html#education">Education</a></li>
+                    <li><a href="index.html#extra-curricular-activities">Extra Curricular Activities</a></li>
+                    <li><a href="index.html#skills">Skills</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
                     <li><a href="assets/My_CV.pdf" class="download-cv-btn" download="Dilmin_Siriwardana_CV.pdf">Download CV</a></li>
                 </ul>
             </div>
@@ -29,111 +29,131 @@
     
     <div class="mobile-nav" id="mobileNav">
         <ul class="mobile-nav-links">
-            <li><a href="#about" onclick="closeMobileMenu()">About Me</a></li>
-            <li><a href="#education" onclick="closeMobileMenu()">Education</a></li>
-            <li><a href="#extra-curricular-activities" onclick="closeMobileMenu()">Extra Curricular Activities</a></li>
-            <li><a href="#skills" onclick="closeMobileMenu()">Skills</a></li>
-            <li><a href="#projects" onclick="closeMobileMenu()">Projects</a></li>
-            <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
+            <li><a href="index.html#about" onclick="closeMobileMenu()">About Me</a></li>
+            <li><a href="index.html#education" onclick="closeMobileMenu()">Education</a></li>
+            <li><a href="index.html#extra-curricular-activities" onclick="closeMobileMenu()">Extra Curricular Activities</a></li>
+            <li><a href="index.html#skills" onclick="closeMobileMenu()">Skills</a></li>
+            <li><a href="index.html#projects" onclick="closeMobileMenu()">Projects</a></li>
+            <li><a href="index.html#contact" onclick="closeMobileMenu()">Contact</a></li>
             <li><a href="assets/My_CV.pdf" class="mobile-download-cv-btn" download="Dilmin_Siriwardana_CV.pdf" onclick="closeMobileMenu()">Download CV</a></li>
         </ul>
     </div>
 
-    <header>
-        <div class="container">
-            <h1>Dilmin Siriwardana</h1>
-            <p>Mechatronic Engineering Undergraduate | AI/ML Enthusiast | Freelancer</p>
-        </div>
-    </header>
-
-    <section id="about">
-        <h2>About Me</h2>
-        <p>As an undergraduate in Mechatronics Engineering with a passion for innovation, I specialize in utilizing my skills in Python/Ladder programming, AutoCAD and in PCB designing to develop and design engineering solutions that cater to a wide range of industries. Machine Learning /AI and PCB designing are my current interests of learning. Additionally, my strengths in team collaboration and presentation skills allow me to effectively communicate and implement project objectives. With previous experience working at Vidullanka PLC and New Diamond Motors as a volunteer, and as a Mechatronic Engineer at C3Labs Pvt Ltd, I have gained valuable insight into the importance of strong work ethics and attention to detail, while also refining my abilities to work under pressure and meet deadlines. As a person with a growth mindset, I am highly motivated in continuing to expand my skillset and utilizing my knowledge to drive success and growth within the engineering industry.</p>
-        <div style="text-align: center; margin-top: 50px;">
-            <img src="images/profile1.jpg" alt="Dilmin Siriwardana" width="350" height="550">
-        </div>
+    <section class="project-hero">
+        <a href="index.html" class="back-btn">← Back to Portfolio</a>
+        <h1>E-paper Air Quality Monitoring Devices</h1>
+        <p>Custom e-paper display systems for real-time environmental monitoring, featuring temperature, humidity, and CO2 sensors with 4G connectivity and cloud data integration for industrial air quality assessment.</p>
     </section>
 
-    <section id="education">
-        <h2>Education</h2>
-        <ul>
-            <li>Bachelor of Mechatronic Engineering (Reading) - General Sir John Kotelawala Defence University</li>
-            <li>Certificate in Automation (PLC) - SLIR 2024</li>
-            <li>Diploma in Office Application - IDM Achievers (Gold Award Winner - 2022)</li>
-            <li>Cambridge A/Levels & O/Levels - Lyceum International School Panadura</li>
-        </ul>
-    </section>
-
-    <section id="extra-curricular-activities">
-        <h2>Extra Curricular Activities</h2>
-        <ul>
-            <li>IMech Student Chapter KDU - Executive Committee Member - 2023 | 2024</li>
-            <li>Rotract Club of Centennial United - Community Services Director - 2023 | 2024</li>
-            <li>School Football team - Lyceum International School Panadura - Captain U13</li>
-        </ul>
-    </section>
-
-    <section id="skills">
-        <h2>Skills</h2>
-        <div class="skill-set">
-            <div class="skill">Mechanical CAD Drawing</div>
-            <div class="skill">Python Programming</div>
-            <div class="skill">C++ Programming</div>
-            <div class="skill">PCB Designing</div>
-            <div class="skill">PLC Programming</div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="projects-container">
-            <div class="project" onclick="window.location.href='cocktail-machine.html'">
-                <img src="images/Projects/Project2.0.jpeg" alt="Project 1">
-                <p>Project 1 - Automated Cocktail Machine</p>
-                <div class="project-overlay">
-                    <span>View Details</span>
-                </div>
-            </div>
-            <div class="project">
-                <img src="images/Projects/Project3.0.jpeg" alt="Project 2">
-                <p>Project 2 - Self Driving Surveillance Robot Car</p>
-                <div class="project-overlay">
-                    <span>Coming Soon</span>
-                </div>
-            </div>
-            <div class="project" onclick="window.location.href='wall-following-robot.html'">
-                <img src="images/Projects/Project1.0.jpeg" alt="Project 3">
-                <p>Project 3 - Wall Following Robot Car</p>
-                <div class="project-overlay">
-                    <span>View Details</span>
-                </div>
-            </div>
-            <div class="project" onclick="window.location.href='aqm-devices.html'">
-                <img src="images/Projects/aqmlist.jpeg" alt="Project 4">
-                <p>Project 4 - E-paper Air Quality Monitoring Devices</p>
-                <div class="project-overlay">
-                    <span>View Details</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <form id="contact-form" action="https://formspree.io/f/xblgrrro" method="POST">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+    <div class="project-content">
+        <section class="project-section">
+            <h3>Project Overview</h3>
+            <p>This comprehensive IoT project involved designing and developing customized e-paper driven Air Quality Monitoring (AQM) devices for industrial clients. The project required creating two distinct device variants with different sensor configurations, implementing real-time data visualization, 4G connectivity, and cloud-based monitoring systems for 41 deployed units across multiple locations.</p>
             
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <div style="display: flex; flex-direction: column; gap: 2rem; align-items: center; margin-top: 2rem;">
+                <img src="images/Projects/aqmlist.jpeg" alt="AQM Device Testing Setup" class="project-image">
+                <img src="images/Projects/dashboard.jpeg" alt="AQM Dashboard Monitoring System" class="project-image">
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h3>🔧 Key Components & Features</h3>
+            <div class="components-grid">
+                <div class="component-card">
+                    <h4>E-paper Display Technology</h4>
+                    <p>Custom-designed low-power e-paper displays providing clear, readable environmental data with excellent visibility in various lighting conditions and ultra-low power consumption.</p>
+                </div>
+                
+                <div class="component-card">
+                    <h4>Multi-Sensor Integration</h4>
+                    <p>Two device variants: Basic model with temperature & humidity sensors, and advanced model with additional CO2 level monitoring for comprehensive air quality assessment.</p>
+                </div>
+                
+                <div class="component-card">
+                    <h4>4G Connectivity Module</h4>
+                    <p>Integrated 4G communication system enabling real-time data transmission to cloud platforms with signal strength monitoring and automatic reconnection capabilities.</p>
+                </div>
+                
+                <div class="component-card">
+                    <h4>Arduino-Based Control System</h4>
+                    <p>Programmed using Arduino IDE with custom display rendering, sensor data processing, and communication protocols for reliable operation in industrial environments.</p>
+                </div>
+                
+                <div class="component-card">
+                    <h4>Cloud Dashboard Integration</h4>
+                    <p>Real-time monitoring dashboard displaying data from all 41 deployed devices with historical tracking, alerts, and device status management capabilities.</p>
+                </div>
+                
+                <div class="component-card">
+                    <h4>Device Configuration System</h4>
+                    <p>Unique ID assignment and configuration management for individual device identification and centralized monitoring across multiple installation sites.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h3>Technical Implementation</h3>
+            <p><strong>Display Programming:</strong> Custom graphics and text rendering using Arduino IDE, including shape drawing, font sizing, and pixel-perfect layouts optimized for e-paper display characteristics and readability.</p>
             
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" required></textarea>
+            <p><strong>Sensor Data Processing:</strong> Real-time environmental data collection from temperature, humidity, and CO2 sensors with data validation, filtering, and formatting for display and transmission.</p>
             
-            <button type="submit">Submit</button>
-        </form>
-    </section>
-    
+            <p><strong>4G Communication:</strong> Implementation of AT command protocols for cellular communication, including signal strength monitoring (AT+CSQ), data transmission to cloud URLs, and connection reliability management.</p>
+            
+            <p><strong>Troubleshooting & Optimization:</strong> Resolved hardware connectivity issues through SIM port cleaning and maintenance, fixed IMEI reset problems through code logic optimization, and improved signal reading accuracy.</p>
+        </section>
+
+        <section class="project-section">
+            <h3>Project Challenges & Solutions</h3>
+            <div class="components-grid">
+                <div class="component-card">
+                    <h4>Display Compatibility</h4>
+                    <p>Overcame font sizing and pixel format compatibility issues by selecting appropriate libraries and display parameters specific to the e-paper technology used.</p>
+                </div>
+                
+                <div class="component-card">
+                    <h4>Signal Strength Reliability</h4>
+                    <p>Resolved intermittent signal reading issues through hardware maintenance, SIM port cleaning, and improved AT command implementation for consistent 4G connectivity.</p>
+                </div>
+                
+                <div class="component-card">
+                    <h4>IMEI Reset Issue</h4>
+                    <p>Fixed automatic IMEI number reset problem by redesigning communication functions with enhanced logic and error handling mechanisms.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h3>Skills & Technologies</h3>
+            <div class="skills-grid">
+                <span class="skill-tag">Arduino IDE</span>
+                <span class="skill-tag">E-paper Display Programming</span>
+                <span class="skill-tag">IoT Development</span>
+                <span class="skill-tag">4G Communication</span>
+                <span class="skill-tag">AT Commands</span>
+                <span class="skill-tag">Sensor Integration</span>
+                <span class="skill-tag">Cloud Connectivity</span>
+                <span class="skill-tag">Data Visualization</span>
+                <span class="skill-tag">Hardware Troubleshooting</span>
+                <span class="skill-tag">System Testing</span>
+                <span class="skill-tag">Industrial Deployment</span>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h3>Project Outcomes</h3>
+            <p>Successfully delivered a comprehensive air quality monitoring solution with significant achievements:</p>
+            <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                <li><strong>Device Deployment:</strong> 41 AQM devices manufactured and deployed across multiple industrial sites with 25 units currently tested and operational</li>
+                <li><strong>Real-time Monitoring:</strong> Continuous environmental data collection and cloud-based dashboard monitoring for all deployed devices</li>
+                <li><strong>Custom Solutions:</strong> Two distinct device variants meeting specific customer requirements for different monitoring applications</li>
+                <li><strong>System Reliability:</strong> Robust 4G connectivity with signal strength monitoring and automatic data transmission capabilities</li>
+                <li><strong>Technical Excellence:</strong> Overcame multiple technical challenges including display compatibility, communication reliability, and hardware optimization</li>
+            </ul>
+            
+            <p style="margin-top: 1.5rem;">This project demonstrates advanced skills in IoT system development, industrial device deployment, and complex technical problem-solving while delivering scalable environmental monitoring solutions for commercial applications.</p>
+        </section>
+    </div>
+
     <footer>
         <p>&copy; 2025 Dilmin Siriwardana. All Rights Reserved.</p>
     </footer>
@@ -165,7 +185,7 @@
             }
         });
 
-        // Handle smooth scrolling for navigation links
+        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
