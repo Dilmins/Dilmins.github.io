@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Self Driving Surveillance Robot Car - Dilmin Siriwardana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/master.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="nav-center">
+                <ul class="nav-links">
+                    <li><a href="index.html#about">About Me</a></li>
+                    <li><a href="index.html#education">Education</a></li>
+                    <li><a href="index.html#extra-curricular-activities">Extra Curricular Activities</a></li>
+                    <li><a href="index.html#skills">Skills</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="assets/My_CV.pdf" class="download-cv-btn" download="Dilmin_Siriwardana_CV.pdf">Download CV</a></li>
+                </ul>
+            </div>
+            
+            <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+        </div>
+    </nav>
+    
+    <div class="mobile-nav" id="mobileNav">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html#about" onclick="closeMobileMenu()">About Me</a></li>
+            <li><a href="index.html#education" onclick="closeMobileMenu()">Education</a></li>
+            <li><a href="index.html#extra-curricular-activities" onclick="closeMobileMenu()">Extra Curricular Activities</a></li>
+            <li><a href="index.html#skills" onclick="closeMobileMenu()">Skills</a></li>
+            <li><a href="index.html#projects" onclick="closeMobileMenu()">Projects</a></li>
+            <li><a href="index.html#contact" onclick="closeMobileMenu()">Contact</a></li>
+            <li><a href="assets/My_CV.pdf" class="mobile-download-cv-btn" download="Dilmin_Siriwardana_CV.pdf" onclick="closeMobileMenu()">Download CV</a></li>
+        </ul>
+    </div>
+
+    <section class="project-hero">
+        <a href="index.html" class="back-btn">← Back to Portfolio</a>
+        <h1>Self Driving Surveillance Robot Car</h1>
+        <p>An intelligent autonomous robot car equipped with computer vision, real-time intruder detection, and notification systems that combines robotics, AI/ML, and surveillance technology for enhanced security monitoring.</p>
+    </section>
+
+    <div class="project-content">
+        <section class="project-section">
+            <h3>Project Overview</h3>
+            <p>This advanced surveillance robot demonstrates the integration of autonomous navigation, computer vision, facial recognition, and real-time notification systems. The robot car autonomously patrols designated areas while continuously monitoring for intruders using ML-powered detection algorithms and instantly alerts security personnel through mobile notifications.</p>
+            
+            <div style="display: flex; flex-direction: column; gap: 2rem; align-items: center; margin-top: 2rem;">
+                <img src="images/Projects/Project3.0.jpeg" alt="Self Driving Surveillance Robot Car System" class="project-image">
+                <img src="images/Projects/noti.jpeg" alt="Real-time Intruder Detection Notifications" class="project-image">
+                <img src="images/Projects/testcode.jpeg" alt="Face Recognition Testing Interface" class="project-image">
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h3>Key Components & Features</h3>
+            <div class="components-grid">
+                <div class="component-card">
+                    <h4>Raspberry Pi 4 Controller and Arduino Uno</h4>
+                    <p>Serves as the main processing unit, handling computer vision algorithms, autonomous navigation logic, and real-time communication with notification systems that communicated in series.</p>
+                </div>
+                
+                <div class="component-card">
+                    <h4>HD Camera Module</h4>
+                    <p>High-resolution camera for real-time video capture, facial recognition, and intruder detection.</p>
+                </div>
+                
+                <div class="component-card">
+                    <h4>Ultrasonic Sensors Array</h4>
+                    <p>2 HC-SR04 ultrasonic sensors positioned strategically for obstacle detection, distance measurement, and autonomous navigation.</p>
+                </div>
+                
+                <div class="component-card">
+                    <h4>DC Motors with Encoders</h4>
+                    <p>Precision motor control system enabling accurate movement, turning, and positioning for autonomous patrol routes and obstacle avoidance.</p>
+                </div>
+                
+                <div class="component-card">
+                    <h4>WiFi Communication Module</h4>
+                    <p>Enables real-time data transmission, remote monitoring capabilities, and instant notification delivery to mobile devices and security systems.</p>
+                </div>
+                
+                <div class="component-card">
+                    <h4>Power Management System</h4>
+                    <p>Efficient battery management with voltage regulation ensuring extended operational time and reliable performance during surveillance missions.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h3>🔍 AI & Computer Vision Implementation</h3>
+            <p><strong>Facial Recognition System:</strong> Utilizes OpenCV and machine learning algorithms to detect and identify faces in real-time, distinguishing between authorized personnel and potential intruders with high accuracy.</p>
+            
+            <p><strong>Intruder Detection Algorithm:</strong> Advanced computer vision pipeline that processes video frames continuously, detecting human presence, movement patterns, and unauthorized access attempts with minimal false positives.</p>
+            
+            <p><strong>Real-time Notifications:</strong> Instant alert system that sends detailed notifications including timestamps, images, and location data to security personnel's mobile devices via WhatsApp and other communication channels.</p>
+
+            <p><strong>Autonomous Navigation:</strong> Intelligent pathfinding algorithms that enable the robot to navigate complex environments, avoid obstacles, and maintain optimal surveillance coverage of designated areas.</p>
+        </section>
+
+        <section class="project-section">
+            <h3>⚙️ Technical Implementation</h3>
+            <p><strong>Control Architecture:</strong> Multi-threaded Python application running on Raspberry Pi 4, managing simultaneous processes for navigation, image processing, communication, and sensor data fusion.</p>
+            
+            <p><strong>Computer Vision Pipeline:</strong> Real-time video processing using OpenCV for face detection, feature extraction, and comparison with authorized personnel database, achieving recognition accuracy of over 95%.</p>
+            
+            <p><strong>Surveillance Protocol:</strong> Automated patrol system with predefined routes, random movement patterns, and alert-triggered focused monitoring of suspicious areas.</p>
+            
+            <p><strong>Communication System:</strong> Integrated messaging system using APIs to send instant notifications with captured images, detection confidence scores, and GPS coordinates to multiple recipients.</p>
+        </section>
+
+        <section class="project-section">
+            <h3>💡 Skills & Technologies</h3>
+            <div class="skills-grid">
+                <span class="skill-tag">Python Programming</span>
+                <span class="skill-tag">OpenCV</span>
+                <span class="skill-tag">Machine Learning</span>
+                <span class="skill-tag">Facial Recognition</span>
+                <span class="skill-tag">Autonomous Navigation</span>
+                <span class="skill-tag">Raspberry Pi</span>
+                <span class="skill-tag">Arduino Uno</span>
+                <span class="skill-tag">Real-time Processing</span>
+                <span class="skill-tag">IoT Communication</span>
+                <span class="skill-tag">Multithreading</span>
+                <span class="skill-tag">Sensor Fusion</span>
+                <span class="skill-tag">Mobile Integration</span>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h3>🎯 Project Achievements</h3>
+            <p>This comprehensive surveillance robot successfully demonstrates advanced integration across multiple technical domains:</p>
+            <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                <li><strong>Artificial Intelligence:</strong> Implemented Haar cascade classifier for face detection in accurate facial recognition and behavioral analysis</li>
+                <li><strong>Robotics & Automation:</strong> Developed autonomous navigation with obstacle avoidance</li>
+                <li><strong>Computer Vision:</strong> Real-time image processing with high-accuracy detection and classification systems</li>
+                <li><strong>IoT & Communication:</strong> Seamless integration with mobile devices and cloud-based notification systems</li>
+                <li><strong>System Integration:</strong> Coordinated multiple subsystems for reliable 24/7 surveillance operations</li>
+            </ul>
+            
+            <p style="margin-top: 1.5rem;">The completed surveillance robot demonstrates exceptional capability in autonomous security monitoring, achieving over 75% detection accuracy while maintaining continuous operation for extended periods. The system successfully integrates cutting-edge AI technology with practical robotics applications, showcasing advanced skills in mechatronics, software engineering, and intelligent system design.</p>
+        </section>
+
+        <section class="project-section">
+            <h3>📈 Performance Metrics</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; text-align: center;">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #2c3e50;">Detection Accuracy</h4>
+                    <p style="font-size: 2rem; font-weight: 600; color: #27ae60; margin: 0;">95%+</p>
+                </div>
+                <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; text-align: center;">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #2c3e50;">Response Time</h4>
+                    <p style="font-size: 2rem; font-weight: 600; color: #3498db; margin: 0;">&lt;2s</p>
+                </div>
+                <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; text-align: center;">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #2c3e50;">Operational Time</h4>
+                    <p style="font-size: 2rem; font-weight: 600; color: #e74c3c; margin: 0;">6+ hrs</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Dilmin Siriwardana. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            const hamburger = document.querySelector('.hamburger');
+            mobileNav.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            const hamburger = document.querySelector('.hamburger');
+            mobileNav.classList.remove('active');
+            hamburger.classList.remove('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const mobileNav = document.getElementById('mobileNav');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (!nav.contains(event.target) && !mobileNav.contains(event.target)) {
+                mobileNav.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href.length > 1) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
