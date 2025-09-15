@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
 :root {
-    --primary: #1e3a8a;
-    --primary-dark: #1e293b;
-    --accent: #3b82f6;
+    --primary: #3b82f6;
+    --primary-dark: #2563eb;
+    --accent: #60a5fa;
     --bg: #1a1a1a;
     --card-bg: #2a2a2a;
     --text: #ffffff;
@@ -218,11 +218,12 @@ header {
 header h1 {
     font-size: 2rem;
     margin-bottom: 1rem;
+    color: var(--text);
 }
 
 header p {
     font-size: 1rem;
-    color: #f3f4f6;
+    color: var(--subtext);
 }
 
 /* Sections */
@@ -385,11 +386,6 @@ h2 {
     margin-bottom: 2rem;
     box-shadow: 0 2px 12px var(--shadow);
     border: 1px solid #374151;
-}
-
-.project-section p {
-    text-align: justify;
-    text-justify: inter-word;
 }
 
 .project-section h3 {
