@@ -387,6 +387,11 @@ h2 {
     border: 1px solid #374151;
 }
 
+.project-section p {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
 .project-section h3 {
     color: var(--primary);
     font-size: 1.5rem;
