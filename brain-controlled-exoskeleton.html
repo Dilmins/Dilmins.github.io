@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain controlled assistive exoskeleton arm</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/master.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+            <div class="nav-center">
+                <ul class="nav-links">
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html#projects" onclick="closeMobileMenu()">Projects</a></li>
+            <li><a href="index.html#contact" onclick="closeMobileMenu()">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="project-hero">
+        <a href="index.html#projects" class="back-btn">← Back to Projects</a>
+        <h1>Brain controlled assistive exoskeleton arm for hand impaired individuals</h1>
+        <p>
+            A brain–computer interface driven upper-limb exoskeleton enabling voluntary elbow and wrist movements
+            using EEG-based steady-state visual evoked potentials.
+        </p>
+    </section>
+
+    <!-- Project Content -->
+    <div class="project-content">
+
+        <!-- Overview -->
+        <div class="project-section">
+            <h3>Project overview</h3>
+            <p>
+                Individuals affected by upper-limb motor impairments such as hemiplegia, upper limb monoplegia,
+                and quadriplegia experience severe limitations in independence and daily functionality.
+                Hemiplegia restricts movement on one side of the body, monoplegia affects a single limb,
+                while quadriplegia results in paralysis of all four limbs, commonly due to cervical spinal cord injuries.
+            </p>
+            <p>
+                Assistive robotic exoskeletons have demonstrated strong potential in restoring functional motion
+                and supporting rehabilitation. This project focuses on the design and development of a
+                <strong>brain-controlled upper-limb exoskeleton arm</strong> that enables voluntary arm movement
+                through non-invasive brain–computer interface (BCI) technology.
+            </p>
+
+        </div>
+
+        <!-- Objectives -->
+        <div class="project-section">
+            <h3>Objectives</h3>
+            <div class="components-grid">
+                <div class="component-card">
+                    <h4>EEG signal acquisition</h4>
+                    <p>
+                        Acquire brain signals using electroencephalography (EEG) and evaluate multiple paradigms
+                        including SSVEP, Motor Imagery, ERD/ERS, and P300 potentials.
+                    </p>
+                </div>
+                <div class="component-card">
+                    <h4>Signal processing & classification</h4>
+                    <p>
+                        Filter, transform, and classify EEG signals to reliably extract user intent
+                        for real-time control.
+                    </p>
+                </div>
+                <div class="component-card">
+                    <h4>Exoskeleton design</h4>
+                    <p>
+                        Design and develop a two-joint upper-limb exoskeleton capable of controlled
+                        elbow and wrist movements.
+                    </p>
+                </div>
+                <div class="component-card">
+                    <h4>BCI integration</h4>
+                    <p>
+                        Integrate the BCI system with the exoskeleton hardware to enable
+                        hands-free, brain-driven actuation.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Methodology -->
+        <div class="project-section">
+            <h3>Methodology</h3>
+            <p>
+                The system primarily employs the <strong>steady-state visual evoked potential (SSVEP)</strong> method
+                to acquire EEG signals. Four distinct visual stimulus frequencies are presented using LED matrices,
+                each corresponding to a specific movement command.
+            </p>
+            <p>
+                The SSVEP setup is implemented using four LED arrays driven by an STM32 microcontroller.
+                EEG signals are processed through a multi-stage pipeline including bandpass filtering,
+                notch filtering, frequency-domain analysis, peak detection, and harmonic validation.
+            </p>
+
+            <img src="images/Projects/pipeline.jpeg"
+                 alt="SSVEP signal processing and exoskeleton control pipeline"
+                 class="project-image">
+        </div>
+
+        <!-- Functional Capabilities -->
+        <div class="project-section">
+            <h3>Functional capabilities</h3>
+            <p>
+                The developed exoskeleton arm is capable of executing four controlled movements,
+                one at a time, to predefined angular positions:
+            </p>
+            <div class="skills-grid">
+                <span class="skill-tag">Elbow flexion</span>
+                <span class="skill-tag">Elbow extension</span>
+                <span class="skill-tag">Wrist flexion</span>
+                <span class="skill-tag">Wrist extension</span>
+            </div>
+            <p style="margin-top: 1rem;">
+                The system is designed with a focus on practical daily tasks, particularly enabling
+                actions such as supporting and resting objects on the user’s palm.
+            </p>
+        </div>
+
+        <!-- Keywords -->
+        <div class="project-section">
+            <h3>Key words</h3>
+            <div class="skills-grid">
+                <span class="skill-tag">Brain computer interface (BCI)</span>
+                <span class="skill-tag">Electroencephalography (EEG)</span>
+                <span class="skill-tag">Steady state visual evoked potential (SSVEP)</span>
+                <span class="skill-tag">Motor imagery (MI)</span>
+                <span class="skill-tag">Assistive robotics</span>
+                <span class="skill-tag">Rehabilitation engineering</span>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Dilmin Siriwardana. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileNav').classList.toggle('active');
+        }
+        function closeMobileMenu() {
+            document.getElementById('mobileNav').classList.remove('active');
+        }
+    </script>
+
+</body>
+</html>
