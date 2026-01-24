@@ -2,211 +2,882 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Portfolio - Dilmin Siriwardana</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="css/master.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dilmin Siriwardana - Mechatronics Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #111111;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --border: #1f1f1f;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-btn {
+            background: var(--accent);
+            color: white !important;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .cta-btn::after {
+            display: none;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-label {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            animation: fadeInUp 0.6s ease 0.2s backwards;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            animation: fadeInUp 0.6s ease 0.4s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s ease 0.6s backwards;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 8rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            inset: -20px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            border-radius: 30px;
+            z-index: -1;
+            filter: blur(20px);
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            padding: 2rem 1.5rem;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-name {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            padding: 0.4rem 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--accent);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1rem;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--accent);
+            color: white;
+            padding: 1.25rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 300px;
+                background: var(--bg-card);
+                flex-direction: column;
+                padding: 5rem 2rem;
+                gap: 2rem;
+                border-left: 1px solid var(--border);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Navigation -->
     <nav>
-        <div class="nav-container">     
-            <div class="nav-center">
-                <ul class="nav-links">
-                    <li><a href="#about">About Me</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#extra-curricular-activities">Extra Curricular Activities</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="assets/My_CV.pdf" class="download-cv-btn" download="Dilmin_Siriwardana_CV.pdf">Download CV</a></li>
-                </ul>
-            </div>
-            
-            <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+        <div class="nav-container">
+            <div class="logo">DS</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact" class="cta-btn">Contact</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle">☰</button>
         </div>
     </nav>
-    
-    <div class="mobile-nav" id="mobileNav">
-        <ul class="mobile-nav-links">
-            <li><a href="#about" onclick="closeMobileMenu()">About Me</a></li>
-            <li><a href="#education" onclick="closeMobileMenu()">Education</a></li>
-            <li><a href="#extra-curricular-activities" onclick="closeMobileMenu()">Extra Curricular Activities</a></li>
-            <li><a href="#skills" onclick="closeMobileMenu()">Skills</a></li>
-            <li><a href="#projects" onclick="closeMobileMenu()">Projects</a></li>
-            <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
-            <li><a href="assets/My_CV.pdf" class="mobile-download-cv-btn" download="Dilmin_Siriwardana_CV.pdf" onclick="closeMobileMenu()">Download CV</a></li>
-        </ul>
-    </div>
 
-    <header>
-        <div class="container">
-            <h1>Dilmin Siriwardana</h1>
-            <p>Mechatronic Engineering Undergraduate | AI/ML Enthusiast | Freelancer</p>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <span class="hero-label">Mechatronics Engineering Undergraduate</span>
+            <h1>Hi, I'm <span class="gradient-text">Dilmin Siriwardana</span></h1>
+            <p>Passionate about innovation through AI/ML, robotics, and IoT. Building intelligent systems that solve real-world problems.</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn-primary">View My Work</a>
+                <a href="assets/My_CV.pdf" download class="btn-secondary">Download CV</a>
+            </div>
         </div>
-    </header>
+    </section>
 
+    <!-- About Section -->
     <section id="about">
-        <h2>About Me</h2>
-        <p>As an undergraduate in Mechatronics Engineering with a passion for innovation, I specialize in utilizing my skills in various programming languages, AutoCAD and in PCB designing to develop and design engineering solutions that cater to a wide range of industries. Machine Learning /AI and PCB designing are my current interests of learning. Additionally, my strengths in team collaboration and presentation skills allow me to effectively communicate and implement project objectives. With previous experience working at Vidullanka PLC, New Diamond Motors as a volunteer, and as an Intern Mechatronic Engineer at C3Labs Pvt Ltd, I have gained valuable insight into the importance of strong work ethics and attention to detail, while also refining my abilities to work under pressure and meet deadlines. As a person with a growth mindset, I am highly motivated in continuing to expand my skillset and utilizing my knowledge to drive success and growth within the engineering industry.</p>
-        <div style="text-align: center; margin-top: 50px;">
-            <img src="images/me1.jpg" alt="Dilmin Siriwardana" width="350" height="515">
+        <div class="section-header">
+            <span class="section-label">About Me</span>
+            <h2>Driving Innovation Through Engineering</h2>
+        </div>
+        <div class="about-content">
+            <div class="about-image">
+                <img src="images/me1.jpg" alt="Dilmin Siriwardana">
+            </div>
+            <div class="about-text">
+                <h3>Mechatronics Engineer & AI Enthusiast</h3>
+                <p>As an undergraduate in Mechatronics Engineering, I specialize in developing innovative engineering solutions across multiple industries. My expertise spans programming, AutoCAD, PCB design, and emerging technologies in Machine Learning and AI.</p>
+                <p>With hands-on experience from internships at Vidullanka PLC, New Diamond Motors, and C3Labs Pvt Ltd, I've refined my technical skills while developing strong work ethics and the ability to thrive under pressure.</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">11</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">41</div>
+                        <div class="stat-label">Devices Deployed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1</div>
+                        <div class="stat-label">Year of Experience</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="education">
-        <h2>Education</h2>
-        <ul>
-            <li>Bachelor of Mechatronic Engineering (Reading) - General Sir John Kotelawala Defence University</li>
-            <li>Certificate in Automation (PLC) - SLIR 2024</li>
-            <li>Diploma in Office Application - IDM Achievers (Gold Award Winner - 2022)</li>
-            <li>Cambridge A/Levels & O/Levels - Lyceum International School Panadura</li>
-        </ul>
-    </section>
-
-    <section id="extra-curricular-activities">
-        <h2>Extra Curricular Activities</h2>
-        <ul>
-            <li>IMech Student Chapter KDU - Executive Committee Member - 2023 | 2024</li>
-            <li>Rotract Club of Centennial United - Community Services Director - 2023 | 2024</li>
-            <li>School Football team - Lyceum International School Panadura - Captain U13</li>
-        </ul>
-    </section>
-
+    <!-- Skills Section -->
     <section id="skills">
-        <h2>Skills</h2>
-        <div class="skill-set">
-            <div class="skill">Mechanical CAD Drawing</div>
-            <div class="skill">Python Programming</div>
-            <div class="skill">C++ Programming</div>
-            <div class="skill">PCB Designing</div>
-            <div class="skill">PLC Programming</div>
+        <div class="section-header">
+            <span class="section-label">Skills</span>
+            <h2>Technical Expertise</h2>
+            <p>A comprehensive toolkit for building intelligent mechatronic systems</p>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🐍</div>
+                <div class="skill-name">Python</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">⚙️</div>
+                <div class="skill-name">C++</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🤖</div>
+                <div class="skill-name">Machine Learning</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📐</div>
+                <div class="skill-name">CAD Design</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔌</div>
+                <div class="skill-name">PCB Design</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-name">PLC Programming</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🌐</div>
+                <div class="skill-name">IoT Development</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔧</div>
+                <div class="skill-name">Raspberry Pi</div>
+            </div>
         </div>
     </section>
 
+    <!-- Projects Section -->
     <section id="projects">
-        <h2>Projects</h2>
-        <div class="projects-container">
-            
-            <!-- Project 1: ML-based EEG Exoskeleton (Ongoing) -->
-            <div class="project" onclick="window.location.href='brain-controlled-exoskeleton.html'">
-                <img src="images/Projects/arm.jpeg" alt="ML-based EEG Exoskeleton">
-                <p>Project 1 - Brain controlled assistive exoskeleton arm</p>
-                <div class="project-overlay">
-                    <span>View Details</span>
+        <div class="section-header">
+            <span class="section-label">Portfolio</span>
+            <h2>Featured Projects</h2>
+            <p>Innovative solutions at the intersection of robotics, AI, and automation</p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card" onclick="window.location.href='brain-controlled-exoskeleton.html'">
+                <img src="images/Projects/arm.jpeg" alt="Brain-controlled Exoskeleton" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Brain-Controlled Exoskeleton</h3>
+                    <p class="project-description">EEG-based BCI system enabling voluntary arm movement for individuals with upper-limb motor impairments using SSVEP technology.</p>
+                    <div class="project-tags">
+                        <span class="tag">BCI</span>
+                        <span class="tag">EEG</span>
+                        <span class="tag">Robotics</span>
+                    </div>
                 </div>
             </div>
-            
-            <!-- Project 2: Motor Fault Detection -->
-            <div class="project" onclick="window.location.href='motor-fault-detection.html'">
-                <img src="images/Projects/motorfault.jpeg" alt="Motor Fault Detection System">
-                <p>Project 2 - Motor Fault Detection via Vibration Analysis Using ML Algorithms</p>
-                <div class="project-overlay">
-                    <span>View Details</span>
+
+            <div class="project-card" onclick="window.location.href='motor-fault-detection.html'">
+                <img src="images/Projects/motorfault.jpeg" alt="Motor Fault Detection" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Motor Fault Detection</h3>
+                    <p class="project-description">ML-powered vibration analysis system for predictive maintenance with 98% accuracy using Random Forest and XGBoost algorithms.</p>
+                    <div class="project-tags">
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Signal Processing</span>
+                    </div>
                 </div>
             </div>
-            
-            <!-- Project 3: AQM Devices -->
-            <div class="project" onclick="window.location.href='aqm-devices.html'">
-                <img src="images/Projects/aqmlist.jpeg" alt="Project 3">
-                <p>Project 3 - E-paper Air Quality Monitoring Devices</p>
-                <div class="project-overlay">
-                    <span>View Details</span>
+
+            <div class="project-card" onclick="window.location.href='aqm-devices.html'">
+                <img src="images/Projects/aqmlist.jpeg" alt="Air Quality Monitoring" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">E-Paper AQM Devices</h3>
+                    <p class="project-description">IoT air quality monitoring system with 4G connectivity and cloud integration. 41 units deployed across industrial sites.</p>
+                    <div class="project-tags">
+                        <span class="tag">IoT</span>
+                        <span class="tag">Arduino</span>
+                        <span class="tag">4G</span>
+                    </div>
                 </div>
             </div>
-            
-            <!-- Project 4: Surveillance Robot -->
-            <div class="project" onclick="window.location.href='surveillance-robot.html'">
-                <img src="images/Projects/Project3.0.jpeg" alt="Project 4">
-                <p>Project 4 - ML based Self Driving Surveillance Robot Car</p>
-                <div class="project-overlay">
-                    <span>View Details</span>
+
+            <div class="project-card" onclick="window.location.href='surveillance-robot.html'">
+                <img src="images/Projects/Project3.0.jpeg" alt="Surveillance Robot" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">AI Surveillance Robot</h3>
+                    <p class="project-description">Autonomous robot with facial recognition and real-time intruder detection, achieving 75%+ accuracy with instant notifications.</p>
+                    <div class="project-tags">
+                        <span class="tag">Computer Vision</span>
+                        <span class="tag">OpenCV</span>
+                        <span class="tag">Autonomous Navigation</span>
+                    </div>
                 </div>
             </div>
-            
-            <!-- Project 5: Cocktail Machine -->
-            <div class="project" onclick="window.location.href='cocktail-machine.html'">
-                <img src="images/Projects/Project2.0.jpeg" alt="Project 5">
-                <p>Project 5 - Automated Cocktail Machine</p>
-                <div class="project-overlay">
-                    <span>View Details</span>
+
+            <div class="project-card" onclick="window.location.href='cocktail-machine.html'">
+                <img src="images/Projects/Project2.0.jpeg" alt="Cocktail Machine" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Automated Cocktail Machine</h3>
+                    <p class="project-description">Precision dispensing system with touchscreen interface combining fluid dynamics, motor control, and embedded programming.</p>
+                    <div class="project-tags">
+                        <span class="tag">Automation</span>
+                        <span class="tag">Raspberry Pi</span>
+                        <span class="tag">Motor Control</span>
+                    </div>
                 </div>
             </div>
-            
-            <!-- Project 6: Wall Following Robot -->
-            <div class="project" onclick="window.location.href='wall-following-robot.html'">
-                <img src="images/Projects/Project1.0.jpeg" alt="Project 6">
-                <p>Project 6 - Wall Following Robot Car</p>
-                <div class="project-overlay">
-                    <span>View Details</span>
+
+            <div class="project-card" onclick="window.location.href='wall-following-robot.html'">
+                <img src="images/Projects/Project1.0.jpeg" alt="Wall Following Robot" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Wall Following Robot</h3>
+                    <p class="project-description">Autonomous navigation robot using ultrasonic sensors and intelligent control algorithms for competition scenarios.</p>
+                    <div class="project-tags">
+                        <span class="tag">Arduino</span>
+                        <span class="tag">Sensors</span>
+                        <span class="tag">Robotics</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Contact Section -->
     <section id="contact">
-        <h2>Contact Me</h2>
-        <form id="contact-form" action="https://formspree.io/f/xblgrrro" method="POST">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" required></textarea>
-            
-            <button type="submit">Submit</button>
-        </form>
+        <div class="section-header">
+            <span class="section-label">Get In Touch</span>
+            <h2>Let's Work Together</h2>
+            <p>Have a project in mind? I'd love to hear about it.</p>
+        </div>
+        <div class="contact-content">
+            <form class="contact-form" action="https://formspree.io/f/xblgrrro" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
     </section>
-    
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Dilmin Siriwardana. All Rights Reserved.</p>
+        <div class="footer-content">
+            <div class="copyright">© 2025 Dilmin Siriwardana. All Rights Reserved.</div>
+            <ul class="footer-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
     </footer>
 
     <script>
-        function toggleMobileMenu() {
-            const mobileNav = document.getElementById('mobileNav');
-            const hamburger = document.querySelector('.hamburger');
-            mobileNav.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        }
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
 
-        function closeMobileMenu() {
-            const mobileNav = document.getElementById('mobileNav');
-            const hamburger = document.querySelector('.hamburger');
-            mobileNav.classList.remove('active');
-            hamburger.classList.remove('active');
-        }
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const nav = document.querySelector('nav');
-            const mobileNav = document.getElementById('mobileNav');
-            const hamburger = document.querySelector('.hamburger');
-            
-            if (!nav.contains(event.target) && !mobileNav.contains(event.target)) {
-                mobileNav.classList.remove('active');
-                hamburger.classList.remove('active');
-            }
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
         });
 
-        // Handle smooth scrolling for navigation links
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.textContent = '☰';
+            });
+        });
+
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href !== '#' && href.length > 1) {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
-    </script>
-</body>
-</html>
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card, .skill-card, .stat-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
