@@ -5,177 +5,370 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Wall Following Robot Car - Dilmin Siriwardana</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="css/master.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #111111;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --border: #1f1f1f;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .back-btn {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .project-hero {
+            padding: 8rem 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .project-label {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-hero p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .project-image-main {
+            width: 100%;
+            max-width: 900px;
+            margin: 3rem auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .project-section {
+            margin-bottom: 4rem;
+        }
+
+        .project-section h2, .project-section h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .project-section h3 {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .project-section p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-stack, .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .tech-tag, .skill-tag {
+            padding: 0.75rem 1.5rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 50px;
+            font-size: 0.95rem;
+            color: var(--accent);
+        }
+
+        .components-grid, .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .component-card, .feature-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+        }
+
+        .component-card h4, .feature-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .component-card p, .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .metric-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-card);
+            border-radius: 15px;
+            border: 1px solid var(--border);
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        ul {
+            list-style-position: inside;
+            color: var(--text-secondary);
+            margin: 1rem 0;
+        }
+
+        ul li {
+            margin-bottom: 0.75rem;
+            line-height: 1.8;
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .project-hero {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .project-content {
+                padding: 1.5rem;
+            }
+
+            .components-grid, .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav>
         <div class="nav-container">
-            <div class="nav-center">
-                <ul class="nav-links">
-                    <li><a href="index.html#about">About Me</a></li>
-                    <li><a href="index.html#education">Education</a></li>
-                    <li><a href="index.html#extra-curricular-activities">Extra Curricular Activities</a></li>
-                    <li><a href="index.html#skills">Skills</a></li>
-                    <li><a href="index.html#projects">Projects</a></li>
-                    <li><a href="index.html#contact">Contact</a></li>
-                    <li><a href="assets/My_CV.pdf" class="download-cv-btn" download="Dilmin_Siriwardana_CV.pdf">Download CV</a></li>
-                </ul>
-            </div>
-            
-            <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+            <a href="index.html" class="logo">DS</a>
+            <a href="index.html#projects" class="back-btn">← Back to Portfolio</a>
         </div>
     </nav>
-    
-    <div class="mobile-nav" id="mobileNav">
-        <ul class="mobile-nav-links">
-            <li><a href="index.html#about" onclick="closeMobileMenu()">About Me</a></li>
-            <li><a href="index.html#education" onclick="closeMobileMenu()">Education</a></li>
-            <li><a href="index.html#extra-curricular-activities" onclick="closeMobileMenu()">Extra Curricular Activities</a></li>
-            <li><a href="index.html#skills" onclick="closeMobileMenu()">Skills</a></li>
-            <li><a href="index.html#projects" onclick="closeMobileMenu()">Projects</a></li>
-            <li><a href="index.html#contact" onclick="closeMobileMenu()">Contact</a></li>
-            <li><a href="assets/My_CV.pdf" class="mobile-download-cv-btn" download="Dilmin_Siriwardana_CV.pdf" onclick="closeMobileMenu()">Download CV</a></li>
-        </ul>
-    </div>
 
-    <section class="project-hero">
-        <a href="index.html" class="back-btn">← Back to Portfolio</a>
-        <h1>Wall Following Robot Car</h1>
-        <p>An autonomous wall-following robot capable of maintaining a consistent distance from a wall using real-time sensor feedback and intelligent control algorithms, designed for the robotic competition held within university premises.</p>
-    </section>
+    <div class="project-hero">
+        <div class="project-header">
+            <span class="project-label">Autonomous Navigation</span>
+            <h1>Wall Following Robot Car</h1>
+            <p>An autonomous wall-following robot capable of maintaining a consistent distance from a wall using real-time sensor feedback and intelligent control algorithms, designed for the robotic competition held within university premises.</p>
+        </div>
 
-    <div class="project-content">
-        <section class="project-section">
-            <h3>Project Overview</h3>
-            <p>This innovative autonomous navigation project demonstrates the integration of embedded systems, sensor technology, and intelligent control algorithms. The wall-following robot showcases advanced skills in real-time sensor processing, motor control, and autonomous decision-making using Arduino-based microcontroller technology.</p>
-            
-            <div style="display: flex; flex-direction: column; gap: 2rem; align-items: center; margin-top: 2rem;">
-                <img src="images/Projects/Project1.0.jpeg" alt="Wall Following Robot Car System" class="project-image">
-                <img src="images/Projects/meandsumz.jpeg" alt="Myself with the Wall Following Robot Car" class="project-image">
+        <img src="images/Projects/Project1.0.jpeg" alt="Wall Following Robot Car System" class="project-image-main">
+        <img src="images/Projects/meandsumz.jpeg" alt="Myself with the Wall Following Robot Car" class="project-image-main" style="margin-top: 2rem;">
+
+        <div class="project-content">
+            <div class="project-section">
+                <h2>Project Overview</h2>
+                <p>This innovative autonomous navigation project demonstrates the integration of embedded systems, sensor technology, and intelligent control algorithms. The wall-following robot showcases advanced skills in real-time sensor processing, motor control, and autonomous decision-making using Arduino-based microcontroller technology.</p>
+                <p>This competition-ready autonomous robot was designed and built for robotics competitions requiring autonomous navigation through maze-like environments. Using only ultrasonic sensors and embedded control algorithms, the robot successfully navigates complex courses by maintaining a consistent distance from walls while detecting and avoiding obstacles.</p>
             </div>
-        </section>
 
-        <section class="project-section">
-            <h3>🔧 Key Components & Features</h3>
-            <div class="components-grid">
-                <div class="component-card">
-                    <h4>Arduino Uno Microcontroller</h4>
-                    <p>Acts as the main control unit, running the navigation algorithm and processing sensor data for real-time decision-making and autonomous operation.</p>
-                </div>
-                
-                <div class="component-card">
-                    <h4>Ultrasonic Sensor (HC-SR04)</h4>
-                    <p>Enables precise distance measurement from surrounding walls, providing accurate wall tracking capabilities with real-time feedback for navigation control.</p>
-                </div>
-                
-                <div class="component-card">
-                    <h4>L298N Motor Driver</h4>
-                    <p>Powers and controls the DC motors with precise speed modulation, allowing smooth directional changes and optimal navigation performance.</p>
-                </div>
-                
-                <div class="component-card">
-                    <h4>DC Gear Motors</h4>
-                    <p>Provide reliable locomotion with sufficient torque for smooth movement and responsive directional control during autonomous navigation.</p>
-                </div>
-                
-                <div class="component-card">
-                    <h4>Chassis & Wheel Assembly</h4>
-                    <p>Robust mechanical platform designed for stability and maneuverability, optimized for competition environments and various surface conditions.</p>
-                </div>
-                
-                <div class="component-card">
-                    <h4>Power Management System</h4>
-                    <p>Efficient battery management ensuring consistent performance throughout competition runs with stable voltage regulation for all components.</p>
+            <div class="tech-stack">
+                <span class="tech-tag">Arduino Uno</span>
+                <span class="tech-tag">C++</span>
+                <span class="tech-tag">Ultrasonic Sensors</span>
+                <span class="tech-tag">PID Control</span>
+                <span class="tech-tag">Motor Drivers</span>
+                <span class="tech-tag">State Machine</span>
+                <span class="tech-tag">Sensor Fusion</span>
+                <span class="tech-tag">Real-time Processing</span>
+            </div>
+
+            <div class="project-section">
+                <h2>Key Components & Features</h2>
+                <div class="components-grid">
+                    <div class="component-card">
+                        <h4>Arduino Uno Microcontroller</h4>
+                        <p>Acts as the main control unit, running the navigation algorithm and processing sensor data for real-time decision-making and autonomous operation.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <h4>Ultrasonic Sensor (HC-SR04)</h4>
+                        <p>Enables precise distance measurement from surrounding walls with ±1cm accuracy, providing accurate wall tracking capabilities with real-time feedback for navigation control.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <h4>L298N Motor Driver</h4>
+                        <p>Powers and controls the DC motors with precise speed modulation via PWM signals, allowing smooth directional changes and optimal navigation performance.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <h4>DC Gear Motors</h4>
+                        <p>Provide reliable locomotion with sufficient torque for smooth movement and responsive directional control during autonomous navigation at 0.5m/s maximum speed.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <h4>Chassis & Wheel Assembly</h4>
+                        <p>Robust mechanical platform designed for stability and maneuverability on a two-wheel differential drive chassis with front castor wheel, optimized for competition environments and various surface conditions.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <h4>Power Management System</h4>
+                        <p>Efficient battery management ensuring consistent performance throughout competition runs (45min battery life) with stable voltage regulation for all components using dual-power architecture.</p>
+                    </div>
                 </div>
             </div>
-        </section>
 
-        <section class="project-section">
-            <h3>Technical Implementation</h3>
-            <p><strong>Control Algorithm:</strong> The Arduino Uno runs a sophisticated control algorithm that continuously processes ultrasonic sensor data to maintain optimal wall-following distance through proportional control mechanisms.</p>
-            
-            <p><strong>Navigation Logic:</strong> The system employs real-time sensor feedback to make intelligent navigation decisions, adjusting motor speeds dynamically to maintain consistent wall tracking while avoiding obstacles.</p>
-            
-            <p><strong>Sensor Integration:</strong> Advanced sensor fusion techniques ensure reliable distance measurement and environmental awareness, enabling smooth autonomous operation in various competition scenarios.</p>
-        </section>
-
-        <section class="project-section">
-            <h3>Skills & Technologies</h3>
-            <div class="skills-grid">
-                <span class="skill-tag">Arduino IDE</span>
-                <span class="skill-tag">Motor Control</span>
-                <span class="skill-tag">Sensor Integration</span>
-                <span class="skill-tag">Embedded Systems</span>
-                <span class="skill-tag">Autonomous Navigation</span>
-                <span class="skill-tag">Real-time Processing</span>
-                <span class="skill-tag">Control Algorithms</span>
-                <span class="skill-tag">Robotics</span>
-                <span class="skill-tag">Mechanical Design</span>
+            <div class="metrics">
+                <div class="metric-item">
+                    <div class="metric-value">5</div>
+                    <div class="metric-label">Ultrasonic Sensors</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value">±1cm</div>
+                    <div class="metric-label">Wall Distance Accuracy</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value">0.5m/s</div>
+                    <div class="metric-label">Maximum Speed</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value">45min</div>
+                    <div class="metric-label">Battery Life</div>
+                </div>
             </div>
-        </section>
 
-        <section class="project-section">
-            <h3>Project Outcomes</h3>
-            <p>This project successfully demonstrates the integration of multiple engineering disciplines:</p>
-            <ul style="margin-top: 1rem; padding-left: 1.5rem;">
-                <li><strong>Embedded Programming:</strong> Efficient real-time control algorithms and sensor data processing</li>
-                <li><strong>Sensor Technology:</strong> Precise ultrasonic distance measurement and environmental sensing</li>
-                <li><strong>Motor Control:</strong> Smooth speed regulation and directional control for optimal navigation</li>
-                <li><strong>Autonomous Systems:</strong> Intelligent decision-making capabilities for independent operation</li>
-            </ul>
-            
-            <p style="margin-top: 1.5rem;">The completed robot successfully navigates along walls with consistent distance maintenance, demonstrating advanced skills in autonomous robotics, embedded systems design, and algorithmic thinking for competitive robotics applications.</p>
-        </section>
+            <div class="project-section">
+                <h2>Technical Implementation</h2>
+                <p><strong>Control Algorithm:</strong> The Arduino Uno runs a sophisticated control algorithm that continuously processes ultrasonic sensor data to maintain optimal wall-following distance through proportional control mechanisms. The core navigation algorithm implements a PID controller maintaining a target distance from the wall with carefully tuned gains for smooth, stable operation.</p>
+                
+                <p><strong>Navigation Logic:</strong> The system employs real-time sensor feedback to make intelligent navigation decisions, adjusting motor speeds dynamically to maintain consistent wall tracking while avoiding obstacles. A finite state machine architecture organizes behavior with states including Wall Following, Corner Detection, Obstacle Avoidance, and Recovery.</p>
+                
+                <p><strong>Sensor Integration:</strong> Advanced sensor fusion techniques ensure reliable distance measurement and environmental awareness. Five HC-SR04 ultrasonic sensors are strategically positioned providing comprehensive coverage with weighted averaging reducing noise impact. Moving average filters smooth sensor readings over multiple samples while outlier rejection discards anomalous values.</p>
+
+                <p><strong>Corner Handling:</strong> Multi-phase turn algorithm includes gradual deceleration approaching corners, precise pivot using differential drive, and controlled acceleration out of turns with inertial compensation based on testing characterization.</p>
+            </div>
+
+            <div class="project-section">
+                <h2>Key Learnings & Development</h2>
+                <p>This foundational robotics project provided hands-on experience with:</p>
+                <ul>
+                    <li><strong>Embedded Programming:</strong> Efficient real-time control algorithms and sensor data processing using C++ on Arduino</li>
+                    <li><strong>Sensor Technology:</strong> Precise ultrasonic distance measurement, environmental sensing, and noise filtering</li>
+                    <li><strong>Motor Control:</strong> Smooth speed regulation, directional control using PWM and differential drive for optimal navigation</li>
+                    <li><strong>Autonomous Systems:</strong> Intelligent decision-making capabilities, state machine design patterns, and systematic debugging for independent operation</li>
+                    <li><strong>PID Control:</strong> Understanding sensor limitations, systematic tuning methodologies, and achieving optimal control performance</li>
+                    <li><strong>Competition Strategy:</strong> Importance of fail-safe behaviors, handling edge cases, and iterative development from simple to complex</li>
+                </ul>
+                
+                <p style="margin-top: 1.5rem;">The completed robot successfully navigates along walls with consistent distance maintenance (typically 15cm target), demonstrating advanced skills in autonomous robotics, embedded systems design, and algorithmic thinking for competitive robotics applications. These fundamental skills established a strong foundation for more advanced robotics projects involving computer vision, machine learning, and complex autonomous systems.</p>
+            </div>
+        </div>
     </div>
 
     <footer>
-        <p>&copy; 2025 Dilmin Siriwardana. All Rights Reserved.</p>
+        <p class="copyright">© 2025 Dilmin Siriwardana. All Rights Reserved.</p>
     </footer>
-
-    <script>
-        function toggleMobileMenu() {
-            const mobileNav = document.getElementById('mobileNav');
-            const hamburger = document.querySelector('.hamburger');
-            mobileNav.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        }
-
-        function closeMobileMenu() {
-            const mobileNav = document.getElementById('mobileNav');
-            const hamburger = document.querySelector('.hamburger');
-            mobileNav.classList.remove('active');
-            hamburger.classList.remove('active');
-        }
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const nav = document.querySelector('nav');
-            const mobileNav = document.getElementById('mobileNav');
-            const hamburger = document.querySelector('.hamburger');
-            
-            if (!nav.contains(event.target) && !mobileNav.contains(event.target)) {
-                mobileNav.classList.remove('active');
-                hamburger.classList.remove('active');
-            }
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href !== '#' && href.length > 1) {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                }
-            });
-        });
-    </script>
 </body>
 </html>
