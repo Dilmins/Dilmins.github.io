@@ -34,7 +34,6 @@
             overflow-x: hidden;
         }
 
-        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -66,13 +65,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-decoration: none;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
         }
 
         .nav-links {
@@ -89,8 +81,6 @@
             font-size: 0.95rem;
             transition: color 0.3s ease;
             position: relative;
-            display: block;
-            padding: 0.5rem 0;
         }
 
         .nav-links a:hover {
@@ -119,8 +109,6 @@
             border-radius: 50px;
             font-weight: 600;
             transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
         }
 
         .cta-btn:hover {
@@ -140,15 +128,8 @@
             color: white;
             font-size: 1.5rem;
             cursor: pointer;
-            transition: transform 0.3s ease;
-            padding: 0.5rem;
         }
 
-        .menu-toggle:active {
-            transform: scale(0.95);
-        }
-
-        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -167,12 +148,6 @@
             height: 100%;
             background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
             pointer-events: none;
-            animation: bgFloat 20s ease-in-out infinite;
-        }
-
-        @keyframes bgFloat {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(20px, 20px); }
         }
 
         .hero-content {
@@ -191,7 +166,7 @@
             font-size: 0.875rem;
             color: var(--accent);
             margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease;
+            animation: fadeInUp 0.6s ease;
         }
 
         .hero h1 {
@@ -199,7 +174,7 @@
             font-weight: 800;
             margin-bottom: 1.5rem;
             line-height: 1.1;
-            animation: fadeInUp 0.8s ease 0.2s backwards;
+            animation: fadeInUp 0.6s ease 0.2s backwards;
         }
 
         .gradient-text {
@@ -214,7 +189,7 @@
             color: var(--text-secondary);
             max-width: 700px;
             margin: 0 auto 3rem;
-            animation: fadeInUp 0.8s ease 0.4s backwards;
+            animation: fadeInUp 0.6s ease 0.4s backwards;
         }
 
         .hero-buttons {
@@ -222,7 +197,7 @@
             gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease 0.6s backwards;
+            animation: fadeInUp 0.6s ease 0.6s backwards;
         }
 
         .btn-primary, .btn-secondary {
@@ -232,9 +207,6 @@
             text-decoration: none;
             transition: all 0.3s ease;
             font-size: 1rem;
-            border: none;
-            cursor: pointer;
-            display: inline-block;
         }
 
         .btn-primary {
@@ -248,10 +220,6 @@
             box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
         }
 
-        .btn-primary:active {
-            transform: translateY(0);
-        }
-
         .btn-secondary {
             background: transparent;
             color: var(--text-primary);
@@ -261,25 +229,17 @@
         .btn-secondary:hover {
             border-color: var(--accent);
             background: rgba(59, 130, 246, 0.1);
-            transform: translateY(-2px);
         }
 
-        .btn-secondary:active {
-            transform: translateY(0);
-        }
-
-        /* Section Styles */
         section {
             padding: 8rem 2rem;
             max-width: 1400px;
             margin: 0 auto;
-            width: 100%;
         }
 
         .section-header {
             text-align: center;
             margin-bottom: 5rem;
-            animation: fadeInUp 0.8s ease;
         }
 
         .section-label {
@@ -306,7 +266,6 @@
             margin: 0 auto;
         }
 
-        /* About Section */
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -322,7 +281,6 @@
             width: 100%;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            animation: fadeInUp 0.8s ease;
         }
 
         .about-image::before {
@@ -333,10 +291,6 @@
             border-radius: 30px;
             z-index: -1;
             filter: blur(20px);
-        }
-
-        .about-text {
-            animation: fadeInUp 0.8s ease 0.2s backwards;
         }
 
         .about-text h3 {
@@ -359,22 +313,6 @@
 
         .stat-item {
             text-align: center;
-            padding: 2rem;
-            background: rgba(59, 130, 246, 0.05);
-            border-radius: 15px;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
-            animation: fadeInUp 0.8s ease backwards;
-        }
-
-        .stat-item:nth-child(1) { animation-delay: 0s; }
-        .stat-item:nth-child(2) { animation-delay: 0.1s; }
-        .stat-item:nth-child(3) { animation-delay: 0.2s; }
-
-        .stat-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-            background: rgba(59, 130, 246, 0.1);
         }
 
         .stat-number {
@@ -392,7 +330,6 @@
             margin-top: 0.5rem;
         }
 
-        /* Skills Section */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -408,38 +345,24 @@
             text-align: center;
             transition: all 0.3s ease;
             cursor: pointer;
-            animation: fadeInUp 0.6s ease backwards;
         }
 
-        .skill-card:nth-child(1) { animation-delay: 0s; }
-        .skill-card:nth-child(2) { animation-delay: 0.1s; }
-        .skill-card:nth-child(3) { animation-delay: 0.2s; }
-        .skill-card:nth-child(4) { animation-delay: 0.3s; }
-        .skill-card:nth-child(5) { animation-delay: 0.4s; }
-        .skill-card:nth-child(6) { animation-delay: 0.5s; }
-        .skill-card:nth-child(7) { animation-delay: 0.6s; }
-        .skill-card:nth-child(8) { animation-delay: 0.7s; }
-
         .skill-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-5px);
             border-color: var(--accent);
-            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.2);
-            background: rgba(59, 130, 246, 0.05);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
         }
 
         .skill-icon {
-            font-size: 2.5rem;
+            font-size: 2rem;
             margin-bottom: 1rem;
-            display: block;
         }
 
         .skill-name {
             font-weight: 600;
             font-size: 1rem;
-            color: var(--text-primary);
         }
 
-        /* Projects Section */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -455,22 +378,12 @@
             transition: all 0.4s ease;
             cursor: pointer;
             position: relative;
-            animation: fadeInUp 0.8s ease backwards;
-            display: flex;
-            flex-direction: column;
         }
 
-        .project-card:nth-child(1) { animation-delay: 0s; }
-        .project-card:nth-child(2) { animation-delay: 0.1s; }
-        .project-card:nth-child(3) { animation-delay: 0.2s; }
-        .project-card:nth-child(4) { animation-delay: 0.3s; }
-        .project-card:nth-child(5) { animation-delay: 0.4s; }
-        .project-card:nth-child(6) { animation-delay: 0.5s; }
-
         .project-card:hover {
-            transform: translateY(-12px);
+            transform: translateY(-10px);
             border-color: var(--accent);
-            box-shadow: 0 25px 60px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3);
         }
 
         .project-image {
@@ -478,39 +391,32 @@
             height: 250px;
             object-fit: cover;
             transition: transform 0.4s ease;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
         }
 
         .project-card:hover .project-image {
-            transform: scale(1.08);
+            transform: scale(1.05);
         }
 
         .project-content {
             padding: 2rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
         }
 
         .project-title {
             font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 1rem;
-            color: var(--text-primary);
         }
 
         .project-description {
             color: var(--text-secondary);
             margin-bottom: 1.5rem;
             line-height: 1.7;
-            flex-grow: 1;
         }
 
         .project-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-top: auto;
         }
 
         .tag {
@@ -520,18 +426,11 @@
             border-radius: 50px;
             font-size: 0.8rem;
             color: var(--accent);
-            transition: all 0.3s ease;
         }
 
-        .project-card:hover .tag {
-            background: rgba(59, 130, 246, 0.2);
-        }
-
-        /* Contact Section */
         .contact-content {
             max-width: 600px;
             margin: 0 auto;
-            animation: fadeInUp 0.8s ease 0.2s backwards;
         }
 
         .contact-form {
@@ -563,23 +462,16 @@
             transition: all 0.3s ease;
         }
 
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: var(--text-secondary);
-        }
-
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: var(--accent);
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-            background: rgba(59, 130, 246, 0.05);
         }
 
         .form-group textarea {
             min-height: 150px;
             resize: vertical;
-            font-family: inherit;
         }
 
         .submit-btn {
@@ -592,7 +484,6 @@
             font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 1rem;
         }
 
         .submit-btn:hover {
@@ -601,43 +492,10 @@
             box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
         }
 
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-
-        .submit-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .form-message {
-            padding: 1rem;
-            border-radius: 10px;
-            margin-top: 1rem;
-            text-align: center;
-            display: none;
-        }
-
-        .form-message.success {
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            color: #22c55e;
-            display: block;
-        }
-
-        .form-message.error {
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            color: #ef4444;
-            display: block;
-        }
-
-        /* Footer */
         footer {
             border-top: 1px solid var(--border);
             padding: 3rem 2rem;
             text-align: center;
-            background: rgba(10, 10, 10, 0.5);
         }
 
         .footer-content {
@@ -659,8 +517,7 @@
         .footer-links a {
             color: var(--text-secondary);
             text-decoration: none;
-            transition: all 0.3s ease;
-            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
         .footer-links a:hover {
@@ -672,7 +529,6 @@
             font-size: 0.9rem;
         }
 
-        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -684,78 +540,27 @@
             }
         }
 
-        /* Scroll to top button */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: var(--accent);
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: white;
-            transition: all 0.3s ease;
-            z-index: 999;
-            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
-        }
-
-        .scroll-to-top:hover {
-            background: var(--accent-hover);
-            transform: translateY(-5px);
-        }
-
-        .scroll-to-top.show {
-            display: flex;
-        }
-
-        /* Responsive */
         @media (max-width: 968px) {
             .nav-links {
                 display: none;
                 position: fixed;
-                top: 70px;
+                top: 0;
                 right: 0;
-                height: calc(100vh - 70px);
-                width: 100%;
+                height: 100vh;
+                width: 300px;
                 background: var(--bg-card);
                 flex-direction: column;
-                padding: 2rem;
-                gap: 1.5rem;
-                border-left: none;
-                border-top: 1px solid var(--border);
-                animation: slideInRight 0.3s ease;
-                overflow-y: auto;
+                padding: 5rem 2rem;
+                gap: 2rem;
+                border-left: 1px solid var(--border);
             }
 
             .nav-links.active {
                 display: flex;
             }
 
-            @keyframes slideInRight {
-                from {
-                    opacity: 0;
-                    transform: translateX(100%);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateX(0);
-                }
-            }
-
-            .nav-links a {
-                padding: 1rem;
-                border-bottom: 1px solid var(--border);
-            }
-
             .menu-toggle {
                 display: block;
-                z-index: 1001;
             }
 
             .about-content {
@@ -763,7 +568,7 @@
             }
 
             .stats {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
             }
 
             .projects-grid {
@@ -774,41 +579,11 @@
                 flex-direction: column;
                 text-align: center;
             }
-
-            .footer-links {
-                justify-content: center;
-            }
-
-            section {
-                padding: 6rem 1.5rem;
-            }
-
-            .hero {
-                padding: 6rem 1.5rem 3rem;
-            }
         }
 
         @media (max-width: 640px) {
             .hero {
-                padding: 5rem 1.5rem 2rem;
-                min-height: auto;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .btn-primary, .btn-secondary {
-                width: 100%;
+                padding: 6rem 1.5rem 3rem;
             }
 
             section {
@@ -822,55 +597,25 @@
             .skills-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about-text h3 {
-                font-size: 1.5rem;
-            }
-
-            .section-header h2 {
-                font-size: 2rem;
-            }
-
-            .section-header p {
-                font-size: 1rem;
-            }
-
-            .scroll-to-top {
-                width: 45px;
-                height: 45px;
-                bottom: 1rem;
-                right: 1rem;
-                font-size: 1.25rem;
-            }
-
-            .nav-links {
-                top: 60px;
-                height: calc(100vh - 60px);
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav id="navbar">
+    <nav>
         <div class="nav-container">
-            <a href="#home" class="logo">DS</a>
+            <div class="logo">DS</div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#contact" class="cta-btn nav-link">Contact</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact" class="cta-btn">Contact</a></li>
+                <li><a href="assets/My_CV.pdf" download>Download CV</a></li>
             </ul>
-            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+            <button class="menu-toggle" id="menuToggle">☰</button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-bg"></div>
         <div class="hero-content">
@@ -879,12 +624,11 @@
             <p>Passionate about innovation through AI/ML, robotics, and IoT. Building intelligent systems that solve real-world problems.</p>
             <div class="hero-buttons">
                 <a href="#projects" class="btn-primary">View My Work</a>
-                <a href="#contact" class="btn-secondary">Get In Touch</a>
+                <a href="assets/My_CV.pdf" download class="btn-secondary">Download CV</a>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about">
         <div class="section-header">
             <span class="section-label">About Me</span>
@@ -916,7 +660,6 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
     <section id="skills">
         <div class="section-header">
             <span class="section-label">Skills</span>
@@ -924,42 +667,40 @@
             <p>A comprehensive toolkit for building intelligent mechatronic systems</p>
         </div>
         <div class="skills-grid">
-            <div class="skill-card" tabindex="0">
+            <div class="skill-card">
                 <div class="skill-icon">🐍</div>
                 <div class="skill-name">Python</div>
             </div>
-            <div class="skill-card" tabindex="0">
+            <div class="skill-card">
                 <div class="skill-icon">⚙️</div>
                 <div class="skill-name">C++</div>
             </div>
-            <div class="skill-card" tabindex="0">
+            <div class="skill-card">
                 <div class="skill-icon">🤖</div>
                 <div class="skill-name">Machine Learning</div>
             </div>
-            <div class="skill-card" tabindex="0">
+            <div class="skill-card">
                 <div class="skill-icon">📐</div>
                 <div class="skill-name">CAD Design</div>
             </div>
-            <div class="skill-card" tabindex="0">
+            <div class="skill-card">
                 <div class="skill-icon">🔌</div>
                 <div class="skill-name">PCB Design</div>
             </div>
-            <div class="skill-card" tabindex="0">
-                <div class="skill-icon">⚡</div>
+            <div class="skill-card">
                 <div class="skill-name">PLC Programming</div>
             </div>
-            <div class="skill-card" tabindex="0">
+            <div class="skill-card">
                 <div class="skill-icon">🌐</div>
                 <div class="skill-name">IoT Development</div>
             </div>
-            <div class="skill-card" tabindex="0">
+            <div class="skill-card">
                 <div class="skill-icon">🔧</div>
                 <div class="skill-name">Raspberry Pi</div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects">
         <div class="section-header">
             <span class="section-label">Portfolio</span>
@@ -967,7 +708,7 @@
             <p>Innovative solutions at the intersection of robotics, AI, and automation</p>
         </div>
         <div class="projects-grid">
-            <div class="project-card" role="button" tabindex="0">
+            <div class="project-card" onclick="window.location.href='brain-controlled-exoskeleton.html'">
                 <img src="images/Projects/fyp.jpeg" alt="Brain-controlled Exoskeleton" class="project-image">
                 <div class="project-content">
                     <h3 class="project-title">Brain-Controlled Exoskeleton</h3>
@@ -980,7 +721,7 @@
                 </div>
             </div>
 
-            <div class="project-card" role="button" tabindex="0">
+            <div class="project-card" onclick="window.location.href='motor-fault-detection.html'">
                 <img src="images/Projects/motorfault.jpeg" alt="Motor Fault Detection" class="project-image">
                 <div class="project-content">
                     <h3 class="project-title">Motor Fault Detection</h3>
@@ -993,7 +734,7 @@
                 </div>
             </div>
 
-            <div class="project-card" role="button" tabindex="0">
+            <div class="project-card" onclick="window.location.href='aqm-devices.html'">
                 <img src="images/Projects/aqmlist.jpeg" alt="Air Quality Monitoring" class="project-image">
                 <div class="project-content">
                     <h3 class="project-title">E-Paper AQM Devices</h3>
@@ -1006,7 +747,7 @@
                 </div>
             </div>
 
-            <div class="project-card" role="button" tabindex="0">
+            <div class="project-card" onclick="window.location.href='surveillance-robot.html'">
                 <img src="images/Projects/Project3.0.jpeg" alt="Surveillance Robot" class="project-image">
                 <div class="project-content">
                     <h3 class="project-title">AI Surveillance Robot</h3>
@@ -1019,7 +760,7 @@
                 </div>
             </div>
 
-            <div class="project-card" role="button" tabindex="0">
+            <div class="project-card" onclick="window.location.href='cocktail-machine.html'">
                 <img src="images/Projects/Project2.0.jpeg" alt="Cocktail Machine" class="project-image">
                 <div class="project-content">
                     <h3 class="project-title">Automated Cocktail Machine</h3>
@@ -1032,7 +773,7 @@
                 </div>
             </div>
 
-            <div class="project-card" role="button" tabindex="0">
+            <div class="project-card" onclick="window.location.href='wall-following-robot.html'">
                 <img src="images/Projects/Project1.0.jpeg" alt="Wall Following Robot" class="project-image">
                 <div class="project-content">
                     <h3 class="project-title">Wall Following Robot</h3>
@@ -1047,7 +788,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact">
         <div class="section-header">
             <span class="section-label">Get In Touch</span>
@@ -1055,26 +795,24 @@
             <p>Have a project in mind? I'd love to hear about it.</p>
         </div>
         <div class="contact-content">
-            <form class="contact-form" id="contactForm" method="POST">
+            <form class="contact-form" action="https://formspree.io/f/xblgrrro" method="POST">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your name" required>
+                    <input type="text" id="name" name="name" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                    <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-group">
                     <label for="message">Message</label>
-                    <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
+                    <textarea id="message" name="message" required></textarea>
                 </div>
-                <button type="submit" class="submit-btn" id="submitBtn">Send Message</button>
-                <div class="form-message" id="formMessage"></div>
+                <button type="submit" class="submit-btn">Send Message</button>
             </form>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="copyright">© 2025 Dilmin Siriwardana. All Rights Reserved.</div>
@@ -1086,11 +824,7 @@
         </div>
     </footer>
 
-    <!-- Scroll to top button -->
-    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">↑</button>
-
     <script>
-        // ==================== Mobile Menu Toggle ====================
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
 
@@ -1099,121 +833,26 @@
             menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
         });
 
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-link').forEach(link => {
+        document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
                 menuToggle.textContent = '☰';
             });
         });
 
-        // ==================== Navigation Scroll Effect ====================
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // ==================== Scroll to Top Button ====================
-        const scrollToTopBtn = document.getElementById('scrollToTop');
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                scrollToTopBtn.classList.add('show');
-            } else {
-                scrollToTopBtn.classList.remove('show');
-            }
-        });
-
-        scrollToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // ==================== Contact Form Handling ====================
-        const contactForm = document.getElementById('contactForm');
-        const formMessage = document.getElementById('formMessage');
-        const submitBtn = document.getElementById('submitBtn');
-
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const formData = new FormData(contactForm);
-            const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                message: formData.get('message')
-            };
-
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending...';
-
-            try {
-                // Simulate form submission
-                await new Promise(resolve => setTimeout(resolve, 1500));
-
-                // Show success message
-                formMessage.textContent = 'Message sent successfully! I\'ll get back to you soon.';
-                formMessage.classList.remove('error');
-                formMessage.classList.add('success');
-
-                // Reset form
-                contactForm.reset();
-
-                // Hide message after 5 seconds
-                setTimeout(() => {
-                    formMessage.classList.remove('success');
-                }, 5000);
-            } catch (error) {
-                formMessage.textContent = 'Error sending message. Please try again.';
-                formMessage.classList.remove('success');
-                formMessage.classList.add('error');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Send Message';
-            }
-        });
-
-        // ==================== Smooth Scrolling for Anchor Links ====================
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href === '#' || !document.querySelector(href)) return;
-
                 e.preventDefault();
-                const target = document.querySelector(href);
-                
+                const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    const offsetTop = target.offsetTop - 70;
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
 
-        // ==================== Project Card Click Handling ====================
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.addEventListener('click', function() {
-                // Add your project detail page navigation here
-                console.log('Project clicked');
-            });
-
-            card.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    this.click();
-                }
-            });
-        });
-
-        // ==================== Intersection Observer for Scroll Animations ====================
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+            rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -1225,80 +864,12 @@
             });
         }, observerOptions);
 
-        // Observe elements for animation on scroll
-        document.querySelectorAll('.project-card, .skill-card').forEach(el => {
+        document.querySelectorAll('.project-card, .skill-card, .stat-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
         });
-
-        // ==================== Keyboard Navigation Support ====================
-        document.querySelectorAll('.skill-card').forEach(card => {
-            card.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    this.style.transform = 'translateY(-8px)';
-                    setTimeout(() => {
-                        this.style.transform = '';
-                    }, 300);
-                }
-            });
-        });
-
-        // ==================== Active Navigation Link ====================
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
-
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.style.color = '';
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.style.color = 'var(--text-primary)';
-                }
-            });
-        });
-
-        // ==================== Prevent Multiple Submissions ====================
-        let isSubmitting = false;
-
-        contactForm.addEventListener('submit', function(e) {
-            if (isSubmitting) {
-                e.preventDefault();
-                return;
-            }
-            isSubmitting = true;
-
-            setTimeout(() => {
-                isSubmitting = false;
-            }, 2000);
-        });
-
-        // ==================== Page Load Animation ====================
-        window.addEventListener('load', () => {
-            document.body.style.opacity = '1';
-        });
-
-        // ==================== Touch Support for Mobile ====================
-        let touchStartX = 0;
-        document.addEventListener('touchstart', (e) => {
-            touchStartX = e.touches[0].clientX;
-        }, false);
-
-        document.addEventListener('touchend', (e) => {
-            const touchEndX = e.changedTouches[0].clientX;
-            if (touchStartX - touchEndX > 50) {
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    menuToggle.textContent = '☰';
-                }
-            }
-        }, false);
     </script>
 </body>
-</html>
+</html> 

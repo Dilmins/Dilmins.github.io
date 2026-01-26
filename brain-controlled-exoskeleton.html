@@ -104,12 +104,60 @@
             margin: 0 auto;
         }
 
+        .project-images-container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 3rem auto;
+        }
+
         .project-image-main {
             width: 100%;
-            max-width: 900px;
-            margin: 3rem auto;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            margin-bottom: 2rem;
+        }
+
+        .images-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .image-card {
+            background: var(--bg-card);
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-card-caption {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .image-card-caption h3 {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .image-card-caption p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin: 0;
         }
 
         .project-content {
@@ -246,6 +294,10 @@
             .features-grid {
                 grid-template-columns: 1fr;
             }
+
+            .images-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -260,11 +312,27 @@
     <div class="project-hero">
         <div class="project-header">
             <span class="project-label">Brain-Computer Interface</span>
-            <h1>Brain-Controlled Exoskeleton</h1>
+            <h1>Brain-Controlled Exoskeleton Arm In Assiting Hand Impaired Individuals</h1>
             <p>Empowering individuals with upper-limb motor impairments through EEG-based brain-computer interface technology</p>
         </div>
 
-        <img src="images/Projects/fyp.jpeg" alt="Brain-Controlled Exoskeleton" class="project-image-main">
+            
+            <div class="images-grid">
+                <div class="image-card">
+                    <img src="images/Projects/fyp.jpeg" alt="Exoskeleton System">
+                    <div class="image-card-caption">
+                        <h3>Complete System</h3>
+                        <p>Integrated BCI exoskeleton prototype</p>
+                    </div>
+                </div>
+                <div class="image-card">
+                    <img src="images/Projects/pipeline.jpeg" alt="System Pipeline">
+                    <div class="image-card-caption">
+                        <h3>System Pipeline</h3>
+                        <p>Signal processing and control architecture</p>
+                    </div>
+                </div>
+            </div>
 
         <div class="project-content">
             <div class="project-section">
