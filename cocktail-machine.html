@@ -1,374 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Automated Cocktail Machine - Dilmin Siriwardana</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-dark: #0a0a0a;
-            --bg-card: #111111;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --accent: #3b82f6;
-            --accent-hover: #2563eb;
-            --border: #1f1f1f;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
-        }
-
-        .back-btn {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .back-btn:hover {
-            color: var(--text-primary);
-        }
-
-        .project-hero {
-            padding: 8rem 2rem 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .project-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .project-label {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 50px;
-            font-size: 0.875rem;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-        }
-
-        .project-hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-hero p {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .project-image-main {
-            width: 100%;
-            max-width: 900px;
-            margin: 3rem auto;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        .project-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .project-section {
-            margin-bottom: 4rem;
-        }
-
-        .project-section h2, .project-section h3 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        .project-section h3 {
-            font-size: 1.5rem;
-            margin: 2rem 0 1rem;
-        }
-
-        .project-section p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .tech-stack, .skills-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .tech-tag, .skill-tag {
-            padding: 0.75rem 1.5rem;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 50px;
-            font-size: 0.95rem;
-            color: var(--accent);
-        }
-
-        .components-grid, .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .component-card, .feature-card {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid var(--border);
-        }
-
-        .component-card h4, .feature-card h4 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-
-        .component-card p, .feature-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin: 0;
-        }
-
-        .metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .metric-item {
-            text-align: center;
-            padding: 2rem;
-            background: var(--bg-card);
-            border-radius: 15px;
-            border: 1px solid var(--border);
-        }
-
-        .metric-value {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
-
-        .metric-label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        ul {
-            list-style-position: inside;
-            color: var(--text-secondary);
-            margin: 1rem 0;
-        }
-
-        ul li {
-            margin-bottom: 0.75rem;
-            line-height: 1.8;
-        }
-
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .copyright {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .project-hero {
-                padding: 6rem 1.5rem 3rem;
-            }
-
-            .project-content {
-                padding: 1.5rem;
-            }
-
-            .components-grid, .features-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automated Cocktail Machine — Dilmin Siriwardana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+--bg:#060e1a;--bg2:#0a1628;--bg3:#0d1f38;
+--blue:#0078ff;--blue2:#3d9bff;--blue3:rgba(0,120,255,0.12);--blue4:rgba(0,120,255,0.06);
+--grid:rgba(0,120,255,0.07);--text:#f0f6ff;--text2:#7aa3cc;--text3:#4d7fa8;
+--border:rgba(0,120,255,0.18);--border2:rgba(0,120,255,0.08);--accent:#00e5ff;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6;}
+.grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px;}
+.grid-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(0,120,255,0.08) 0%,transparent 70%);}
+nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(6,14,26,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border2);transition:border-color 0.3s;}
+nav.scrolled{border-bottom-color:var(--border);}
+.nav-inner{max-width:1320px;margin:0 auto;padding:0 2rem;height:68px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:500;color:var(--text);display:flex;align-items:center;gap:4px;text-decoration:none;}
+.nav-logo span{color:var(--blue);}
+.cursor{display:inline-block;width:2px;height:1em;background:var(--blue);margin-left:2px;animation:blink 1s step-end infinite;vertical-align:middle;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.back-btn{font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--text2);text-decoration:none;display:flex;align-items:center;gap:6px;padding:0.5rem 1rem;border:1px solid var(--border2);border-radius:6px;background:var(--blue4);transition:all 0.2s;}
+.back-btn:hover{color:var(--text);border-color:var(--border);background:var(--blue3);}
+.proj-hero{padding:8rem 2rem 4rem;position:relative;z-index:1;}
+.proj-hero-inner{max-width:1000px;margin:0 auto;}
+.proj-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--blue);letter-spacing:0.1em;text-transform:uppercase;background:var(--blue4);border:1px solid var(--border);padding:0.4rem 0.875rem;border-radius:4px;margin-bottom:1.75rem;}
+.proj-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--blue);animation:pulse 2s ease infinite;flex-shrink:0;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);}}
+.proj-hero h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700;line-height:1.1;letter-spacing:-0.02em;margin-bottom:1.25rem;}
+.proj-hero h1 span{background:linear-gradient(135deg,var(--blue) 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.proj-hero-desc{font-size:1rem;color:var(--text2);max-width:700px;line-height:1.8;margin-bottom:2rem;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2.5rem;}
+.proj-tag{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--blue2);border:1px solid rgba(0,120,255,0.18);padding:0.25rem 0.65rem;border-radius:3px;background:var(--blue4);}
+.img-section{position:relative;z-index:1;max-width:1000px;margin:0 auto 3rem;padding:0 2rem;}
+.img-main{width:100%;border-radius:12px;border:1px solid var(--border);display:block;box-shadow:0 24px 64px rgba(0,0,0,0.5);margin-bottom:1.25rem;}
+.proj-content{max-width:1000px;margin:0 auto;padding:0 2rem 6rem;}
+.section-block{margin-bottom:3.5rem;}
+.block-label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--blue);letter-spacing:0.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:0.75rem;}
+.block-label::before{content:'//';opacity:0.5;}
+.section-block h2{font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:700;letter-spacing:-0.02em;margin-bottom:1.25rem;}
+.section-block p{color:var(--text2);font-size:0.925rem;line-height:1.85;margin-bottom:1rem;}
+.section-block h3{font-size:1.05rem;font-weight:600;color:var(--text);margin:1.75rem 0 0.6rem;}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;margin:1.5rem 0;}
+.info-card{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:1.5rem;transition:all 0.2s;}
+.info-card:hover{border-color:var(--border);background:var(--bg3);}
+.info-card h4{font-size:0.9rem;font-weight:600;color:var(--blue);margin-bottom:0.6rem;}
+.info-card p{color:var(--text2);font-size:0.82rem;line-height:1.7;margin:0;}
+.metrics-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1px;background:var(--border2);border:1px solid var(--border2);border-radius:10px;overflow:hidden;margin:2rem 0;}
+.metric{background:var(--bg2);padding:1.5rem;text-align:center;}
+.metric-n{font-family:'JetBrains Mono',monospace;font-size:1.8rem;font-weight:700;color:var(--blue);line-height:1;}
+.metric-l{font-size:0.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-top:0.35rem;}
+.tech-row{display:flex;flex-wrap:wrap;gap:0.5rem;margin:1.25rem 0;}
+.tech-chip{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text2);border:1px solid var(--border2);padding:0.35rem 0.75rem;border-radius:4px;background:var(--blue4);transition:all 0.2s;}
+.tech-chip:hover{border-color:var(--border);color:var(--text);}
+.proj-list{list-style:none;padding:0;margin:1rem 0;}
+.proj-list li{padding-left:1.25rem;position:relative;color:var(--text2);font-size:0.9rem;line-height:1.8;margin-bottom:0.5rem;}
+.proj-list li::before{content:'→';position:absolute;left:0;color:var(--blue);font-size:0.8rem;}
+.divider{height:1px;background:var(--border2);margin:0;}
+footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative;z-index:1;}
+.footer-inner{max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
+.footer-logo{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:500;color:var(--text2);}
+.footer-logo span{color:var(--blue);}
+.footer-copy{font-size:0.78rem;color:var(--text3);}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@media(max-width:768px){
+  .proj-hero{padding:6rem 1.25rem 3rem;}
+  .img-section{padding:0 1.25rem;}
+  .proj-content{padding:0 1.25rem 4rem;}
+  .cards-grid{grid-template-columns:1fr;}
+}
+</style>
 </head>
 <body>
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo">DS</a>
-            <a href="index.html#projects" class="back-btn">← Back to Portfolio</a>
-        </div>
-    </nav>
+<div class="grid-bg"></div>
 
-    <div class="project-hero">
-        <div class="project-header">
-            <span class="project-label">Automation & Embedded Systems</span>
-            <h1>Automated Cocktail Machine</h1>
-            <p>A fully automated cocktail dispensing system that combines mechanical precision, fluid control, and a user-friendly interface to deliver customized drink recipes at the touch of a screen.</p>
-        </div>
+<nav id="mainNav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span>DS</span><span class="cursor"></span></a>
+    <a href="index.html#projects" class="back-btn">← Back to Projects</a>
+  </div>
+</nav>
 
-        <img src="images/Projects/Project2.0.jpeg" alt="Automated Cocktail Machine System" class="project-image-main">
-        <img src="images/Projects/mecocktail.jpeg" alt="Myself with the Automated Cocktail Machine" class="project-image-main" style="margin-top: 2rem;">
-
-        <div class="project-content">
-            <div class="project-section">
-                <h2>Project Overview</h2>
-                <p>This innovative project showcases the integration of mechanical systems, fluid dynamics, touchscreen UI, and embedded programming. The automated cocktail machine demonstrates advanced skills in automation, user interface design, and real-time control using Raspberry Pi technology.</p>
-                <p>This precision fluid dispensing system brings precision engineering to the art of mixology, combining fluid dynamics, motor control, and intuitive user interface design to create consistently perfect cocktails at the touch of a button. The system eliminates human error in measurements while providing an engaging, interactive experience for users.</p>
-            </div>
-
-            <div class="tech-stack">
-                <span class="tech-tag">Raspberry Pi 4</span>
-                <span class="tech-tag">Python Programming</span>
-                <span class="tech-tag">Automation</span>
-                <span class="tech-tag">Motor Control</span>
-                <span class="tech-tag">Multithreading</span>
-                <span class="tech-tag">Fluid Dynamics</span>
-                <span class="tech-tag">Mechanical Engineering</span>
-                <span class="tech-tag">Sensor Integration</span>
-                <span class="tech-tag">Real-time Control</span>
-            </div>
-
-            <div class="project-section">
-                <h2>Key Components & Features</h2>
-                <div class="components-grid">
-                    <div class="component-card">
-                        <h4>Raspberry Pi 4 (2018)</h4>
-                        <p>Serves as the main controller, handling user input, recipe logic, and motor control through GPIO pins with real-time processing capabilities.</p>
-                    </div>
-                    
-                    <div class="component-card">
-                        <h4>NEMA 17 Stepper Motor + Conveyor Belt</h4>
-                        <p>Automates conveyor belt movement, enabling accurate alignment under dispensing nozzles for multi-ingredient cocktails.</p>
-                    </div>
-                    
-                    <div class="component-card">
-                        <h4>Centrifugal Pumps</h4>
-                        <p>Precisely dispense liquids for each ingredient with ±2ml accuracy, ensuring consistent mixing and flow control with variable speed for different viscosities.</p>
-                    </div>
-                    
-                    <div class="component-card">
-                        <h4>Pneumatic Y-Shape Air Fittings</h4>
-                        <p>Used for efficient liquid routing and combining multiple fluid lines in a compact, organized setup with minimal pressure loss.</p>
-                    </div>
-                    
-                    <div class="component-card">
-                        <h4>7-Inch Touch Display</h4>
-                        <p>Provides an intuitive GUI for selecting from 3 different drink recipes and initiating the automated dispensing process with visual cocktail menu.</p>
-                    </div>
-                    
-                    <div class="component-card">
-                        <h4>Proximity Sensors</h4>
-                        <p>Ensures precise glass detection and positioning, preventing spillage and ensuring accurate ingredient delivery before dispensing begins.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="metrics">
-                <div class="metric-item">
-                    <div class="metric-value">±2ml</div>
-                    <div class="metric-label">Dispensing Accuracy</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-value">30s</div>
-                    <div class="metric-label">Average Mix Time</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-value">3+</div>
-                    <div class="metric-label">Cocktail Recipes</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-value">8</div>
-                    <div class="metric-label">Ingredient Channels</div>
-                </div>
-            </div>
-
-            <div class="project-section">
-                <h2>Technical Implementation</h2>
-                <p><strong>Control System:</strong> The Raspberry Pi 4 runs a Python-based control system that manages all aspects of the cocktail dispensing process, from user interface interactions to precise motor control and pump timing with multi-threaded architecture managing simultaneous processes.</p>
-                
-                <p><strong>Automation Process:</strong> When a user selects a cocktail recipe on the touchscreen, if there is a glass detected by proximity sensors, the system automatically activates the appropriate pumps in sequence to dispense the correct ingredients in precise measurements. Calibration routines measure actual flow rates for each pump-tube combination.</p>
-                
-                <p><strong>Fluid Delivery System:</strong> Peristaltic pumps ensure precise, contamination-free liquid delivery. Each pump is driven by a stepper motor controlled through custom driver circuits allowing precise flow rate adjustment with real-time monitoring tracking pump rotations.</p>
-
-                <p><strong>Safety Features:</strong> The system includes proximity sensors for glass detection, emergency stop functionality, overflow detection, and pump timeout protection to ensure safe operation and prevent spills.</p>
-            </div>
-
-            <div class="project-section">
-                <h2>Project Outcomes</h2>
-                <p>This project successfully demonstrates the integration of multiple engineering disciplines:</p>
-                <ul>
-                    <li><strong>Mechanical Engineering:</strong> Precise conveyor belt system, fluid routing, and chassis design for functionality and aesthetics</li>
-                    <li><strong>Electrical Engineering:</strong> Motor control, sensor integration, power management, and GPIO programming</li>
-                    <li><strong>Software Engineering:</strong> Real-time control system with user interface, recipe management using SQLite database, and multithreaded Python application</li>
-                    <li><strong>Automation:</strong> Fully automated process from user input to final product delivery with consistent quality</li>
-                    <li><strong>Precision Engineering:</strong> ±2ml dispensing accuracy through calibrated pump control and flow rate monitoring</li>
-                </ul>
-                
-                <p style="margin-top: 1.5rem;">The completed system can dispense three different cocktail recipes with consistent quality and precise ingredient ratios (expandable to 50+ recipes), showcasing advanced skills in mechatronic system design and implementation. Whether for home entertainment, commercial bars, or event catering, the system delivers professional-quality drinks with minimal training required.</p>
-            </div>
-        </div>
+<div class="proj-hero">
+  <div class="proj-hero-inner">
+    <div class="proj-eyebrow">Automation &nbsp;·&nbsp; Embedded Systems</div>
+    <h1>Automated <span>Cocktail Machine</span></h1>
+    <p class="proj-hero-desc">A fully automated cocktail dispensing system combining mechanical precision, fluid dynamics, stepper motor control, and a touchscreen interface to deliver customised drink recipes at the touch of a screen.</p>
+    <div class="proj-tags">
+      <span class="proj-tag">Raspberry Pi 4</span>
+      <span class="proj-tag">Python</span>
+      <span class="proj-tag">Automation</span>
+      <span class="proj-tag">Motor Control</span>
+      <span class="proj-tag">Multithreading</span>
+      <span class="proj-tag">Fluid Dynamics</span>
+      <span class="proj-tag">Mechanical Engineering</span>
+      <span class="proj-tag">Sensor Integration</span>
     </div>
+  </div>
+</div>
 
-    <footer>
-        <p class="copyright">© 2025 Dilmin Siriwardana. All Rights Reserved.</p>
-    </footer>
+<div class="img-section reveal">
+  <img src="images/Projects/Project2.0.jpeg" alt="Automated Cocktail Machine System" class="img-main">
+  <img src="images/Projects/mecocktail.jpeg" alt="Myself with the Automated Cocktail Machine" class="img-main">
+</div>
+
+<div class="proj-content">
+
+  <div class="section-block reveal">
+    <div class="block-label">Overview</div>
+    <h2>Project Overview</h2>
+    <p>This innovative project showcases the integration of mechanical systems, fluid dynamics, touchscreen UI, and embedded programming. The automated cocktail machine demonstrates advanced skills in automation, user interface design, and real-time control using Raspberry Pi 4 technology.</p>
+    <p>This precision fluid dispensing system brings engineering to the art of mixology — combining fluid dynamics, motor control, and intuitive user interface design to create consistently perfect cocktails at the touch of a button. The system eliminates human error in measurements while providing an engaging, interactive experience.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Tech Stack</div>
+    <h2>Technologies Used</h2>
+    <div class="tech-row">
+      <span class="tech-chip">Raspberry Pi 4</span>
+      <span class="tech-chip">Python</span>
+      <span class="tech-chip">Automation</span>
+      <span class="tech-chip">Motor Control</span>
+      <span class="tech-chip">Multithreading</span>
+      <span class="tech-chip">Fluid Dynamics</span>
+      <span class="tech-chip">Mechanical Engineering</span>
+      <span class="tech-chip">Sensor Integration</span>
+      <span class="tech-chip">Real-time Control</span>
+      <span class="tech-chip">SQLite</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Components</div>
+    <h2>Key Components & Features</h2>
+    <div class="cards-grid">
+      <div class="info-card">
+        <h4>Raspberry Pi 4</h4>
+        <p>Main controller handling user input, recipe logic, and motor control through GPIO pins with real-time multi-threaded processing capabilities managing all subsystems simultaneously.</p>
+      </div>
+      <div class="info-card">
+        <h4>NEMA 17 Stepper + Conveyor Belt</h4>
+        <p>Automates conveyor belt movement enabling accurate glass alignment under dispensing nozzles for multi-ingredient cocktail preparation.</p>
+      </div>
+      <div class="info-card">
+        <h4>Centrifugal Pumps</h4>
+        <p>Precisely dispense liquids for each ingredient with ±2ml accuracy, ensuring consistent mixing with variable speed control for different liquid viscosities.</p>
+      </div>
+      <div class="info-card">
+        <h4>Pneumatic Y-Shape Air Fittings</h4>
+        <p>Efficient liquid routing combining multiple fluid lines in a compact, organised setup with minimal pressure loss and easy maintenance access.</p>
+      </div>
+      <div class="info-card">
+        <h4>7-Inch Touch Display</h4>
+        <p>Intuitive GUI for selecting from cocktail recipes and initiating the automated dispensing process with a visual menu and real-time progress feedback.</p>
+      </div>
+      <div class="info-card">
+        <h4>Proximity Sensors</h4>
+        <p>Ensures precise glass detection and positioning, preventing spillage and ensuring accurate ingredient delivery before the dispensing sequence begins.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Performance</div>
+    <h2>Key Metrics</h2>
+    <div class="metrics-row">
+      <div class="metric"><div class="metric-n">±2ml</div><div class="metric-l">Dispensing Accuracy</div></div>
+      <div class="metric"><div class="metric-n">30s</div><div class="metric-l">Avg Mix Time</div></div>
+      <div class="metric"><div class="metric-n">3+</div><div class="metric-l">Cocktail Recipes</div></div>
+      <div class="metric"><div class="metric-n">8</div><div class="metric-l">Ingredient Channels</div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Implementation</div>
+    <h2>Technical Implementation</h2>
+
+    <h3>Control System</h3>
+    <p>The Raspberry Pi 4 runs a Python-based control system managing all aspects of the cocktail dispensing process, from user interface interactions to precise motor control and pump timing with a multi-threaded architecture handling simultaneous processes.</p>
+
+    <h3>Automation Process</h3>
+    <p>When a user selects a cocktail recipe on the touchscreen, if a glass is detected by proximity sensors, the system automatically activates the appropriate pumps in sequence to dispense the correct ingredients in precise measurements. Calibration routines measure actual flow rates for each pump-tube combination.</p>
+
+    <h3>Fluid Delivery System</h3>
+    <p>Peristaltic pumps ensure precise, contamination-free liquid delivery. Each pump is driven through custom driver circuits allowing precise flow rate adjustment with real-time monitoring tracking pump rotations for accurate volumetric dispensing.</p>
+
+    <h3>Safety Features</h3>
+    <p>The system includes proximity sensors for glass detection, emergency stop functionality, overflow detection, and pump timeout protection to ensure safe operation. All states are managed through a robust finite state machine.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Outcomes</div>
+    <h2>Project Outcomes</h2>
+    <ul class="proj-list">
+      <li><strong>Mechanical Engineering:</strong> Precise conveyor belt system, fluid routing, and chassis design for both functionality and aesthetics</li>
+      <li><strong>Electrical Engineering:</strong> Motor control, sensor integration, power management, and GPIO programming</li>
+      <li><strong>Software Engineering:</strong> Real-time control system with recipe management using SQLite database and multithreaded Python application</li>
+      <li><strong>Automation:</strong> Fully automated process from user input to final product delivery with consistent quality</li>
+      <li><strong>Precision Engineering:</strong> ±2ml dispensing accuracy through calibrated pump control and flow rate monitoring</li>
+    </ul>
+    <p style="margin-top:1.25rem;">The completed system can dispense cocktail recipes with consistent quality and precise ingredient ratios — expandable to 50+ recipes — showcasing advanced skills in mechatronic system design and implementation.</p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo"><span>DS</span> · Dilmin Siriwardana</div>
+    <div class="footer-copy">© 2025 Dilmin Siriwardana. All Rights Reserved.</div>
+    <a href="index.html#projects" class="back-btn">← Back to Projects</a>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('mainNav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40));
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);obs.unobserve(e.target);}});
+},{threshold:0.06,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+</script>
 </body>
 </html>
