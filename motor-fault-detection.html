@@ -1,393 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Motor Fault Detection - Dilmin Siriwardana</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-dark: #0a0a0a;
-            --bg-card: #111111;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --accent: #3b82f6;
-            --accent-hover: #2563eb;
-            --border: #1f1f1f;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
-        }
-
-        .back-btn {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .back-btn:hover {
-            color: var(--text-primary);
-        }
-
-        .project-hero {
-            padding: 8rem 2rem 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .project-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .project-label {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 50px;
-            font-size: 0.875rem;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-        }
-
-        .project-hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-hero p {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .project-image-main {
-            width: 100%;
-            max-width: 900px;
-            margin: 3rem auto;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        .project-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .project-section {
-            margin-bottom: 4rem;
-        }
-
-        .project-section h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        .project-section h3 {
-            font-size: 1.5rem;
-            margin: 2rem 0 1rem;
-            color: var(--text-primary);
-        }
-
-        .project-section p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .tech-tag {
-            padding: 0.75rem 1.5rem;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 50px;
-            font-size: 0.95rem;
-            color: var(--accent);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .feature-card {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid var(--border);
-        }
-
-        .feature-card h4 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin: 0;
-        }
-
-        .metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .metric-item {
-            text-align: center;
-            padding: 2rem;
-            background: var(--bg-card);
-            border-radius: 15px;
-            border: 1px solid var(--border);
-        }
-
-        .metric-value {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
-
-        .metric-label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        ul {
-            list-style-position: inside;
-            color: var(--text-secondary);
-            margin: 1rem 0;
-        }
-
-        ul li {
-            margin-bottom: 0.75rem;
-            line-height: 1.8;
-        }
-
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .copyright {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .project-hero {
-                padding: 6rem 1.5rem 3rem;
-            }
-
-            .project-content {
-                padding: 1.5rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Motor Fault Detection — Dilmin Siriwardana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+--bg:#060e1a;--bg2:#0a1628;--bg3:#0d1f38;
+--blue:#0078ff;--blue2:#3d9bff;--blue3:rgba(0,120,255,0.12);--blue4:rgba(0,120,255,0.06);
+--grid:rgba(0,120,255,0.07);--text:#f0f6ff;--text2:#7aa3cc;--text3:#4d7fa8;
+--border:rgba(0,120,255,0.18);--border2:rgba(0,120,255,0.08);--accent:#00e5ff;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6;}
+.grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px;}
+.grid-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(0,120,255,0.08) 0%,transparent 70%);}
+nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(6,14,26,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border2);transition:border-color 0.3s;}
+nav.scrolled{border-bottom-color:var(--border);}
+.nav-inner{max-width:1320px;margin:0 auto;padding:0 2rem;height:68px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:500;color:var(--text);display:flex;align-items:center;gap:4px;text-decoration:none;}
+.nav-logo span{color:var(--blue);}
+.cursor{display:inline-block;width:2px;height:1em;background:var(--blue);margin-left:2px;animation:blink 1s step-end infinite;vertical-align:middle;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.back-btn{font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--text2);text-decoration:none;display:flex;align-items:center;gap:6px;padding:0.5rem 1rem;border:1px solid var(--border2);border-radius:6px;background:var(--blue4);transition:all 0.2s;}
+.back-btn:hover{color:var(--text);border-color:var(--border);background:var(--blue3);}
+.proj-hero{padding:8rem 2rem 4rem;position:relative;z-index:1;}
+.proj-hero-inner{max-width:1000px;margin:0 auto;}
+.proj-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--blue);letter-spacing:0.1em;text-transform:uppercase;background:var(--blue4);border:1px solid var(--border);padding:0.4rem 0.875rem;border-radius:4px;margin-bottom:1.75rem;}
+.proj-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--blue);animation:pulse 2s ease infinite;flex-shrink:0;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);}}
+.proj-hero h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700;line-height:1.1;letter-spacing:-0.02em;margin-bottom:1.25rem;}
+.proj-hero h1 span{background:linear-gradient(135deg,var(--blue) 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.proj-hero-desc{font-size:1rem;color:var(--text2);max-width:700px;line-height:1.8;margin-bottom:2rem;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2.5rem;}
+.proj-tag{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--blue2);border:1px solid rgba(0,120,255,0.18);padding:0.25rem 0.65rem;border-radius:3px;background:var(--blue4);}
+.img-section{position:relative;z-index:1;max-width:1000px;margin:0 auto 3rem;padding:0 2rem;}
+.img-main{width:100%;border-radius:12px;border:1px solid var(--border);display:block;box-shadow:0 24px 64px rgba(0,0,0,0.5);}
+.proj-content{max-width:1000px;margin:0 auto;padding:0 2rem 6rem;}
+.section-block{margin-bottom:3.5rem;}
+.block-label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--blue);letter-spacing:0.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:0.75rem;}
+.block-label::before{content:'//';opacity:0.5;}
+.section-block h2{font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:700;letter-spacing:-0.02em;margin-bottom:1.25rem;}
+.section-block p{color:var(--text2);font-size:0.925rem;line-height:1.85;margin-bottom:1rem;}
+.section-block h3{font-size:1.05rem;font-weight:600;color:var(--text);margin:1.75rem 0 0.6rem;}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;margin:1.5rem 0;}
+.info-card{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:1.5rem;transition:all 0.2s;}
+.info-card:hover{border-color:var(--border);background:var(--bg3);}
+.info-card h4{font-size:0.9rem;font-weight:600;color:var(--blue);margin-bottom:0.6rem;}
+.info-card p{color:var(--text2);font-size:0.82rem;line-height:1.7;margin:0;}
+.metrics-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1px;background:var(--border2);border:1px solid var(--border2);border-radius:10px;overflow:hidden;margin:2rem 0;}
+.metric{background:var(--bg2);padding:1.5rem;text-align:center;}
+.metric-n{font-family:'JetBrains Mono',monospace;font-size:1.8rem;font-weight:700;color:var(--blue);line-height:1;}
+.metric-l{font-size:0.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-top:0.35rem;}
+.tech-row{display:flex;flex-wrap:wrap;gap:0.5rem;margin:1.25rem 0;}
+.tech-chip{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text2);border:1px solid var(--border2);padding:0.35rem 0.75rem;border-radius:4px;background:var(--blue4);transition:all 0.2s;}
+.tech-chip:hover{border-color:var(--border);color:var(--text);}
+.proj-list{list-style:none;padding:0;margin:1rem 0;}
+.proj-list li{padding-left:1.25rem;position:relative;color:var(--text2);font-size:0.9rem;line-height:1.8;margin-bottom:0.5rem;}
+.proj-list li::before{content:'→';position:absolute;left:0;color:var(--blue);font-size:0.8rem;}
+.divider{height:1px;background:var(--border2);margin:0;}
+footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative;z-index:1;}
+.footer-inner{max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
+.footer-logo{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:500;color:var(--text2);}
+.footer-logo span{color:var(--blue);}
+.footer-copy{font-size:0.78rem;color:var(--text3);}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@media(max-width:768px){
+  .proj-hero{padding:6rem 1.25rem 3rem;}
+  .img-section{padding:0 1.25rem;}
+  .proj-content{padding:0 1.25rem 4rem;}
+  .cards-grid{grid-template-columns:1fr;}
+}
+</style>
 </head>
 <body>
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo">DS</a>
-            <a href="index.html#projects" class="back-btn">← Back to Portfolio</a>
-        </div>
-    </nav>
+<div class="grid-bg"></div>
 
-    <div class="project-hero">
-        <div class="project-header">
-            <span class="project-label">Predictive Maintenance</span>
-            <h1>Motor Fault Detection System</h1>
-            <p>Advanced machine learning system for early detection of motor failures through vibration analysis</p>
-        </div>
+<nav id="mainNav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span>DS</span><span class="cursor"></span></a>
+    <a href="index.html#projects" class="back-btn">← Back to Projects</a>
+  </div>
+</nav>
 
-        <img src="images/Projects/motorfault.jpeg" alt="Motor Fault Detection" class="project-image-main">
-
-        <div class="project-content">
-            <div class="project-section">
-                <h2>Project Overview</h2>
-                <p>Industrial electric motors are critical components in manufacturing and production facilities, with unexpected failures causing significant downtime and financial losses. This project implements a sophisticated machine learning-powered predictive maintenance system that analyzes vibration patterns to detect potential motor faults before catastrophic failure occurs.</p>
-                <p>By continuously monitoring motor vibrations and applying advanced signal processing techniques combined with ensemble learning algorithms, the system achieves 98% accuracy in fault classification, enabling proactive maintenance scheduling and preventing costly unplanned downtime.</p>
-            </div>
-
-            <div class="tech-stack">
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">Scikit-learn</span>
-                <span class="tech-tag">Random Forest</span>
-                <span class="tech-tag">XGBoost</span>
-                <span class="tech-tag">Signal Processing</span>
-                <span class="tech-tag">Feature Engineering</span>
-                <span class="tech-tag">Pandas</span>
-                <span class="tech-tag">NumPy</span>
-            </div>
-
-            <div class="project-section">
-                <h2>Key Features</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <h4>Multi-Fault Detection</h4>
-                        <p>Identifies various fault types including bearing defects, imbalance, misalignment, and rotor issues</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>High Accuracy</h4>
-                        <p>Achieves 98% classification accuracy using ensemble learning techniques</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>Real-Time Analysis</h4>
-                        <p>Processes vibration data in real-time to provide immediate fault alerts</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>Scalable Architecture</h4>
-                        <p>Designed to monitor multiple motors simultaneously across industrial facilities</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-section">
-                <h2>Technical Implementation</h2>
-                
-                <h3>Data Acquisition</h3>
-                <p>Accelerometers mounted on motor casings capture three-axis vibration data at high sampling rates (typically 10-20 kHz). The system collects data under various operating conditions including different load levels and speeds to build a comprehensive dataset representing normal and faulty operation.</p>
-
-                <h3>Signal Processing Pipeline</h3>
-                <p>Raw vibration signals undergo several preprocessing steps. Fast Fourier Transform (FFT) converts time-domain signals to frequency domain, revealing characteristic frequency components associated with specific fault types. Additional features are extracted through wavelet decomposition, statistical analysis, and envelope analysis to capture both transient and steady-state characteristics.</p>
-
-                <h3>Feature Engineering</h3>
-                <p>The system extracts over 40 statistical and spectral features from the processed signals, including RMS values, kurtosis, skewness, peak frequencies, harmonic components, and spectral energy distributions. Feature selection techniques identify the most discriminative features, reducing dimensionality while maintaining classification performance.</p>
-
-                <h3>Machine Learning Models</h3>
-                <p>Two powerful ensemble algorithms form the core classification engine. Random Forest provides robust baseline performance with inherent feature importance rankings, while XGBoost offers superior handling of imbalanced datasets and complex nonlinear relationships. A voting ensemble combines both models' predictions for optimal accuracy.</p>
-            </div>
-
-            <div class="metrics">
-                <div class="metric-item">
-                    <div class="metric-value">98%</div>
-                    <div class="metric-label">Classification Accuracy</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-value">97%</div>
-                    <div class="metric-label">Precision Score</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-value">6</div>
-                    <div class="metric-label">Fault Categories</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-value">2ms</div>
-                    <div class="metric-label">Inference Time</div>
-                </div>
-            </div>
-
-            <div class="project-section">
-                <h2>Fault Categories</h2>
-                <p>The system successfully classifies the following motor conditions:</p>
-                <ul>
-                    <li><strong>Healthy Motor:</strong> Baseline normal operation with characteristic vibration signature</li>
-                    <li><strong>Bearing Faults:</strong> Outer race, inner race, and ball defects detected through specific frequency patterns</li>
-                    <li><strong>Imbalance:</strong> Uneven mass distribution causing 1X running speed vibration</li>
-                    <li><strong>Misalignment:</strong> Angular or parallel misalignment producing 2X running speed harmonics</li>
-                    <li><strong>Rotor Bars:</strong> Broken or cracked rotor bars identified through sidebands</li>
-                    <li><strong>Looseness:</strong> Mechanical looseness characterized by multiple harmonics</li>
-                </ul>
-            </div>
-
-            <div class="project-section">
-                <h2>Model Performance Analysis</h2>
-                <p>Extensive validation using k-fold cross-validation and holdout test sets demonstrates consistent performance across different operating conditions. Confusion matrix analysis reveals minimal misclassification between fault types, with most errors occurring between similar fault signatures that even human experts find challenging to distinguish.</p>
-                <p>Feature importance analysis shows that frequency-domain features, particularly those related to bearing fault frequencies and harmonic patterns, contribute most significantly to classification accuracy.</p>
-            </div>
-
-            <div class="project-section">
-                <h2>Business Impact</h2>
-                <p>Implementing this predictive maintenance system delivers substantial operational benefits:</p>
-                <ul>
-                    <li>Reduction of unplanned downtime by up to 70% through early fault detection</li>
-                    <li>Extended motor lifespan by identifying issues before critical damage occurs</li>
-                    <li>Optimized maintenance scheduling based on actual condition rather than fixed intervals</li>
-                    <li>Significant cost savings from preventing catastrophic failures and secondary damage</li>
-                    <li>Improved workplace safety by identifying potentially dangerous equipment conditions</li>
-                </ul>
-            </div>
-
-            <div class="project-section">
-                <h2>Future Enhancements</h2>
-                <ul>
-                    <li>Integration of deep learning models (CNN, LSTM) for automated feature extraction</li>
-                    <li>Development of remaining useful life (RUL) prediction algorithms</li>
-                    <li>Expansion to additional sensors (temperature, current, acoustic) for multi-modal analysis</li>
-                    <li>Cloud-based dashboard for fleet-wide monitoring and analytics</li>
-                    <li>Implementation of transfer learning for rapid deployment to new motor types</li>
-                    <li>Edge computing deployment for reduced latency and improved reliability</li>
-                </ul>
-            </div>
-        </div>
+<div class="proj-hero">
+  <div class="proj-hero-inner">
+    <div class="proj-eyebrow">Machine Learning &nbsp;·&nbsp; Predictive Maintenance</div>
+    <h1>Motor Fault <span>Detection System</span></h1>
+    <p class="proj-hero-desc">Advanced machine learning system for early detection of motor failures through vibration analysis. Random Forest and XGBoost achieving 98% accuracy — enabling proactive fault detection before failure occurs.</p>
+    <div class="proj-tags">
+      <span class="proj-tag">Python</span>
+      <span class="proj-tag">Random Forest</span>
+      <span class="proj-tag">XGBoost</span>
+      <span class="proj-tag">Scikit-learn</span>
+      <span class="proj-tag">Signal Processing</span>
+      <span class="proj-tag">Feature Engineering</span>
+      <span class="proj-tag">Pandas</span>
+      <span class="proj-tag">NumPy</span>
     </div>
+  </div>
+</div>
 
-    <footer>
-        <p class="copyright">© 2025 Dilmin Siriwardana. All Rights Reserved.</p>
-    </footer>
+<div class="img-section reveal">
+  <img src="images/Projects/motorfault.jpeg" alt="Motor Fault Detection" class="img-main">
+</div>
+
+<div class="proj-content">
+
+  <div class="section-block reveal">
+    <div class="block-label">Overview</div>
+    <h2>Project Overview</h2>
+    <p>Industrial electric motors are critical components in manufacturing and production facilities, with unexpected failures causing significant downtime and financial losses. This project implements a sophisticated machine learning-powered predictive maintenance system that analyzes vibration patterns to detect potential motor faults before catastrophic failure occurs.</p>
+    <p>By continuously monitoring motor vibrations and applying advanced signal processing techniques combined with ensemble learning algorithms, the system achieves 98% accuracy in fault classification, enabling proactive maintenance scheduling and preventing costly unplanned downtime.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Tech Stack</div>
+    <h2>Technologies Used</h2>
+    <div class="tech-row">
+      <span class="tech-chip">Python</span>
+      <span class="tech-chip">Scikit-learn</span>
+      <span class="tech-chip">Random Forest</span>
+      <span class="tech-chip">XGBoost</span>
+      <span class="tech-chip">Signal Processing</span>
+      <span class="tech-chip">Feature Engineering</span>
+      <span class="tech-chip">Pandas</span>
+      <span class="tech-chip">NumPy</span>
+      <span class="tech-chip">Matplotlib</span>
+      <span class="tech-chip">FFT</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Features</div>
+    <h2>Key Features</h2>
+    <div class="cards-grid">
+      <div class="info-card">
+        <h4>Multi-Fault Detection</h4>
+        <p>Identifies various fault types including bearing defects, imbalance, misalignment, and rotor issues across 6 distinct fault categories.</p>
+      </div>
+      <div class="info-card">
+        <h4>98% Accuracy</h4>
+        <p>Achieves 98% classification accuracy using ensemble learning techniques — Random Forest combined with XGBoost in a voting ensemble.</p>
+      </div>
+      <div class="info-card">
+        <h4>Real-Time Analysis</h4>
+        <p>Processes vibration data in real-time with 2ms inference time to provide immediate fault alerts before catastrophic failure occurs.</p>
+      </div>
+      <div class="info-card">
+        <h4>Scalable Architecture</h4>
+        <p>Designed to monitor multiple motors simultaneously across industrial facilities with cloud-based dashboard for fleet-wide monitoring.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Performance</div>
+    <h2>Key Metrics</h2>
+    <div class="metrics-row">
+      <div class="metric"><div class="metric-n">98%</div><div class="metric-l">Classification Accuracy</div></div>
+      <div class="metric"><div class="metric-n">97%</div><div class="metric-l">Precision Score</div></div>
+      <div class="metric"><div class="metric-n">6</div><div class="metric-l">Fault Categories</div></div>
+      <div class="metric"><div class="metric-n">2ms</div><div class="metric-l">Inference Time</div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Implementation</div>
+    <h2>Technical Implementation</h2>
+
+    <h3>Data Acquisition</h3>
+    <p>Accelerometers mounted on motor casings capture three-axis vibration data at high sampling rates (10–20 kHz). The system collects data under various operating conditions including different load levels and speeds to build a comprehensive dataset representing normal and faulty operation.</p>
+
+    <h3>Signal Processing Pipeline</h3>
+    <p>Raw vibration signals undergo Fast Fourier Transform (FFT) converting time-domain signals to frequency domain, revealing characteristic frequency components associated with specific fault types. Additional features are extracted through wavelet decomposition, statistical analysis, and envelope analysis.</p>
+
+    <h3>Feature Engineering</h3>
+    <p>The system extracts over 40 statistical and spectral features from processed signals, including RMS values, kurtosis, skewness, peak frequencies, harmonic components, and spectral energy distributions. Feature selection techniques identify the most discriminative features, reducing dimensionality while maintaining classification performance.</p>
+
+    <h3>Machine Learning Models</h3>
+    <p>Random Forest provides robust baseline performance with inherent feature importance rankings, while XGBoost offers superior handling of imbalanced datasets and complex nonlinear relationships. A voting ensemble combines both models' predictions for optimal 98% accuracy.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Fault Categories</div>
+    <h2>Classified Fault Types</h2>
+    <ul class="proj-list">
+      <li><strong>Healthy Motor:</strong> Baseline normal operation with characteristic vibration signature</li>
+      <li><strong>Bearing Faults:</strong> Outer race, inner race, and ball defects detected through specific frequency patterns</li>
+      <li><strong>Imbalance:</strong> Uneven mass distribution causing 1X running speed vibration component</li>
+      <li><strong>Misalignment:</strong> Angular or parallel misalignment producing 2X running speed harmonics</li>
+      <li><strong>Rotor Bars:</strong> Broken or cracked rotor bars identified through characteristic sidebands</li>
+      <li><strong>Looseness:</strong> Mechanical looseness characterized by multiple harmonics in spectrum</li>
+    </ul>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Business Impact</div>
+    <h2>Business Impact</h2>
+    <ul class="proj-list">
+      <li>Reduction of unplanned downtime by up to 70% through early fault detection</li>
+      <li>Extended motor lifespan by identifying issues before critical damage occurs</li>
+      <li>Optimised maintenance scheduling based on actual condition rather than fixed intervals</li>
+      <li>Significant cost savings from preventing catastrophic failures and secondary damage</li>
+      <li>Improved workplace safety by identifying potentially dangerous equipment conditions</li>
+    </ul>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Future Work</div>
+    <h2>Future Enhancements</h2>
+    <ul class="proj-list">
+      <li>Integration of deep learning models (CNN, LSTM) for automated feature extraction</li>
+      <li>Development of remaining useful life (RUL) prediction algorithms</li>
+      <li>Expansion to additional sensors — temperature, current, acoustic — for multi-modal analysis</li>
+      <li>Cloud-based dashboard for fleet-wide monitoring and analytics</li>
+      <li>Transfer learning for rapid deployment to new motor types</li>
+      <li>Edge computing deployment for reduced latency and improved reliability</li>
+    </ul>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo"><span>DS</span> · Dilmin Siriwardana</div>
+    <div class="footer-copy">© 2025 Dilmin Siriwardana. All Rights Reserved.</div>
+    <a href="index.html#projects" class="back-btn">← Back to Projects</a>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('mainNav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40));
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);obs.unobserve(e.target);}});
+},{threshold:0.06,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+</script>
 </body>
 </html>
