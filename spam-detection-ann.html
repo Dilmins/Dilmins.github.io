@@ -1,467 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spam Email Detection with ANN - Dilmin Siriwardana</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-dark: #0a0a0a;
-            --bg-card: #111111;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --accent: #3b82f6;
-            --accent-hover: #2563eb;
-            --border: #1f1f1f;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
-        }
-
-        .back-btn {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .back-btn:hover {
-            color: var(--text-primary);
-        }
-
-        .project-hero {
-            padding: 8rem 2rem 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .project-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .project-label {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 50px;
-            font-size: 0.875rem;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-        }
-
-        .project-hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-hero p {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .images-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 3rem auto;
-            max-width: 1100px;
-        }
-
-        .image-card {
-            background: var(--bg-card);
-            border-radius: 15px;
-            border: 1px solid var(--border);
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .image-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-        }
-
-        .image-card img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .image-card-caption {
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .image-card-caption h3 {
-            font-size: 1.1rem;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .image-card-caption p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin: 0;
-        }
-
-        .project-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .project-section {
-            margin-bottom: 4rem;
-        }
-
-        .project-section h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        .project-section h3 {
-            font-size: 1.5rem;
-            margin: 2rem 0 1rem;
-            color: var(--text-primary);
-        }
-
-        .project-section p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .tech-tag {
-            padding: 0.75rem 1.5rem;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 50px;
-            font-size: 0.95rem;
-            color: var(--accent);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .feature-card {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid var(--border);
-        }
-
-        .feature-card h4 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin: 0;
-        }
-
-        .metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .metric-item {
-            text-align: center;
-            padding: 2rem;
-            background: var(--bg-card);
-            border-radius: 15px;
-            border: 1px solid var(--border);
-        }
-
-        .metric-value {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
-
-        .metric-label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        ul {
-            list-style-position: inside;
-            color: var(--text-secondary);
-            margin: 1rem 0;
-        }
-
-        ul li {
-            margin-bottom: 0.75rem;
-            line-height: 1.8;
-        }
-
-        .highlight-box {
-            background: rgba(59, 130, 246, 0.05);
-            border-left: 4px solid var(--accent);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 10px;
-        }
-
-        .highlight-box p {
-            margin: 0;
-        }
-
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .copyright {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .project-hero {
-                padding: 6rem 1.5rem 3rem;
-            }
-
-            .project-content {
-                padding: 1.5rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .images-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spam Email Detection with ANN — Dilmin Siriwardana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+--bg:#060e1a;--bg2:#0a1628;--bg3:#0d1f38;
+--blue:#0078ff;--blue2:#3d9bff;--blue3:rgba(0,120,255,0.12);--blue4:rgba(0,120,255,0.06);
+--grid:rgba(0,120,255,0.07);--text:#f0f6ff;--text2:#7aa3cc;--text3:#4d7fa8;
+--border:rgba(0,120,255,0.18);--border2:rgba(0,120,255,0.08);--accent:#00e5ff;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6;}
+.grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px;}
+.grid-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(0,120,255,0.08) 0%,transparent 70%);}
+nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(6,14,26,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border2);transition:border-color 0.3s;}
+nav.scrolled{border-bottom-color:var(--border);}
+.nav-inner{max-width:1320px;margin:0 auto;padding:0 2rem;height:68px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:500;color:var(--text);display:flex;align-items:center;gap:4px;text-decoration:none;}
+.nav-logo span{color:var(--blue);}
+.cursor{display:inline-block;width:2px;height:1em;background:var(--blue);margin-left:2px;animation:blink 1s step-end infinite;vertical-align:middle;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.back-btn{font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--text2);text-decoration:none;display:flex;align-items:center;gap:6px;padding:0.5rem 1rem;border:1px solid var(--border2);border-radius:6px;background:var(--blue4);transition:all 0.2s;}
+.back-btn:hover{color:var(--text);border-color:var(--border);background:var(--blue3);}
+.proj-hero{padding:8rem 2rem 4rem;position:relative;z-index:1;}
+.proj-hero-inner{max-width:1000px;margin:0 auto;}
+.proj-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--blue);letter-spacing:0.1em;text-transform:uppercase;background:var(--blue4);border:1px solid var(--border);padding:0.4rem 0.875rem;border-radius:4px;margin-bottom:1.75rem;}
+.proj-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--blue);animation:pulse 2s ease infinite;flex-shrink:0;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);}}
+.proj-hero h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700;line-height:1.1;letter-spacing:-0.02em;margin-bottom:1.25rem;}
+.proj-hero h1 span{background:linear-gradient(135deg,var(--blue) 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.proj-hero-desc{font-size:1rem;color:var(--text2);max-width:700px;line-height:1.8;margin-bottom:2rem;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2.5rem;}
+.proj-tag{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--blue2);border:1px solid rgba(0,120,255,0.18);padding:0.25rem 0.65rem;border-radius:3px;background:var(--blue4);}
+.img-section{position:relative;z-index:1;max-width:1000px;margin:0 auto 3rem;padding:0 2rem;}
+.img-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
+.img-card{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;overflow:hidden;transition:border-color 0.2s;}
+.img-card:hover{border-color:var(--border);}
+.img-card img{width:100%;display:block;}
+.img-caption{padding:1rem 1.25rem;}
+.img-caption h3{font-size:0.88rem;font-weight:600;margin-bottom:0.25rem;}
+.img-caption p{font-size:0.75rem;color:var(--text3);font-family:'JetBrains Mono',monospace;}
+.proj-content{max-width:1000px;margin:0 auto;padding:0 2rem 6rem;}
+.section-block{margin-bottom:3.5rem;}
+.block-label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--blue);letter-spacing:0.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:0.75rem;}
+.block-label::before{content:'//';opacity:0.5;}
+.section-block h2{font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:700;letter-spacing:-0.02em;margin-bottom:1.25rem;}
+.section-block p{color:var(--text2);font-size:0.925rem;line-height:1.85;margin-bottom:1rem;}
+.section-block h3{font-size:1.05rem;font-weight:600;color:var(--text);margin:1.75rem 0 0.6rem;}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;margin:1.5rem 0;}
+.info-card{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:1.5rem;transition:all 0.2s;}
+.info-card:hover{border-color:var(--border);background:var(--bg3);}
+.info-card h4{font-size:0.9rem;font-weight:600;color:var(--blue);margin-bottom:0.6rem;}
+.info-card p{color:var(--text2);font-size:0.82rem;line-height:1.7;margin:0;}
+.metrics-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1px;background:var(--border2);border:1px solid var(--border2);border-radius:10px;overflow:hidden;margin:2rem 0;}
+.metric{background:var(--bg2);padding:1.5rem;text-align:center;}
+.metric-n{font-family:'JetBrains Mono',monospace;font-size:1.8rem;font-weight:700;color:var(--blue);line-height:1;}
+.metric-l{font-size:0.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-top:0.35rem;}
+.tech-row{display:flex;flex-wrap:wrap;gap:0.5rem;margin:1.25rem 0;}
+.tech-chip{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text2);border:1px solid var(--border2);padding:0.35rem 0.75rem;border-radius:4px;background:var(--blue4);transition:all 0.2s;}
+.tech-chip:hover{border-color:var(--border);color:var(--text);}
+.proj-list{list-style:none;padding:0;margin:1rem 0;}
+.proj-list li{padding-left:1.25rem;position:relative;color:var(--text2);font-size:0.9rem;line-height:1.8;margin-bottom:0.5rem;}
+.proj-list li::before{content:'→';position:absolute;left:0;color:var(--blue);font-size:0.8rem;}
+.highlight{background:var(--blue4);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:1.25rem 1.5rem;margin:1.5rem 0;}
+.highlight p{color:var(--text2);font-size:0.9rem;margin:0;}
+.divider{height:1px;background:var(--border2);margin:0;}
+footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative;z-index:1;}
+.footer-inner{max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
+.footer-logo{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:500;color:var(--text2);}
+.footer-logo span{color:var(--blue);}
+.footer-copy{font-size:0.78rem;color:var(--text3);}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@media(max-width:768px){
+  .proj-hero{padding:6rem 1.25rem 3rem;}
+  .img-section{padding:0 1.25rem;}
+  .proj-content{padding:0 1.25rem 4rem;}
+  .img-grid{grid-template-columns:1fr;}
+  .cards-grid{grid-template-columns:1fr;}
+}
+</style>
 </head>
 <body>
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo">DS</a>
-            <a href="index.html#projects" class="back-btn">← Back to Portfolio</a>
-        </div>
-    </nav>
+<div class="grid-bg"></div>
 
-    <div class="project-hero">
-        <div class="project-header">
-            <span class="project-label">Machine Learning · Deep Learning</span>
-            <h1>Spam Email Detection Using Artificial Neural Networks</h1>
-            <p>A lightweight deep learning model achieving 97.97% accuracy in classifying spam and legitimate emails</p>
-        </div>
+<nav id="mainNav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span>DS</span><span class="cursor"></span></a>
+    <a href="index.html#projects" class="back-btn">← Back to Projects</a>
+  </div>
+</nav>
 
-        <div class="images-grid">
-            <div class="image-card">
-                <img src="images/Projects/Ann1.jpeg" alt="Model Architecture">
-                <div class="image-card-caption">
-                    <h3>Neural Network Architecture</h3>
-                    <p>Optimized 3-layer structure with dropout</p>
-                </div>
-            </div>
-            <div class="image-card">
-                <img src="images/Projects/Ann2.jpeg" alt="Training Process">
-                <div class="image-card-caption">
-                    <h3>Training & Validation</h3>
-                    <p>Performance metrics during training</p>
-                </div>
-            </div>
-            <div class="image-card">
-                <img src="images/Projects/Ann3.jpeg" alt="Results Analysis">
-                <div class="image-card-caption">
-                    <h3>Results Analysis</h3>
-                    <p>Confusion matrix and accuracy metrics</p>
-                </div>
-            </div>
-            <div class="image-card">
-                <img src="images/Projects/Ann4.jpeg" alt="Model Evaluation">
-                <div class="image-card-caption">
-                    <h3>Model Evaluation</h3>
-                    <p>Performance visualization and insights</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="project-content">
-            <div class="project-section">
-                <h2>Project Overview</h2>
-                <p>Email spam remains a persistent challenge in digital communication, with billions of unwanted messages sent daily. This project implements an efficient Artificial Neural Network (ANN) to automatically detect and classify spam emails with high accuracy.</p>
-                <p>By leveraging 3000 carefully selected input features extracted from email content, metadata, and linguistic patterns, the model learns to distinguish between legitimate emails and spam with remarkable precision.</p>
-                
-                <div class="highlight-box">
-                    <p><strong>Key Achievement:</strong> Developed a lightweight neural network that achieves 97.97% test accuracy while maintaining computational efficiency, making it suitable for real-time email filtering applications.</p>
-                </div>
-            </div>
-
-            <div class="tech-stack">
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">TensorFlow</span>
-                <span class="tech-tag">Artificial Neural Networks</span>
-                <span class="tech-tag">Deep Learning</span>
-                <span class="tech-tag">Natural Language Processing</span>
-                <span class="tech-tag">Adam Optimizer</span>
-            </div>
-
-            <div class="project-section">
-                <h2>Key Features</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <h4>Lightweight Architecture</h4>
-                        <p>Only 3 hidden neurons, ensuring fast inference and minimal computational requirements</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>Dropout Regularization</h4>
-                        <p>Prevents overfitting by randomly disabling neurons during training for better generalization</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>Adam Optimizer</h4>
-                        <p>Adaptive learning rate optimization for efficient and stable model convergence</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>Early Stopping</h4>
-                        <p>Automatically halts training when validation performance plateaus, preventing overfitting</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-section">
-                <h2>Technical Implementation</h2>
-                
-                <h3>Feature Engineering</h3>
-                <p>The model processes 3000 input features extracted from email data, including word frequencies, character patterns, special character counts, capitalization ratios, and metadata indicators. Feature extraction combines traditional text analysis techniques with domain-specific knowledge about spam characteristics.</p>
-
-                <h3>Model Architecture</h3>
-                <p>The neural network employs a streamlined architecture with an input layer accepting 3000 features, three hidden layers with carefully tuned neuron counts, and dropout layers (typically 0.2-0.5 rate) to prevent overfitting. The output layer uses sigmoid activation for binary classification (spam vs. non-spam).</p>
-
-                <h3>Training Strategy</h3>
-                <p>Training utilizes the Adam optimizer, which adapts learning rates for each parameter, leading to faster convergence. Early stopping monitors validation loss, automatically terminating training when improvement stagnates for a specified number of epochs. This prevents overfitting while maximizing performance.</p>
-
-                <h3>Data Preprocessing</h3>
-                <p>Email text undergoes tokenization, stemming, and removal of stop words. Numerical features are normalized using standardization to ensure all inputs contribute equally to model learning. The dataset is split into training, validation, and test sets with appropriate ratios.</p>
-            </div>
-
-            <div class="metrics">
-                <div class="metric-item">
-                    <div class="metric-value">97.97%</div>
-                    <div class="metric-label">Test Accuracy</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-value">3000</div>
-                    <div class="metric-label">Input Features</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-value">3</div>
-                    <div class="metric-label">Hidden Neurons</div>
-                </div>
-            </div>
-
-            <div class="project-section">
-                <h2>Challenges & Solutions</h2>
-                <p><strong>High-Dimensional Input Space:</strong> Managing 3000 features posed computational challenges. Implemented efficient matrix operations with TensorFlow and utilized batch processing to handle large feature vectors effectively.</p>
-                <p><strong>Preventing Overfitting:</strong> With a small network and large feature space, overfitting risk was significant. Addressed through dropout regularization and early stopping, which together maintained generalization capability.</p>
-                <p><strong>Class Imbalance:</strong> Spam and legitimate emails often have imbalanced distribution in datasets. Applied techniques such as class weighting and stratified sampling to ensure the model learns both classes effectively.</p>
-            </div>
-
-            <div class="project-section">
-                <h2>Model Performance</h2>
-                <p>The final model demonstrates excellent performance across multiple evaluation metrics. The 97.97% test accuracy indicates strong generalization to unseen data. Low false positive rates ensure legitimate emails are rarely misclassified as spam, while high true positive rates effectively catch most spam messages.</p>
-                <p>The lightweight architecture enables real-time classification, processing thousands of emails per second on standard hardware. This makes it practical for deployment in email servers and client applications.</p>
-            </div>
-
-            <div class="project-section">
-                <h2>Applications & Impact</h2>
-                <p>This spam detection system has practical applications across various domains:</p>
-                <ul>
-                    <li>Email service providers can integrate the model for automatic spam filtering</li>
-                    <li>Corporate email systems benefit from reduced spam reaching employee inboxes</li>
-                    <li>The lightweight design enables deployment on edge devices and mobile applications</li>
-                    <li>Serves as a foundation for more complex content filtering systems</li>
-                    <li>Educational tool for understanding deep learning in text classification</li>
-                </ul>
-            </div>
-
-            <div class="project-section">
-                <h2>Future Enhancements</h2>
-                <p>Several improvements could further enhance model performance and applicability:</p>
-                <ul>
-                    <li>Incorporating transformer-based architectures (BERT, GPT) for contextual understanding</li>
-                    <li>Implementing online learning to adapt to evolving spam patterns</li>
-                    <li>Adding multi-language support for international email filtering</li>
-                    <li>Integrating image and attachment analysis for multimedia spam detection</li>
-                    <li>Developing explainability features to show why emails are classified as spam</li>
-                    <li>Creating a web interface for real-time demonstration and testing</li>
-                </ul>
-            </div>
-        </div>
+<div class="proj-hero">
+  <div class="proj-hero-inner">
+    <div class="proj-eyebrow">Deep Learning &nbsp;·&nbsp; NLP</div>
+    <h1>Spam Email Detection<br><span>Using Artificial Neural Networks</span></h1>
+    <p class="proj-hero-desc">A lightweight deep learning model achieving 97.97% accuracy in classifying spam and legitimate emails. Designed for low-resource deployment with only 3 hidden neurons and dropout regularisation.</p>
+    <div class="proj-tags">
+      <span class="proj-tag">Python</span>
+      <span class="proj-tag">TensorFlow</span>
+      <span class="proj-tag">Keras</span>
+      <span class="proj-tag">ANN</span>
+      <span class="proj-tag">NLP</span>
+      <span class="proj-tag">Deep Learning</span>
+      <span class="proj-tag">Adam Optimizer</span>
+      <span class="proj-tag">Dropout</span>
     </div>
+  </div>
+</div>
 
-    <footer>
-        <p class="copyright">© 2025 Dilmin Siriwardana. All Rights Reserved.</p>
-    </footer>
+<div class="img-section reveal">
+  <div class="img-grid">
+    <div class="img-card">
+      <img src="images/Projects/Ann1.jpeg" alt="Neural Network Architecture">
+      <div class="img-caption">
+        <h3>Model Architecture</h3>
+        <p>// optimized 3-layer structure with dropout</p>
+      </div>
+    </div>
+    <div class="img-card">
+      <img src="images/Projects/Ann2.jpeg" alt="Training Process">
+      <div class="img-caption">
+        <h3>Training & Validation</h3>
+        <p>// performance metrics during training</p>
+      </div>
+    </div>
+    <div class="img-card">
+      <img src="images/Projects/Ann3.jpeg" alt="Results Analysis">
+      <div class="img-caption">
+        <h3>Results Analysis</h3>
+        <p>// confusion matrix and accuracy metrics</p>
+      </div>
+    </div>
+    <div class="img-card">
+      <img src="images/Projects/Ann4.jpeg" alt="Model Evaluation">
+      <div class="img-caption">
+        <h3>Model Evaluation</h3>
+        <p>// performance visualization and insights</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="proj-content">
+
+  <div class="section-block reveal">
+    <div class="block-label">Overview</div>
+    <h2>Project Overview</h2>
+    <p>Email spam remains a persistent challenge in digital communication, with billions of unwanted messages sent daily. This project implements an efficient Artificial Neural Network (ANN) to automatically detect and classify spam emails with high accuracy.</p>
+    <p>By leveraging 3000 carefully selected input features extracted from email content, metadata, and linguistic patterns, the model learns to distinguish between legitimate emails and spam with remarkable precision.</p>
+    <div class="highlight">
+      <p><strong>Key Achievement:</strong> Developed a lightweight neural network achieving 97.97% test accuracy while maintaining computational efficiency — suitable for real-time email filtering on low-resource hardware.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Tech Stack</div>
+    <h2>Technologies Used</h2>
+    <div class="tech-row">
+      <span class="tech-chip">Python</span>
+      <span class="tech-chip">TensorFlow</span>
+      <span class="tech-chip">Keras</span>
+      <span class="tech-chip">Artificial Neural Networks</span>
+      <span class="tech-chip">Natural Language Processing</span>
+      <span class="tech-chip">Adam Optimizer</span>
+      <span class="tech-chip">Dropout Regularization</span>
+      <span class="tech-chip">Early Stopping</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Features</div>
+    <h2>Key Features</h2>
+    <div class="cards-grid">
+      <div class="info-card">
+        <h4>Lightweight Architecture</h4>
+        <p>Only 3 hidden neurons, ensuring fast inference and minimal computational requirements — suitable for edge and mobile deployment.</p>
+      </div>
+      <div class="info-card">
+        <h4>Dropout Regularisation</h4>
+        <p>Prevents overfitting by randomly disabling neurons during training, resulting in strong generalization on unseen email data.</p>
+      </div>
+      <div class="info-card">
+        <h4>Adam Optimizer</h4>
+        <p>Adaptive learning rate optimization for efficient and stable model convergence with faster training and reliable results.</p>
+      </div>
+      <div class="info-card">
+        <h4>Early Stopping</h4>
+        <p>Automatically halts training when validation performance plateaus, preventing overfitting while maximizing classification performance.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Performance</div>
+    <h2>Key Metrics</h2>
+    <div class="metrics-row">
+      <div class="metric"><div class="metric-n">97.97%</div><div class="metric-l">Test Accuracy</div></div>
+      <div class="metric"><div class="metric-n">3000</div><div class="metric-l">Input Features</div></div>
+      <div class="metric"><div class="metric-n">3</div><div class="metric-l">Hidden Neurons</div></div>
+      <div class="metric"><div class="metric-n">2</div><div class="metric-l">Classes</div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Implementation</div>
+    <h2>Technical Implementation</h2>
+
+    <h3>Feature Engineering</h3>
+    <p>The model processes 3000 input features extracted from email data, including word frequencies, character patterns, special character counts, capitalization ratios, and metadata indicators. Feature extraction combines traditional text analysis techniques with domain-specific knowledge about spam characteristics.</p>
+
+    <h3>Model Architecture</h3>
+    <p>The neural network employs a streamlined architecture with an input layer accepting 3000 features, hidden layers with carefully tuned neuron counts, and dropout layers (0.2–0.5 rate) to prevent overfitting. The output layer uses sigmoid activation for binary classification.</p>
+
+    <h3>Training Strategy</h3>
+    <p>Training utilises the Adam optimizer which adapts learning rates for each parameter, leading to faster convergence. Early stopping monitors validation loss, automatically terminating training when improvement stagnates. This prevents overfitting while maximising performance.</p>
+
+    <h3>Data Preprocessing</h3>
+    <p>Email text undergoes tokenization, stemming, and removal of stop words. Numerical features are normalized using standardization to ensure all inputs contribute equally to model learning. The dataset is split into training, validation, and test sets with stratified sampling.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Challenges</div>
+    <h2>Challenges & Solutions</h2>
+    <p><strong>High-Dimensional Input Space:</strong> Managing 3000 features posed computational challenges. Implemented efficient matrix operations with TensorFlow and utilised batch processing to handle large feature vectors effectively.</p>
+    <p><strong>Preventing Overfitting:</strong> With a small network and large feature space, overfitting risk was significant. Addressed through dropout regularization and early stopping, which together maintained generalization capability.</p>
+    <p><strong>Class Imbalance:</strong> Spam and legitimate emails often have imbalanced distribution. Applied class weighting and stratified sampling to ensure the model learns both classes effectively.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Applications</div>
+    <h2>Applications & Impact</h2>
+    <ul class="proj-list">
+      <li>Email service providers can integrate the model for automatic spam filtering at scale</li>
+      <li>Corporate email systems benefit from reduced spam reaching employee inboxes</li>
+      <li>Lightweight design enables deployment on edge devices and mobile applications</li>
+      <li>Serves as a foundation for more complex content filtering systems</li>
+      <li>Educational tool for understanding deep learning in text classification tasks</li>
+    </ul>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Future Work</div>
+    <h2>Future Enhancements</h2>
+    <ul class="proj-list">
+      <li>Incorporating transformer-based architectures (BERT, GPT) for contextual understanding</li>
+      <li>Implementing online learning to adapt to evolving spam patterns in real time</li>
+      <li>Adding multi-language support for international email filtering</li>
+      <li>Integrating image and attachment analysis for multimedia spam detection</li>
+      <li>Developing explainability features to show why emails are classified as spam</li>
+      <li>Creating a web interface for real-time demonstration and testing</li>
+    </ul>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo"><span>DS</span> · Dilmin Siriwardana</div>
+    <div class="footer-copy">© 2025 Dilmin Siriwardana. All Rights Reserved.</div>
+    <a href="index.html#projects" class="back-btn">← Back to Projects</a>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('mainNav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40));
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);obs.unobserve(e.target);}});
+},{threshold:0.06,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+</script>
 </body>
 </html>
