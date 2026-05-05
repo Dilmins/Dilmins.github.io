@@ -1,407 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>E-paper Air Quality Monitoring Devices - Dilmin Siriwardana</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-dark: #0a0a0a;
-            --bg-card: #111111;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --accent: #3b82f6;
-            --accent-hover: #2563eb;
-            --border: #1f1f1f;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
-        }
-
-        .back-btn {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .back-btn:hover {
-            color: var(--text-primary);
-        }
-
-        .project-hero {
-            padding: 8rem 2rem 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .project-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .project-label {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 50px;
-            font-size: 0.875rem;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-        }
-
-        .project-hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-hero p {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .project-image-main {
-            width: 100%;
-            max-width: 900px;
-            margin: 3rem auto;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        .project-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .project-section {
-            margin-bottom: 4rem;
-        }
-
-        .project-section h2, .project-section h3 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        .project-section h3 {
-            font-size: 1.5rem;
-            margin: 2rem 0 1rem;
-        }
-
-        .project-section p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .tech-stack, .skills-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .tech-tag, .skill-tag {
-            padding: 0.75rem 1.5rem;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 50px;
-            font-size: 0.95rem;
-            color: var(--accent);
-        }
-
-        .components-grid, .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .component-card, .feature-card {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid var(--border);
-        }
-
-        .component-card h4, .feature-card h4 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-
-        .component-card p, .feature-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin: 0;
-        }
-
-        .metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .metric-item {
-            text-align: center;
-            padding: 2rem;
-            background: var(--bg-card);
-            border-radius: 15px;
-            border: 1px solid var(--border);
-        }
-
-        .metric-value {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
-
-        .metric-label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        ul {
-            list-style-position: inside;
-            color: var(--text-secondary);
-            margin: 1rem 0;
-        }
-
-        ul li {
-            margin-bottom: 0.75rem;
-            line-height: 1.8;
-        }
-
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .copyright {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .project-hero {
-                padding: 6rem 1.5rem 3rem;
-            }
-
-            .project-content {
-                padding: 1.5rem;
-            }
-
-            .components-grid, .features-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Paper AQM Devices — Dilmin Siriwardana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+--bg:#060e1a;--bg2:#0a1628;--bg3:#0d1f38;
+--blue:#0078ff;--blue2:#3d9bff;--blue3:rgba(0,120,255,0.12);--blue4:rgba(0,120,255,0.06);
+--grid:rgba(0,120,255,0.07);--text:#f0f6ff;--text2:#7aa3cc;--text3:#4d7fa8;
+--border:rgba(0,120,255,0.18);--border2:rgba(0,120,255,0.08);--accent:#00e5ff;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6;}
+.grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px;}
+.grid-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(0,120,255,0.08) 0%,transparent 70%);}
+nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(6,14,26,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border2);transition:border-color 0.3s;}
+nav.scrolled{border-bottom-color:var(--border);}
+.nav-inner{max-width:1320px;margin:0 auto;padding:0 2rem;height:68px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:500;color:var(--text);display:flex;align-items:center;gap:4px;text-decoration:none;}
+.nav-logo span{color:var(--blue);}
+.cursor{display:inline-block;width:2px;height:1em;background:var(--blue);margin-left:2px;animation:blink 1s step-end infinite;vertical-align:middle;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.back-btn{font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--text2);text-decoration:none;display:flex;align-items:center;gap:6px;padding:0.5rem 1rem;border:1px solid var(--border2);border-radius:6px;background:var(--blue4);transition:all 0.2s;}
+.back-btn:hover{color:var(--text);border-color:var(--border);background:var(--blue3);}
+.proj-hero{padding:8rem 2rem 4rem;position:relative;z-index:1;}
+.proj-hero-inner{max-width:1000px;margin:0 auto;}
+.proj-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--blue);letter-spacing:0.1em;text-transform:uppercase;background:var(--blue4);border:1px solid var(--border);padding:0.4rem 0.875rem;border-radius:4px;margin-bottom:1.75rem;}
+.proj-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--blue);animation:pulse 2s ease infinite;flex-shrink:0;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);}}
+.proj-hero h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700;line-height:1.1;letter-spacing:-0.02em;margin-bottom:1.25rem;}
+.proj-hero h1 span{background:linear-gradient(135deg,var(--blue) 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.proj-hero-desc{font-size:1rem;color:var(--text2);max-width:700px;line-height:1.8;margin-bottom:2rem;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2.5rem;}
+.proj-tag{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--blue2);border:1px solid rgba(0,120,255,0.18);padding:0.25rem 0.65rem;border-radius:3px;background:var(--blue4);}
+.img-section{position:relative;z-index:1;max-width:1000px;margin:0 auto 3rem;padding:0 2rem;}
+.img-main{width:100%;border-radius:12px;border:1px solid var(--border);display:block;box-shadow:0 24px 64px rgba(0,0,0,0.5);margin-bottom:1.25rem;}
+.proj-content{max-width:1000px;margin:0 auto;padding:0 2rem 6rem;}
+.section-block{margin-bottom:3.5rem;}
+.block-label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--blue);letter-spacing:0.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:0.75rem;}
+.block-label::before{content:'//';opacity:0.5;}
+.section-block h2{font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:700;letter-spacing:-0.02em;margin-bottom:1.25rem;}
+.section-block p{color:var(--text2);font-size:0.925rem;line-height:1.85;margin-bottom:1rem;}
+.section-block h3{font-size:1.05rem;font-weight:600;color:var(--text);margin:1.75rem 0 0.6rem;}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;margin:1.5rem 0;}
+.info-card{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:1.5rem;transition:all 0.2s;}
+.info-card:hover{border-color:var(--border);background:var(--bg3);}
+.info-card h4{font-size:0.9rem;font-weight:600;color:var(--blue);margin-bottom:0.6rem;}
+.info-card p{color:var(--text2);font-size:0.82rem;line-height:1.7;margin:0;}
+.metrics-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1px;background:var(--border2);border:1px solid var(--border2);border-radius:10px;overflow:hidden;margin:2rem 0;}
+.metric{background:var(--bg2);padding:1.5rem;text-align:center;}
+.metric-n{font-family:'JetBrains Mono',monospace;font-size:1.8rem;font-weight:700;color:var(--blue);line-height:1;}
+.metric-l{font-size:0.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-top:0.35rem;}
+.tech-row{display:flex;flex-wrap:wrap;gap:0.5rem;margin:1.25rem 0;}
+.tech-chip{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text2);border:1px solid var(--border2);padding:0.35rem 0.75rem;border-radius:4px;background:var(--blue4);transition:all 0.2s;}
+.tech-chip:hover{border-color:var(--border);color:var(--text);}
+.proj-list{list-style:none;padding:0;margin:1rem 0;}
+.proj-list li{padding-left:1.25rem;position:relative;color:var(--text2);font-size:0.9rem;line-height:1.8;margin-bottom:0.5rem;}
+.proj-list li::before{content:'→';position:absolute;left:0;color:var(--blue);font-size:0.8rem;}
+.divider{height:1px;background:var(--border2);margin:0;}
+footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative;z-index:1;}
+.footer-inner{max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
+.footer-logo{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:500;color:var(--text2);}
+.footer-logo span{color:var(--blue);}
+.footer-copy{font-size:0.78rem;color:var(--text3);}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.live-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.25);color:#25d366;border-radius:4px;padding:0.3rem 0.75rem;font-family:'JetBrains Mono',monospace;font-size:0.68rem;font-weight:500;margin-left:0.75rem;}
+.live-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#25d366;flex-shrink:0;}
+@media(max-width:768px){
+  .proj-hero{padding:6rem 1.25rem 3rem;}
+  .img-section{padding:0 1.25rem;}
+  .proj-content{padding:0 1.25rem 4rem;}
+  .cards-grid{grid-template-columns:1fr;}
+}
+</style>
 </head>
 <body>
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo">DS</a>
-            <a href="index.html#projects" class="back-btn">← Back to Portfolio</a>
-        </div>
-    </nav>
+<div class="grid-bg"></div>
 
-    <div class="project-hero">
-        <div class="project-header">
-            <span class="project-label">IoT Environmental Monitoring</span>
-            <h1>E-Paper Air Quality Monitoring Devices</h1>
-            <p>Custom e-paper display systems for real-time environmental monitoring, featuring temperature, humidity, and CO2 sensors with 4G connectivity and cloud data integration for industrial air quality assessment.</p>
-        </div>
+<nav id="mainNav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span>DS</span><span class="cursor"></span></a>
+    <a href="index.html#projects" class="back-btn">← Back to Projects</a>
+  </div>
+</nav>
 
-        <img src="images/Projects/aqmlist.jpeg" alt="AQM Device Testing Setup" class="project-image-main">
-        <img src="images/Projects/dashboard.jpeg" alt="AQM Dashboard Monitoring System" class="project-image-main" style="margin-top: 2rem;">
-
-        <div class="project-content">
-            <div class="project-section">
-                <h2>Project Overview</h2>
-                <p>This comprehensive IoT project involved designing and developing customized e-paper driven Air Quality Monitoring (AQM) devices for industrial clients. The project required creating two distinct device variants with different sensor configurations, implementing real-time data visualization, 4G connectivity, and cloud-based monitoring systems for 41 deployed units across multiple locations.</p>
-                <p>In response to growing concerns about air quality in industrial environments, this system provides real-time monitoring of critical air quality parameters with data transmitted to cloud servers for centralized analysis and visualization. The E-Paper display technology ensures readability in all lighting conditions while minimizing power consumption.</p>
-            </div>
-
-            <div class="tech-stack">
-                <span class="tech-tag">Arduino IDE</span>
-                <span class="tech-tag">E-paper Display Programming</span>
-                <span class="tech-tag">IoT Development</span>
-                <span class="tech-tag">4G Communication</span>
-                <span class="tech-tag">AT Commands</span>
-                <span class="tech-tag">Sensor Integration</span>
-                <span class="tech-tag">Cloud Connectivity</span>
-                <span class="tech-tag">Data Visualization</span>
-            </div>
-
-            <div class="project-section">
-                <h2>Key Components & Features</h2>
-                <div class="components-grid">
-                    <div class="component-card">
-                        <h4>E-paper Display Technology</h4>
-                        <p>Custom-designed low-power e-paper displays providing clear, readable environmental data with excellent visibility in various lighting conditions and ultra-low power consumption.</p>
-                    </div>
-                    
-                    <div class="component-card">
-                        <h4>Multi-Sensor Integration</h4>
-                        <p>Two device variants: Basic model with temperature & humidity sensors, and advanced model with additional CO2 level monitoring for comprehensive air quality assessment.</p>
-                    </div>
-                    
-                    <div class="component-card">
-                        <h4>4G Connectivity Module</h4>
-                        <p>Integrated 4G communication system enabling real-time data transmission to cloud platforms with signal strength monitoring and automatic reconnection capabilities.</p>
-                    </div>
-                    
-                    <div class="component-card">
-                        <h4>Arduino-Based Control System</h4>
-                        <p>Programmed using Arduino IDE with custom display rendering, sensor data processing, and communication protocols for reliable operation in industrial environments.</p>
-                    </div>
-                    
-                    <div class="component-card">
-                        <h4>Cloud Dashboard Integration</h4>
-                        <p>Real-time monitoring dashboard displaying data from all 41 deployed devices with historical tracking, alerts, and device status management capabilities.</p>
-                    </div>
-                    
-                    <div class="component-card">
-                        <h4>Device Configuration System</h4>
-                        <p>Unique ID assignment and configuration management for individual device identification and centralized monitoring across multiple installation sites.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="metrics">
-                <div class="metric-item">
-                    <div class="metric-value">41</div>
-                    <div class="metric-label">Units Deployed</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-value">6</div>
-                    <div class="metric-label">Air Quality Parameters</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-value">99.2%</div>
-                    <div class="metric-label">System Uptime</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-value">5min</div>
-                    <div class="metric-label">Reporting Interval</div>
-                </div>
-            </div>
-
-            <div class="project-section">
-                <h2>Technical Implementation</h2>
-                <p><strong>Display Programming:</strong> Custom graphics and text rendering using Arduino IDE, including shape drawing, font sizing, and pixel-perfect layouts optimized for e-paper display characteristics and readability.</p>
-                
-                <p><strong>Sensor Data Processing:</strong> Real-time environmental data collection from temperature, humidity, and CO2 sensors with data validation, filtering, and formatting for display and transmission.</p>
-                
-                <p><strong>4G Communication:</strong> Implementation of AT command protocols for cellular communication, including signal strength monitoring (AT+CSQ), data transmission to cloud URLs, and connection reliability management.</p>
-                
-                <p><strong>Troubleshooting & Optimization:</strong> Resolved hardware connectivity issues through SIM port cleaning and maintenance, fixed IMEI reset problems through code logic optimization, and improved signal reading accuracy.</p>
-            </div>
-
-            <div class="project-section">
-                <h2>Project Challenges & Solutions</h2>
-                <div class="components-grid">
-                    <div class="component-card">
-                        <h4>Display Compatibility</h4>
-                        <p>Overcame font sizing and pixel format compatibility issues by selecting appropriate libraries and display parameters specific to the e-paper technology used.</p>
-                    </div>
-                    
-                    <div class="component-card">
-                        <h4>Signal Strength Reliability</h4>
-                        <p>Resolved intermittent signal reading issues through hardware maintenance, SIM port cleaning, and improved AT command implementation for consistent 4G connectivity.</p>
-                    </div>
-                    
-                    <div class="component-card">
-                        <h4>IMEI Reset Issue</h4>
-                        <p>Fixed automatic IMEI number reset problem by redesigning communication functions with enhanced logic and error handling mechanisms.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-section">
-                <h2>Monitored Parameters</h2>
-                <ul>
-                    <li><strong>PM2.5 (Fine Particulate Matter):</strong> Particles ≤2.5μm that penetrate deep into lungs, critical health indicator</li>
-                    <li><strong>PM10 (Coarse Particulate Matter):</strong> Larger particles ≤10μm affecting respiratory system</li>
-                    <li><strong>CO2 (Carbon Dioxide):</strong> Indoor air quality indicator, ventilation effectiveness metric</li>
-                    <li><strong>Temperature:</strong> Comfort and process monitoring with ±0.3°C accuracy</li>
-                    <li><strong>Relative Humidity:</strong> Moisture levels affecting health and equipment with ±3% accuracy</li>
-                    <li><strong>VOCs (Volatile Organic Compounds):</strong> Chemical vapors from industrial processes and materials</li>
-                </ul>
-            </div>
-
-            <div class="project-section">
-                <h2>Project Outcomes</h2>
-                <p>Successfully delivered a comprehensive air quality monitoring solution with significant achievements:</p>
-                <ul>
-                    <li><strong>Device Deployment:</strong> 41 AQM devices manufactured and deployed across multiple industrial sites with 25 units currently tested and operational</li>
-                    <li><strong>Real-time Monitoring:</strong> Continuous environmental data collection and cloud-based dashboard monitoring for all deployed devices</li>
-                    <li><strong>Custom Solutions:</strong> Two distinct device variants meeting specific customer requirements for different monitoring applications</li>
-                    <li><strong>System Reliability:</strong> Robust 4G connectivity with signal strength monitoring and automatic data transmission capabilities</li>
-                    <li><strong>Technical Excellence:</strong> Overcame multiple technical challenges including display compatibility, communication reliability, and hardware optimization</li>
-                    <li><strong>Early Detection:</strong> Identification of process improvements reducing particulate emissions by 35% at specific facilities</li>
-                    <li><strong>Enhanced Safety:</strong> Quantifiable reduction in air quality-related health complaints and improved worker confidence</li>
-                </ul>
-                
-                <p style="margin-top: 1.5rem;">This project demonstrates advanced skills in IoT system development, industrial device deployment, and complex technical problem-solving while delivering scalable environmental monitoring solutions for commercial applications.</p>
-            </div>
-        </div>
+<div class="proj-hero">
+  <div class="proj-hero-inner">
+    <div class="proj-eyebrow">C3 Labs · Live Production <span class="live-badge">41 Units Live</span></div>
+    <h1>E-Paper <span>Air Quality Monitoring</span> Devices</h1>
+    <p class="proj-hero-desc">Custom e-paper display systems for real-time environmental monitoring, featuring temperature, humidity, and CO2 sensors with 4G connectivity and cloud data integration for industrial air quality assessment.</p>
+    <div class="proj-tags">
+      <span class="proj-tag">Arduino IDE</span>
+      <span class="proj-tag">E-Paper Display</span>
+      <span class="proj-tag">IoT</span>
+      <span class="proj-tag">4G Communication</span>
+      <span class="proj-tag">AT Commands</span>
+      <span class="proj-tag">Sensor Integration</span>
+      <span class="proj-tag">Cloud Connectivity</span>
+      <span class="proj-tag">Embedded C</span>
     </div>
+  </div>
+</div>
 
-    <footer>
-        <p class="copyright">© 2025 Dilmin Siriwardana. All Rights Reserved.</p>
-    </footer>
+<div class="img-section reveal">
+  <img src="images/Projects/aqmlist.jpeg" alt="AQM Device Testing Setup" class="img-main">
+  <img src="images/Projects/dashboard.jpeg" alt="AQM Dashboard Monitoring System" class="img-main">
+</div>
+
+<div class="proj-content">
+
+  <div class="section-block reveal">
+    <div class="block-label">Overview</div>
+    <h2>Project Overview</h2>
+    <p>This comprehensive IoT project involved designing and developing customized e-paper driven Air Quality Monitoring (AQM) devices for industrial clients. The project required creating two distinct device variants with different sensor configurations, implementing real-time data visualization, 4G connectivity, and cloud-based monitoring systems for 41 deployed units across multiple locations.</p>
+    <p>In response to growing concerns about air quality in industrial environments, this system provides real-time monitoring of critical air quality parameters with data transmitted to cloud servers for centralized analysis and visualization. E-Paper display technology ensures readability in all lighting conditions while minimising power consumption.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Tech Stack</div>
+    <h2>Technologies Used</h2>
+    <div class="tech-row">
+      <span class="tech-chip">Arduino IDE</span>
+      <span class="tech-chip">E-Paper Display Programming</span>
+      <span class="tech-chip">IoT Development</span>
+      <span class="tech-chip">4G Communication</span>
+      <span class="tech-chip">AT Commands</span>
+      <span class="tech-chip">Sensor Integration</span>
+      <span class="tech-chip">Cloud Connectivity</span>
+      <span class="tech-chip">Data Visualization</span>
+      <span class="tech-chip">C / C++</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Components</div>
+    <h2>Key Components & Features</h2>
+    <div class="cards-grid">
+      <div class="info-card">
+        <h4>E-Paper Display Technology</h4>
+        <p>Custom-designed low-power e-paper displays providing clear, readable environmental data with excellent visibility in various lighting conditions and ultra-low power consumption.</p>
+      </div>
+      <div class="info-card">
+        <h4>Multi-Sensor Integration</h4>
+        <p>Two device variants: basic model with temperature & humidity sensors, and advanced model with additional CO2 level monitoring for comprehensive air quality assessment.</p>
+      </div>
+      <div class="info-card">
+        <h4>4G Connectivity Module</h4>
+        <p>Integrated 4G communication enabling real-time data transmission to cloud platforms with signal strength monitoring and automatic reconnection capabilities.</p>
+      </div>
+      <div class="info-card">
+        <h4>Arduino-Based Control</h4>
+        <p>Programmed using Arduino IDE with custom display rendering, sensor data processing, and communication protocols for reliable operation in industrial environments.</p>
+      </div>
+      <div class="info-card">
+        <h4>Cloud Dashboard Integration</h4>
+        <p>Real-time monitoring dashboard displaying data from all 41 deployed devices with historical tracking, alerts, and device status management capabilities.</p>
+      </div>
+      <div class="info-card">
+        <h4>Device Configuration System</h4>
+        <p>Unique ID assignment and configuration management for individual device identification and centralized monitoring across multiple installation sites.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Performance</div>
+    <h2>Key Metrics</h2>
+    <div class="metrics-row">
+      <div class="metric"><div class="metric-n">41</div><div class="metric-l">Units Deployed</div></div>
+      <div class="metric"><div class="metric-n">6</div><div class="metric-l">AQ Parameters</div></div>
+      <div class="metric"><div class="metric-n">99.2%</div><div class="metric-l">System Uptime</div></div>
+      <div class="metric"><div class="metric-n">5min</div><div class="metric-l">Report Interval</div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Implementation</div>
+    <h2>Technical Implementation</h2>
+
+    <h3>Display Programming</h3>
+    <p>Custom graphics and text rendering using Arduino IDE, including shape drawing, font sizing, and pixel-perfect layouts optimised for e-paper display characteristics and readability in all ambient lighting conditions.</p>
+
+    <h3>Sensor Data Processing</h3>
+    <p>Real-time environmental data collection from temperature, humidity, and CO2 sensors with data validation, filtering, and formatting for display and transmission to cloud endpoints.</p>
+
+    <h3>4G Communication</h3>
+    <p>Implementation of AT command protocols for cellular communication, including signal strength monitoring (AT+CSQ), data transmission to cloud URLs, and connection reliability management with auto-reconnect logic.</p>
+
+    <h3>Troubleshooting & Optimization</h3>
+    <p>Resolved hardware connectivity issues through SIM port cleaning and maintenance, fixed IMEI reset problems through code logic redesign, and improved signal reading accuracy through enhanced error handling.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Monitored Parameters</div>
+    <h2>Air Quality Parameters</h2>
+    <ul class="proj-list">
+      <li><strong>PM2.5 (Fine Particulate Matter):</strong> Particles ≤2.5μm that penetrate deep into lungs — critical health indicator</li>
+      <li><strong>PM10 (Coarse Particulate Matter):</strong> Larger particles ≤10μm affecting the respiratory system</li>
+      <li><strong>CO2 (Carbon Dioxide):</strong> Indoor air quality indicator, ventilation effectiveness metric</li>
+      <li><strong>Temperature:</strong> Comfort and process monitoring with ±0.3°C accuracy</li>
+      <li><strong>Relative Humidity:</strong> Moisture levels affecting health and equipment with ±3% accuracy</li>
+      <li><strong>VOCs (Volatile Organic Compounds):</strong> Chemical vapors from industrial processes and materials</li>
+    </ul>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Challenges</div>
+    <h2>Challenges & Solutions</h2>
+    <div class="cards-grid">
+      <div class="info-card">
+        <h4>Display Compatibility</h4>
+        <p>Overcame font sizing and pixel format compatibility issues by selecting appropriate libraries and display parameters specific to the e-paper technology used.</p>
+      </div>
+      <div class="info-card">
+        <h4>Signal Strength Reliability</h4>
+        <p>Resolved intermittent signal reading issues through hardware maintenance, SIM port cleaning, and improved AT command implementation for consistent 4G connectivity.</p>
+      </div>
+      <div class="info-card">
+        <h4>IMEI Reset Issue</h4>
+        <p>Fixed automatic IMEI number reset problem by redesigning communication functions with enhanced logic and comprehensive error handling mechanisms.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Outcomes</div>
+    <h2>Project Outcomes</h2>
+    <ul class="proj-list">
+      <li><strong>Device Deployment:</strong> 41 AQM devices manufactured and deployed across multiple industrial sites with units tested and operational</li>
+      <li><strong>Real-time Monitoring:</strong> Continuous environmental data collection and cloud-based dashboard monitoring for all deployed devices</li>
+      <li><strong>Custom Solutions:</strong> Two distinct device variants meeting specific customer requirements for different monitoring applications</li>
+      <li><strong>System Reliability:</strong> Robust 4G connectivity with signal strength monitoring and automatic data transmission capabilities</li>
+      <li><strong>Early Detection:</strong> Identification of process improvements reducing particulate emissions at specific facilities</li>
+      <li><strong>Enhanced Safety:</strong> Quantifiable reduction in air quality-related health complaints and improved worker confidence</li>
+    </ul>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo"><span>DS</span> · Dilmin Siriwardana</div>
+    <div class="footer-copy">© 2025 Dilmin Siriwardana. All Rights Reserved.</div>
+    <a href="index.html#projects" class="back-btn">← Back to Projects</a>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('mainNav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40));
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);obs.unobserve(e.target);}});
+},{threshold:0.06,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+</script>
 </body>
 </html>
