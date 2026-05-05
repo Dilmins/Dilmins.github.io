@@ -1,385 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ML-based Self Driving Surveillance Robot Car - Dilmin Siriwardana</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-dark: #0a0a0a;
-            --bg-card: #111111;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --accent: #3b82f6;
-            --accent-hover: #2563eb;
-            --border: #1f1f1f;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
-        }
-
-        .back-btn {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .back-btn:hover {
-            color: var(--text-primary);
-        }
-
-        .project-hero {
-            padding: 8rem 2rem 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .project-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .project-label {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 50px;
-            font-size: 0.875rem;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-        }
-
-        .project-hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-hero p {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .project-image-main {
-            width: 100%;
-            max-width: 900px;
-            margin: 3rem auto;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        .project-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .project-section {
-            margin-bottom: 4rem;
-        }
-
-        .project-section h2, .project-section h3 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        .project-section h3 {
-            font-size: 1.5rem;
-            margin: 2rem 0 1rem;
-        }
-
-        .project-section p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .tech-stack, .skills-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .tech-tag, .skill-tag {
-            padding: 0.75rem 1.5rem;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 50px;
-            font-size: 0.95rem;
-            color: var(--accent);
-        }
-
-        .components-grid, .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .component-card, .feature-card {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid var(--border);
-        }
-
-        .component-card h4, .feature-card h4 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-
-        .component-card p, .feature-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin: 0;
-        }
-
-        .metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .metric-item {
-            text-align: center;
-            padding: 2rem;
-            background: var(--bg-card);
-            border-radius: 15px;
-            border: 1px solid var(--border);
-        }
-
-        .metric-value {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
-
-        .metric-label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        ul {
-            list-style-position: inside;
-            color: var(--text-secondary);
-            margin: 1rem 0;
-        }
-
-        ul li {
-            margin-bottom: 0.75rem;
-            line-height: 1.8;
-        }
-
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .copyright {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .project-hero {
-                padding: 6rem 1.5rem 3rem;
-            }
-
-            .project-content {
-                padding: 1.5rem;
-            }
-
-            .components-grid, .features-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Surveillance Robot — Dilmin Siriwardana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+--bg:#060e1a;--bg2:#0a1628;--bg3:#0d1f38;
+--blue:#0078ff;--blue2:#3d9bff;--blue3:rgba(0,120,255,0.12);--blue4:rgba(0,120,255,0.06);
+--grid:rgba(0,120,255,0.07);--text:#f0f6ff;--text2:#7aa3cc;--text3:#4d7fa8;
+--border:rgba(0,120,255,0.18);--border2:rgba(0,120,255,0.08);--accent:#00e5ff;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6;}
+.grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px;}
+.grid-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(0,120,255,0.08) 0%,transparent 70%);}
+nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(6,14,26,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border2);transition:border-color 0.3s;}
+nav.scrolled{border-bottom-color:var(--border);}
+.nav-inner{max-width:1320px;margin:0 auto;padding:0 2rem;height:68px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:500;color:var(--text);display:flex;align-items:center;gap:4px;text-decoration:none;}
+.nav-logo span{color:var(--blue);}
+.cursor{display:inline-block;width:2px;height:1em;background:var(--blue);margin-left:2px;animation:blink 1s step-end infinite;vertical-align:middle;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.back-btn{font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--text2);text-decoration:none;display:flex;align-items:center;gap:6px;padding:0.5rem 1rem;border:1px solid var(--border2);border-radius:6px;background:var(--blue4);transition:all 0.2s;}
+.back-btn:hover{color:var(--text);border-color:var(--border);background:var(--blue3);}
+.proj-hero{padding:8rem 2rem 4rem;position:relative;z-index:1;}
+.proj-hero-inner{max-width:1000px;margin:0 auto;}
+.proj-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--blue);letter-spacing:0.1em;text-transform:uppercase;background:var(--blue4);border:1px solid var(--border);padding:0.4rem 0.875rem;border-radius:4px;margin-bottom:1.75rem;}
+.proj-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--blue);animation:pulse 2s ease infinite;flex-shrink:0;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);}}
+.proj-hero h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700;line-height:1.1;letter-spacing:-0.02em;margin-bottom:1.25rem;}
+.proj-hero h1 span{background:linear-gradient(135deg,var(--blue) 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.proj-hero-desc{font-size:1rem;color:var(--text2);max-width:700px;line-height:1.8;margin-bottom:2rem;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2.5rem;}
+.proj-tag{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--blue2);border:1px solid rgba(0,120,255,0.18);padding:0.25rem 0.65rem;border-radius:3px;background:var(--blue4);}
+.img-section{position:relative;z-index:1;max-width:1000px;margin:0 auto 3rem;padding:0 2rem;}
+.img-main{width:100%;border-radius:12px;border:1px solid var(--border);display:block;box-shadow:0 24px 64px rgba(0,0,0,0.5);margin-bottom:1.25rem;}
+.proj-content{max-width:1000px;margin:0 auto;padding:0 2rem 6rem;}
+.section-block{margin-bottom:3.5rem;}
+.block-label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--blue);letter-spacing:0.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:0.75rem;}
+.block-label::before{content:'//';opacity:0.5;}
+.section-block h2{font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:700;letter-spacing:-0.02em;margin-bottom:1.25rem;}
+.section-block p{color:var(--text2);font-size:0.925rem;line-height:1.85;margin-bottom:1rem;}
+.section-block h3{font-size:1.05rem;font-weight:600;color:var(--text);margin:1.75rem 0 0.6rem;}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;margin:1.5rem 0;}
+.info-card{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:1.5rem;transition:all 0.2s;}
+.info-card:hover{border-color:var(--border);background:var(--bg3);}
+.info-card h4{font-size:0.9rem;font-weight:600;color:var(--blue);margin-bottom:0.6rem;}
+.info-card p{color:var(--text2);font-size:0.82rem;line-height:1.7;margin:0;}
+.metrics-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1px;background:var(--border2);border:1px solid var(--border2);border-radius:10px;overflow:hidden;margin:2rem 0;}
+.metric{background:var(--bg2);padding:1.5rem;text-align:center;}
+.metric-n{font-family:'JetBrains Mono',monospace;font-size:1.8rem;font-weight:700;color:var(--blue);line-height:1;}
+.metric-l{font-size:0.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-top:0.35rem;}
+.tech-row{display:flex;flex-wrap:wrap;gap:0.5rem;margin:1.25rem 0;}
+.tech-chip{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text2);border:1px solid var(--border2);padding:0.35rem 0.75rem;border-radius:4px;background:var(--blue4);transition:all 0.2s;}
+.tech-chip:hover{border-color:var(--border);color:var(--text);}
+.proj-list{list-style:none;padding:0;margin:1rem 0;}
+.proj-list li{padding-left:1.25rem;position:relative;color:var(--text2);font-size:0.9rem;line-height:1.8;margin-bottom:0.5rem;}
+.proj-list li::before{content:'→';position:absolute;left:0;color:var(--blue);font-size:0.8rem;}
+.divider{height:1px;background:var(--border2);margin:0;}
+footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative;z-index:1;}
+.footer-inner{max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
+.footer-logo{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:500;color:var(--text2);}
+.footer-logo span{color:var(--blue);}
+.footer-copy{font-size:0.78rem;color:var(--text3);}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@media(max-width:768px){
+  .proj-hero{padding:6rem 1.25rem 3rem;}
+  .img-section{padding:0 1.25rem;}
+  .proj-content{padding:0 1.25rem 4rem;}
+  .cards-grid{grid-template-columns:1fr;}
+}
+</style>
 </head>
 <body>
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo">DS</a>
-            <a href="index.html#projects" class="back-btn">← Back to Portfolio</a>
-        </div>
-    </nav>
+<div class="grid-bg"></div>
 
-    <div class="project-hero">
-        <div class="project-header">
-            <span class="project-label">Computer Vision & Robotics</span>
-            <h1>ML based Self Driving Surveillance Robot Car</h1>
-            <p>An intelligent autonomous robot car equipped with computer vision, real-time intruder detection, and notification systems that combines robotics, AI/ML, and surveillance technology for enhanced security monitoring.</p>
-        </div>
+<nav id="mainNav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span>DS</span><span class="cursor"></span></a>
+    <a href="index.html#projects" class="back-btn">← Back to Projects</a>
+  </div>
+</nav>
 
-        <img src="images/Projects/Project3.0.jpeg" alt="Self Driving Surveillance Robot Car System" class="project-image-main">
-        <img src="images/Projects/noti.jpeg" alt="Real-time Intruder Detection Notifications" class="project-image-main" style="margin-top: 2rem;">
-        <img src="images/Projects/testcode.jpeg" alt="Face Recognition Testing Interface" class="project-image-main" style="margin-top: 2rem;">
-
-        <div class="project-content">
-            <div class="project-section">
-                <h2>Project Overview</h2>
-                <p>This advanced surveillance robot demonstrates the integration of autonomous navigation, computer vision, facial recognition, and real-time notification systems. The robot car autonomously patrols designated areas while continuously monitoring for intruders using ML-powered detection algorithms and instantly alerts security personnel through mobile notifications.</p>
-                <p>This autonomous mobile security system combines mobile robotics, computer vision, and machine learning to create an intelligent security system capable of patrolling designated areas, recognizing authorized personnel, and instantly alerting security teams to potential intruders. When an unknown face is detected, the system immediately captures images, logs the event with timestamp and location data, and sends real-time notifications to security personnel, enabling rapid response to security threats.</p>
-            </div>
-
-            <div class="tech-stack">
-                <span class="tech-tag">Python Programming</span>
-                <span class="tech-tag">OpenCV</span>
-                <span class="tech-tag">Haar Cascade Classifier</span>
-                <span class="tech-tag">Raspberry Pi 4</span>
-                <span class="tech-tag">Arduino Uno</span>
-                <span class="tech-tag">Facial Recognition</span>
-                <span class="tech-tag">Autonomous Navigation</span>
-                <span class="tech-tag">Real-time Processing</span>
-                <span class="tech-tag">IoT Communication</span>
-            </div>
-
-            <div class="project-section">
-                <h2>Key Components & Features</h2>
-                <div class="components-grid">
-                    <div class="component-card">
-                        <h4>Raspberry Pi 4 & Arduino Uno</h4>
-                        <p>Serves as the main processing unit, handling computer vision algorithms, autonomous navigation logic, and real-time communication with notification systems that communicated in series.</p>
-                    </div>
-                    
-                    <div class="component-card">
-                        <h4>HD Camera Module</h4>
-                        <p>High-resolution camera for real-time video capture, facial recognition, and intruder detection with 75%+ accuracy in real-world conditions.</p>
-                    </div>
-                    
-                    <div class="component-card">
-                        <h4>Ultrasonic Sensors Array</h4>
-                        <p>2 HC-SR04 ultrasonic sensors positioned strategically for obstacle detection, distance measurement, and autonomous navigation with intelligent path planning.</p>
-                    </div>
-                    
-                    <div class="component-card">
-                        <h4>DC Motors with Encoders</h4>
-                        <p>Precision motor control system enabling accurate movement, turning, and positioning for autonomous patrol routes and obstacle avoidance.</p>
-                    </div>
-                    
-                    <div class="component-card">
-                        <h4>WiFi Communication Module</h4>
-                        <p>Enables real-time data transmission, remote monitoring capabilities, and instant notification delivery to mobile devices via WhatsApp and security systems.</p>
-                    </div>
-                    
-                    <div class="component-card">
-                        <h4>Power Management System</h4>
-                        <p>Efficient battery management with voltage regulation ensuring extended operational time (2+ hours) and reliable performance during surveillance missions.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="metrics">
-                <div class="metric-item">
-                    <div class="metric-value">75%+</div>
-                    <div class="metric-label">Recognition Accuracy</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-value">&lt;5s</div>
-                    <div class="metric-label">Response Time</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-value">2+ hrs</div>
-                    <div class="metric-label">Continuous Operation</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-value">10m</div>
-                    <div class="metric-label">Recognition Range</div>
-                </div>
-            </div>
-
-            <div class="project-section">
-                <h2>AI & Computer Vision Implementation</h2>
-                <p><strong>Facial Recognition System:</strong> Utilizes OpenCV and Haar Cascade classifier for face detection to detect and identify faces in real-time, distinguishing between authorized personnel and potential intruders with over 75% accuracy.</p>
-                
-                <p><strong>Intruder Detection Algorithm:</strong> Each time a snapshot is taken, the captured image is verified against the authorized personnel database. Deep learning-based face detection and recognition creates unique facial signatures for comparison with similarity thresholds tuned to balance security and usability.</p>
-                
-                <p><strong>Real-time Notifications:</strong> Instant alert system that sends detailed notifications including timestamps, captured images with confidence scores, and messages via WhatsApp to security personnel's mobile devices with encrypted transmission.</p>
-
-                <p><strong>Autonomous Navigation:</strong> Reads sensor data that enables the robot to navigate by avoiding obstacles and maintaining optimal surveillance coverage. SLAM algorithms create and maintain maps of the environment while sensor fusion integrates data from multiple sources.</p>
-            </div>
-
-            <div class="project-section">
-                <h2>Technical Implementation</h2>
-                <p><strong>Control Architecture:</strong> Multi-threaded Python application running on Raspberry Pi 4, managing simultaneous processes for navigation, image processing, communication, and sensor data fusion with a layered navigation architecture combining high-level path planning with reactive obstacle avoidance.</p>
-                
-                <p><strong>Computer Vision Pipeline:</strong> Real-time picture processing using OpenCV for face detection, feature extraction, and comparison with authorized personnel database. Employs cascaded detection approach using lightweight classifiers for initial screening before applying deep learning models, achieving over 75% recognition accuracy.</p>
-                
-                <p><strong>Communication System:</strong> Integrated messaging system using APIs to send instant notifications with captured images, detection confidence scores, and coordinates to multiple recipients. All data transmission uses encrypted protocols for security.</p>
-            </div>
-
-            <div class="project-section">
-                <h2>Project Achievements</h2>
-                <p>This comprehensive surveillance robot successfully demonstrates advanced integration across multiple technical domains:</p>
-                <ul>
-                    <li><strong>Artificial Intelligence:</strong> Implemented Haar Cascade classifier for accurate facial recognition and behavioral analysis with 75%+ detection accuracy</li>
-                    <li><strong>Robotics & Automation:</strong> Developed autonomous navigation with intelligent obstacle avoidance and adaptive path planning</li>
-                    <li><strong>Computer Vision:</strong> Real-time image processing with high-accuracy detection and classification systems operating in varying lighting conditions</li>
-                    <li><strong>IoT & Communication:</strong> Seamless integration with mobile devices and cloud-based notification systems with less than 5 second response time</li>
-                    <li><strong>System Integration:</strong> Coordinated multiple subsystems for reliable surveillance operations with 2+ hours of continuous operation</li>
-                    <li><strong>Security Features:</strong> Encrypted communications, tamper detection, secure storage, and comprehensive audit trails</li>
-                </ul>
-                
-                <p style="margin-top: 1.5rem;">The completed surveillance robot demonstrates exceptional capability in autonomous security monitoring, achieving over 75% detection accuracy while maintaining continuous operation for extended periods. The system successfully integrates cutting-edge AI technology with practical robotics applications, showcasing advanced skills in mechatronics, software engineering, and intelligent system design.</p>
-            </div>
-        </div>
+<div class="proj-hero">
+  <div class="proj-hero-inner">
+    <div class="proj-eyebrow">Computer Vision &nbsp;·&nbsp; Robotics &nbsp;·&nbsp; AI/ML</div>
+    <h1>ML-Based Self-Driving<br><span>Surveillance Robot Car</span></h1>
+    <p class="proj-hero-desc">An intelligent autonomous robot equipped with real-time facial recognition and intruder detection at 75%+ accuracy. Instant push notifications on detection for unattended perimeter monitoring.</p>
+    <div class="proj-tags">
+      <span class="proj-tag">Python</span>
+      <span class="proj-tag">OpenCV</span>
+      <span class="proj-tag">Haar Cascade</span>
+      <span class="proj-tag">Raspberry Pi 4</span>
+      <span class="proj-tag">Arduino Uno</span>
+      <span class="proj-tag">Facial Recognition</span>
+      <span class="proj-tag">Autonomous Nav</span>
+      <span class="proj-tag">IoT</span>
     </div>
+  </div>
+</div>
 
-    <footer>
-        <p class="copyright">© 2025 Dilmin Siriwardana. All Rights Reserved.</p>
-    </footer>
+<div class="img-section reveal">
+  <img src="images/Projects/Project3.0.jpeg" alt="Self Driving Surveillance Robot" class="img-main">
+  <img src="images/Projects/noti.jpeg" alt="Real-time Intruder Detection Notifications" class="img-main">
+  <img src="images/Projects/testcode.jpeg" alt="Face Recognition Testing Interface" class="img-main">
+</div>
+
+<div class="proj-content">
+
+  <div class="section-block reveal">
+    <div class="block-label">Overview</div>
+    <h2>Project Overview</h2>
+    <p>This advanced surveillance robot demonstrates the integration of autonomous navigation, computer vision, facial recognition, and real-time notification systems. The robot car autonomously patrols designated areas while continuously monitoring for intruders using ML-powered detection algorithms and instantly alerts security personnel through mobile notifications.</p>
+    <p>When an unknown face is detected, the system immediately captures images, logs the event with timestamp and location data, and sends real-time notifications to security personnel via WhatsApp — enabling rapid response to security threats. The Raspberry Pi 4 and Arduino Uno communicate over serial for coordinated control.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Tech Stack</div>
+    <h2>Technologies Used</h2>
+    <div class="tech-row">
+      <span class="tech-chip">Python</span>
+      <span class="tech-chip">OpenCV</span>
+      <span class="tech-chip">Haar Cascade Classifier</span>
+      <span class="tech-chip">Raspberry Pi 4</span>
+      <span class="tech-chip">Arduino Uno</span>
+      <span class="tech-chip">Facial Recognition</span>
+      <span class="tech-chip">Autonomous Navigation</span>
+      <span class="tech-chip">Real-time Processing</span>
+      <span class="tech-chip">IoT Communication</span>
+      <span class="tech-chip">WhatsApp API</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Components</div>
+    <h2>Key Components & Features</h2>
+    <div class="cards-grid">
+      <div class="info-card">
+        <h4>Raspberry Pi 4 & Arduino Uno</h4>
+        <p>Pi handles computer vision and notifications; Arduino manages motor control. Communicates via serial interface for coordinated autonomous operation.</p>
+      </div>
+      <div class="info-card">
+        <h4>HD Camera Module</h4>
+        <p>High-resolution camera for real-time video capture, facial recognition, and intruder detection with 75%+ accuracy in real-world lighting conditions.</p>
+      </div>
+      <div class="info-card">
+        <h4>Ultrasonic Sensor Array</h4>
+        <p>2× HC-SR04 sensors positioned strategically for obstacle detection and autonomous navigation with intelligent path planning algorithms.</p>
+      </div>
+      <div class="info-card">
+        <h4>DC Motors with L298N Driver</h4>
+        <p>Precision motor control enabling accurate movement, turning, and differential drive positioning for autonomous patrol routes.</p>
+      </div>
+      <div class="info-card">
+        <h4>WiFi Communication</h4>
+        <p>Real-time data transmission and instant notification delivery to mobile devices via WhatsApp API with encrypted protocols for security.</p>
+      </div>
+      <div class="info-card">
+        <h4>Power Management</h4>
+        <p>Efficient battery management with voltage regulation ensuring 2+ hours of extended operational time and reliable performance.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Performance</div>
+    <h2>Key Metrics</h2>
+    <div class="metrics-row">
+      <div class="metric"><div class="metric-n">75%+</div><div class="metric-l">Recognition Accuracy</div></div>
+      <div class="metric"><div class="metric-n">&lt;5s</div><div class="metric-l">Alert Response Time</div></div>
+      <div class="metric"><div class="metric-n">2+ hrs</div><div class="metric-l">Continuous Operation</div></div>
+      <div class="metric"><div class="metric-n">10m</div><div class="metric-l">Recognition Range</div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">AI Implementation</div>
+    <h2>AI & Computer Vision Implementation</h2>
+
+    <h3>Facial Recognition System</h3>
+    <p>Utilises OpenCV and Haar Cascade classifier for real-time face detection and identification, distinguishing between authorized personnel and potential intruders with over 75% accuracy under varying lighting conditions.</p>
+
+    <h3>Intruder Detection Algorithm</h3>
+    <p>Each time a snapshot is taken, the captured image is verified against the authorized personnel database. Deep learning-based face detection creates unique facial signatures for comparison with similarity thresholds tuned to balance security and usability.</p>
+
+    <h3>Real-Time Notifications</h3>
+    <p>Instant alert system sends detailed notifications including timestamps, captured images with confidence scores, and messages via WhatsApp to security personnel's mobile devices with encrypted transmission and multi-recipient support.</p>
+
+    <h3>Autonomous Navigation</h3>
+    <p>Multi-threaded Python application manages simultaneous processes for navigation, image processing, and communication. A finite state machine architecture combines high-level path planning with reactive obstacle avoidance using sensor fusion.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-block reveal" style="margin-top:3rem;">
+    <div class="block-label">Achievements</div>
+    <h2>Project Achievements</h2>
+    <ul class="proj-list">
+      <li><strong>Artificial Intelligence:</strong> Implemented Haar Cascade classifier for accurate facial recognition with 75%+ detection accuracy in real-world conditions</li>
+      <li><strong>Robotics & Automation:</strong> Developed autonomous navigation with intelligent obstacle avoidance and adaptive path planning</li>
+      <li><strong>Computer Vision:</strong> Real-time image processing with high-accuracy detection in varying lighting conditions</li>
+      <li><strong>IoT & Communication:</strong> Seamless integration with mobile devices and cloud-based notifications with under 5-second response time</li>
+      <li><strong>System Integration:</strong> Coordinated multiple subsystems for reliable surveillance with 2+ hours continuous operation</li>
+      <li><strong>Security Features:</strong> Encrypted communications, tamper detection, secure storage, and comprehensive audit trails</li>
+    </ul>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo"><span>DS</span> · Dilmin Siriwardana</div>
+    <div class="footer-copy">© 2025 Dilmin Siriwardana. All Rights Reserved.</div>
+    <a href="index.html#projects" class="back-btn">← Back to Projects</a>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('mainNav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40));
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);obs.unobserve(e.target);}});
+},{threshold:0.06,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+</script>
 </body>
 </html>
