@@ -23,6 +23,9 @@
 --border:rgba(0,120,255,0.18);
 --border2:rgba(0,120,255,0.08);
 --accent:#00e5ff;
+--gold:#f5c842;
+--gold2:rgba(245,200,66,0.12);
+--gold3:rgba(245,200,66,0.25);
 }
 html{scroll-behavior:smooth;}
 body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6;}
@@ -172,8 +175,12 @@ nav.scrolled{border-bottom-color:var(--border);}
 
 /* CERTS */
 .certs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.25rem;}
-.cert-card{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:1.5rem;transition:all 0.2s;}
+.cert-card{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:1.5rem;transition:all 0.2s;position:relative;}
 .cert-card:hover{border-color:var(--border);background:var(--bg3);}
+.cert-card.gold-award{border-color:var(--gold3);background:linear-gradient(135deg,var(--bg2) 60%,rgba(245,200,66,0.04));}
+.cert-card.gold-award:hover{border-color:var(--gold);}
+.cert-card.gold-award::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.cert-gold-badge{display:inline-flex;align-items:center;gap:5px;background:var(--gold2);border:1px solid var(--gold3);color:var(--gold);border-radius:4px;padding:0.28rem 0.65rem;font-size:0.65rem;font-weight:600;font-family:'JetBrains Mono',monospace;letter-spacing:0.05em;margin-top:0.6rem;}
 .cert-card a.cert-verify{display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--blue);text-decoration:none;margin-top:0.75rem;border:1px solid var(--border);padding:0.2rem 0.6rem;border-radius:3px;background:var(--blue4);transition:all 0.2s;}
 .cert-card a.cert-verify:hover{background:var(--blue3);border-color:var(--blue);}
 .cert-issuer{font-family:'JetBrains Mono',monospace;font-size:0.63rem;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.5rem;}
@@ -181,6 +188,24 @@ nav.scrolled{border-bottom-color:var(--border);}
 .cert-date{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--blue);margin-bottom:0.75rem;}
 .cert-skills{display:flex;flex-wrap:wrap;gap:0.35rem;}
 .cert-skill{font-size:0.62rem;font-family:'JetBrains Mono',monospace;color:var(--text3);border:1px solid var(--border2);padding:0.15rem 0.5rem;border-radius:3px;}
+
+/* EDUCATION TIMELINE */
+.edu-timeline{position:relative;padding-left:2rem;}
+.edu-timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--blue),var(--accent),transparent);border-radius:2px;}
+.edu-item{position:relative;margin-bottom:2.25rem;}
+.edu-item:last-child{margin-bottom:0;}
+.edu-item::before{content:'';position:absolute;left:-2.45rem;top:0.4rem;width:12px;height:12px;border-radius:50%;background:var(--blue);border:2px solid var(--bg);box-shadow:0 0 0 3px rgba(0,120,255,0.2);flex-shrink:0;}
+.edu-card{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;padding:1.5rem 1.75rem;transition:all 0.25s;position:relative;overflow:hidden;}
+.edu-card:hover{border-color:var(--border);background:var(--bg3);transform:translateX(4px);}
+.edu-card.current-edu::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--blue),transparent);}
+.edu-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:0.6rem;}
+.edu-institution{font-size:0.75rem;font-family:'JetBrains Mono',monospace;color:var(--blue);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.3rem;}
+.edu-degree{font-size:1rem;font-weight:600;line-height:1.3;}
+.edu-period{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--text3);flex-shrink:0;margin-top:0.1rem;}
+.edu-tags{display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.85rem;}
+.edu-tag{font-size:0.62rem;font-family:'JetBrains Mono',monospace;color:var(--text3);border:1px solid var(--border2);padding:0.18rem 0.55rem;border-radius:3px;background:var(--blue4);}
+.edu-status{display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:#25d366;border:1px solid rgba(37,211,102,0.2);background:rgba(37,211,102,0.06);border-radius:3px;padding:0.18rem 0.55rem;margin-left:0.4rem;}
+.edu-status::before{content:'';width:5px;height:5px;border-radius:50%;background:#25d366;flex-shrink:0;}
 
 /* VOLUNTEERING */
 .vol-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.25rem;margin-top:1.5rem;}
@@ -257,6 +282,7 @@ footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative
   .form-row{grid-template-columns:1fr;}
   .footer-inner{flex-direction:column;align-items:flex-start;}
   .divider{margin:0 1.25rem;}
+  .edu-timeline{padding-left:1.5rem;}
 }
 @media(max-width:480px){
   .hero h1{font-size:2rem;}
@@ -283,6 +309,7 @@ footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative
       <li><a href="#experience">Experience</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
       <li><a href="#certifications">Certs</a></li>
       <li><a href="assets/My_CV.pdf" download class="nav-mono">↓ CV</a></li>
       <li><a href="#contact" class="nav-cta">Contact</a></li>
@@ -295,6 +322,7 @@ footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative
   <a href="#experience">Experience</a>
   <a href="#skills">Skills</a>
   <a href="#projects">Projects</a>
+  <a href="#education">Education</a>
   <a href="#certifications">Certifications</a>
   <a href="assets/My_CV.pdf" download>↓ Download CV</a>
   <a href="#contact">Contact</a>
@@ -340,7 +368,7 @@ footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative
           <div class="hc-divider"></div>
           <div class="hc-stats">
             <div><div class="hc-stat-n">12+</div><div class="hc-stat-l">Projects</div></div>
-            <div><div class="hc-stat-n">41</div><div class="hc-stat-l">Deployed</div></div>
+            <div><div class="hc-stat-n">45</div><div class="hc-stat-l">Deployed</div></div>
             <div><div class="hc-stat-n">5</div><div class="hc-stat-l">Certs</div></div>
           </div>
           <div class="hc-divider"></div>
@@ -681,14 +709,96 @@ footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative
 
 <div class="divider"></div>
 
+<!-- EDUCATION -->
+<section class="section" id="education">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Education</div>
+      <h2>Academic Journey</h2>
+      <p>A foundation built across schools, technical institutes, and professional programmes.</p>
+    </div>
+    <div class="edu-timeline">
+
+      <div class="edu-item reveal">
+        <div class="edu-card">
+          <div class="edu-institution">Lyceum International School Panadura</div>
+          <div class="edu-header">
+            <div class="edu-degree">Cambridge O/Level &amp; A/Level Examinations</div>
+            <div class="edu-period">Sep 2005 – Jul 2021</div>
+          </div>
+          <div class="edu-tags">
+            <span class="edu-tag">Football Team — Captain</span>
+            <span class="edu-tag">Western Dancing</span>
+            <span class="edu-tag">Cub Scouting</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="edu-item reveal">
+        <div class="edu-card">
+          <div class="edu-institution">IDM Campus</div>
+          <div class="edu-header">
+            <div class="edu-degree">Office Applications &amp; Web Development</div>
+            <div class="edu-period">Aug 2021 – Dec 2021</div>
+          </div>
+          <div class="edu-tags">
+            <span class="edu-tag">MS Office</span>
+            <span class="edu-tag">Web Designing</span>
+            <span class="edu-tag" style="color:var(--gold);border-color:var(--gold3);background:var(--gold2);">🏅 Gold Award Winner</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="edu-item reveal">
+        <div class="edu-card current-edu">
+          <div class="edu-institution">General Sir John Kotelawala Defence University</div>
+          <div class="edu-header">
+            <div>
+              <div class="edu-degree">B.Sc. Mechatronics Engineering <span class="edu-status">In Progress</span></div>
+            </div>
+            <div class="edu-period">Jan 2022 – Nov 2026</div>
+          </div>
+          <div class="edu-tags">
+            <span class="edu-tag">Mechatronics</span>
+            <span class="edu-tag">Robotics</span>
+            <span class="edu-tag">Automation</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="edu-item reveal">
+        <div class="edu-card">
+          <div class="edu-institution">Wisdom Business Academy</div>
+          <div class="edu-header">
+            <div>
+              <div class="edu-degree">CIMA Certificate Level <span class="edu-status">Ongoing</span></div>
+            </div>
+            <div class="edu-period">Mar 2026 – Present</div>
+          </div>
+          <div class="edu-tags">
+            <span class="edu-tag">Financial Accounting</span>
+            <span class="edu-tag">Management Accounting</span>
+            <span class="edu-tag">Ethics</span>
+            <span class="edu-tag">Economics</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- CERTIFICATIONS -->
 <section class="section" id="certifications">
   <div class="section-inner">
     <div class="section-header reveal">
-      <div class="section-eyebrow">Certifications & Education</div>
+      <div class="section-eyebrow">Certifications &amp; Achievements</div>
       <h2>Credentials</h2>
     </div>
     <div class="certs-grid">
+
       <div class="cert-card reveal">
         <div class="cert-issuer">AOTS / JASTECA · Japan</div>
         <div class="cert-name">Leadership for Business Growth</div>
@@ -697,6 +807,7 @@ footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative
           <span class="cert-skill">Leadership</span><span class="cert-skill">ESG</span><span class="cert-skill">Big Data</span><span class="cert-skill">Japanese Management</span>
         </div>
       </div>
+
       <div class="cert-card reveal">
         <div class="cert-issuer">Stanford University · Coursera</div>
         <div class="cert-name">Supervised Machine Learning: Regression and Classification</div>
@@ -706,6 +817,7 @@ footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative
         </div>
         <a class="cert-verify" href="https://www.coursera.org/account/accomplishments/verify/KPN7RGEGAOEA" target="_blank" rel="noopener">↗ Verify Credential</a>
       </div>
+
       <div class="cert-card reveal">
         <div class="cert-issuer">Altium®</div>
         <div class="cert-name">PCB Designing Basics</div>
@@ -714,6 +826,7 @@ footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative
           <span class="cert-skill">Altium Designer</span><span class="cert-skill">PCB Layout</span><span class="cert-skill">Schematic</span>
         </div>
       </div>
+
       <div class="cert-card reveal">
         <div class="cert-issuer">Sri Lanka Institute of Robotics</div>
         <div class="cert-name">Automation Engineering Course</div>
@@ -722,14 +835,17 @@ footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative
           <span class="cert-skill">TIA Portal</span><span class="cert-skill">SIMATIC</span><span class="cert-skill">FBD</span><span class="cert-skill">SFC</span><span class="cert-skill">Ladder Logic</span>
         </div>
       </div>
-      <div class="cert-card reveal">
-        <div class="cert-issuer">General Sir John Kotelawala Defence University</div>
-        <div class="cert-name">B.Sc. Mechatronics Engineering</div>
-        <div class="cert-date">Jan 2022 – Nov 2026 (Expected)</div>
+
+      <div class="cert-card gold-award reveal">
+        <div class="cert-issuer">IDM Campus</div>
+        <div class="cert-name">Office Applications &amp; Web Development</div>
+        <div class="cert-date">Aug 2021 – Dec 2021</div>
         <div class="cert-skills">
-          <span class="cert-skill">Mechatronics</span><span class="cert-skill">Robotics</span><span class="cert-skill">Automation</span>
+          <span class="cert-skill">MS Office</span><span class="cert-skill">Web Designing</span>
         </div>
+        <div class="cert-gold-badge">🏅 Gold Award Winner</div>
       </div>
+
     </div>
 
     <div style="margin-top:3rem" class="reveal">
@@ -739,7 +855,7 @@ footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative
       <div class="vol-card reveal">
         <div class="vol-role">Executive Committee Member</div>
         <div class="vol-org">IMechE Student Chapter · KDU</div>
-        <div class="vol-period">Mar 2023 – Mar 2024 · Science & Technology</div>
+        <div class="vol-period">Mar 2023 – Mar 2024 · Science &amp; Technology</div>
       </div>
       <div class="vol-card reveal">
         <div class="vol-role">Director of Community Services</div>
@@ -837,6 +953,7 @@ footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative
     <ul class="footer-nav">
       <li><a href="#about">About</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="https://wa.me/94770114515" target="_blank" rel="noopener">WhatsApp</a></li>
     </ul>
@@ -853,15 +970,12 @@ footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 
 <script>
-// Nav scroll + scroll top
 const nav=document.getElementById('mainNav');
 const scrollTopBtn=document.getElementById('scrollTop');
 window.addEventListener('scroll',()=>{
   nav.classList.toggle('scrolled',window.scrollY>40);
   scrollTopBtn.classList.toggle('show',window.scrollY>500);
 });
-
-// Hamburger
 const hamburger=document.getElementById('hamburger');
 const mobileMenu=document.getElementById('mobileMenu');
 hamburger.addEventListener('click',()=>{
@@ -872,16 +986,12 @@ mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
   mobileMenu.classList.remove('open');
   hamburger.textContent='☰';
 }));
-
-// Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',e=>{
     const t=document.querySelector(a.getAttribute('href'));
     if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
   });
 });
-
-// Skill bars
 const barObserver=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
@@ -893,8 +1003,6 @@ const barObserver=new IntersectionObserver(entries=>{
   });
 },{threshold:0.2});
 document.querySelectorAll('.skills-layout > div').forEach(el=>barObserver.observe(el));
-
-// Reveal on scroll
 const revealObserver=new IntersectionObserver(entries=>{
   entries.forEach((e,i)=>{
     if(e.isIntersecting){
@@ -904,8 +1012,6 @@ const revealObserver=new IntersectionObserver(entries=>{
   });
 },{threshold:0.06,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.reveal').forEach(r=>revealObserver.observe(r));
-
-// Contact form AJAX
 const form=document.getElementById('contactForm');
 const formMsg=document.getElementById('formMsg');
 const submitBtn=document.getElementById('submitBtn');
