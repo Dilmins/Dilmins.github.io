@@ -128,7 +128,6 @@ footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative
       <span class="tech-chip">Arduino Uno</span>
       <span class="tech-chip">C++</span>
       <span class="tech-chip">Ultrasonic Sensors (HC-SR04)</span>
-      <span class="tech-chip">PID Control</span>
       <span class="tech-chip">L298N Motor Driver</span>
       <span class="tech-chip">State Machine</span>
       <span class="tech-chip">Sensor Fusion</span>
@@ -148,15 +147,15 @@ footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative
         <p>Main control unit running the navigation algorithm and processing sensor data for real-time decision-making and autonomous operation at competition speed.</p>
       </div>
       <div class="info-card">
-        <h4>5× HC-SR04 Ultrasonic Sensors</h4>
-        <p>Strategically positioned for comprehensive environmental coverage with ±1cm accuracy. Weighted averaging and moving average filters ensure reliable wall tracking.</p>
+        <h4>HC-SR04 Ultrasonic Sensors</h4>
+        <p>Strategically positioned for comprehensive environmental coverage with ±1cm accuracy ensure reliable wall tracking.</p>
       </div>
       <div class="info-card">
         <h4>L298N Motor Driver</h4>
         <p>Powers and controls DC motors with precise speed modulation via PWM signals, allowing smooth directional changes and optimal navigation performance.</p>
       </div>
       <div class="info-card">
-        <h4>DC Gear Motors</h4>
+        <h4>DC Stepper Motors</h4>
         <p>Reliable locomotion with sufficient torque for smooth movement on a two-wheel differential drive chassis with front castor wheel at up to 0.5m/s.</p>
       </div>
       <div class="info-card">
@@ -165,7 +164,7 @@ footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative
       </div>
       <div class="info-card">
         <h4>Power Management System</h4>
-        <p>Dual-power architecture with stable voltage regulation ensuring consistent performance throughout 45-minute competition runs with reliable operation for all components.</p>
+        <p>Power architecture with stable voltage regulation ensuring consistent performance throughout 15-minute competition runs with reliable operation for all components.</p>
       </div>
     </div>
   </div>
@@ -179,7 +178,7 @@ footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative
       <div class="metric"><div class="metric-n">5</div><div class="metric-l">Ultrasonic Sensors</div></div>
       <div class="metric"><div class="metric-n">±1cm</div><div class="metric-l">Wall Distance Accuracy</div></div>
       <div class="metric"><div class="metric-n">0.5m/s</div><div class="metric-l">Maximum Speed</div></div>
-      <div class="metric"><div class="metric-n">45min</div><div class="metric-l">Battery Life</div></div>
+      <div class="metric"><div class="metric-n">15min</div><div class="metric-l">Battery Life</div></div>
     </div>
   </div>
 
@@ -196,7 +195,7 @@ footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative
     <p>A state machine architecture organises robot behaviour across four states: Wall Following, Corner Detection, Obstacle Avoidance, and Recovery. This structured approach ensures predictable behaviour transitions and robust handling of edge cases encountered in competition environments.</p>
 
     <h3>Sensor Fusion & Filtering</h3>
-    <p>Five HC-SR04 sensors provide comprehensive coverage. Weighted averaging reduces noise impact across multiple readings, while moving average filters smooth readings over consecutive samples. Outlier rejection discards anomalous distance values before feeding into the PID controller.</p>
+    <p>HC-SR04 sensor provide comprehensive coverage. Outlier rejection discards anomalous distance values.</p>
 
     <h3>Corner Handling</h3>
     <p>A multi-phase turn algorithm includes gradual deceleration approaching corners, a precise pivot using differential drive, and controlled acceleration out of turns — with inertial compensation derived from systematic characterisation testing on the competition surface.</p>
@@ -211,11 +210,10 @@ footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative
       <li><strong>Embedded Programming:</strong> Efficient real-time control algorithms and sensor data processing using C++ on Arduino with strict loop timing constraints</li>
       <li><strong>Sensor Technology:</strong> Precise ultrasonic distance measurement, environmental sensing, noise characterisation, and multi-sensor fusion strategies</li>
       <li><strong>Motor Control:</strong> Smooth speed regulation and directional control using PWM with differential drive for optimal turning performance</li>
-      <li><strong>Autonomous Systems:</strong> State machine design patterns, intelligent decision-making, and systematic debugging methodology for independent operation</li>
-      <li><strong>PID Control:</strong> Understanding sensor limitations, systematic gain tuning, and achieving optimal closed-loop control performance under real-world conditions</li>
+      <li><strong>Autonomous Systems:</strong> State machine design patterns and systematic debugging methodology for independent operation</li>
       <li><strong>Competition Strategy:</strong> Importance of fail-safe behaviours, handling edge cases, and iterative development from simple baselines to complex full systems</li>
     </ul>
-    <p style="margin-top:1.25rem;">The completed robot successfully navigates along walls with consistent distance maintenance, demonstrating advanced skills in autonomous robotics, embedded systems design, and algorithmic thinking. These foundational skills established a strong base for more advanced projects involving computer vision, machine learning, and complex autonomous systems.</p>
+    <p style="margin-top:1.25rem;">The completed robot successfully navigates along walls with consistent distance maintenance, demonstrating advanced skills in autonomous robotics and embedded systems design. These foundational skills established a strong base for more advanced projects involving computer vision, machine learning, and complex autonomous systems.</p>
   </div>
 
 </div>
