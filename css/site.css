@@ -135,6 +135,7 @@ a{color:inherit;}
 .object-cock{object-position:50% 50%;}
 .object-wall{object-position:50% 48%;}
 .object-top{object-position:50% 0;}
+.object-trans{object-position:50% 45%;}
 
 /* ===== About ===== */
 .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:4rem;align-items:start;}
