@@ -154,7 +154,9 @@ nav.scrolled{border-bottom-color:var(--border);}
 .skill-chip:hover{border-color:var(--border);color:var(--text);}
 
 /* PROJECTS */
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem;}
+.projects-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1.5rem;}
+.projects-grid>.project-card{grid-column:span 2;}
+.projects-grid>.project-card:nth-child(-n+2){grid-column:span 3;}
 .project-card{background:var(--bg2);border:1px solid var(--border2);border-radius:14px;overflow:hidden;transition:all 0.3s;cursor:pointer;display:flex;flex-direction:column;}
 .project-card:hover{border-color:var(--border);transform:translateY(-6px);box-shadow:0 24px 48px rgba(0,0,0,0.4);}
 .project-img-wrap{overflow:hidden;position:relative;}
@@ -170,9 +172,15 @@ nav.scrolled{border-bottom-color:var(--border);}
 .project-desc{color:var(--text2);font-size:0.84rem;line-height:1.7;flex:1;margin-bottom:1rem;}
 .project-tags{display:flex;flex-wrap:wrap;gap:0.35rem;}
 .project-tag{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--blue2);border:1px solid rgba(0,120,255,0.18);padding:0.2rem 0.55rem;border-radius:3px;background:var(--blue4);}
-.project-featured{grid-column:1/-1;display:grid;grid-template-columns:1.3fr 1fr;}
-.project-featured .project-img{height:100%;min-height:260px;}
+.projects-grid>.project-featured{grid-column:1/-1;display:grid;grid-template-columns:1.3fr 1fr;}
+.project-featured .project-img{height:100%;min-height:260px;max-height:420px;}
 .project-featured .project-img-wrap{height:auto;}
+.project-img[src*="fyp.jpeg"]{object-position:50% 62%;}
+.project-img[src*="aqmlist"]{object-position:50% 38%;}
+.project-img[src*="Project3.0"]{object-position:50% 62%;}
+.project-img[src*="Project2.0"]{object-position:50% 50%;}
+.project-img[src*="Project1.0"]{object-position:50% 48%;}
+.project-img[src*="drone-teleop"]{object-position:50% 0;}
 
 /* CERTS */
 .certs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.25rem;}
@@ -271,8 +279,11 @@ footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative
   .about-img-wrap{max-width:480px;}
   .contact-grid{grid-template-columns:1fr;}
   .skills-layout{grid-template-columns:1fr;}
-  .project-featured{grid-column:auto;display:flex;flex-direction:column;}
-  .project-featured .project-img{min-height:220px;}
+  .projects-grid{grid-template-columns:repeat(2,1fr);}
+  .projects-grid>.project-card,.projects-grid>.project-card:nth-child(-n+2){grid-column:auto;}
+  .projects-grid>.project-card:last-child{grid-column:1/-1;}
+  .projects-grid>.project-featured{grid-column:1/-1;display:flex;flex-direction:column;}
+  .project-featured .project-img{height:300px;min-height:0;}
 }
 @media(max-width:768px){
   .nav-links{display:none;}
@@ -280,6 +291,8 @@ footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative
   .hero{padding:6rem 1.25rem 4rem;}
   .section{padding:4.5rem 1.25rem;}
   .projects-grid{grid-template-columns:1fr;}
+  .projects-grid>.project-card:last-child{grid-column:auto;}
+  .project-featured .project-img{height:220px;}
   .form-row{grid-template-columns:1fr;}
   .footer-inner{flex-direction:column;align-items:flex-start;}
   .divider{margin:0 1.25rem;}
