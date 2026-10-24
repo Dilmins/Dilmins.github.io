@@ -2,91 +2,23 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Wall Following Robot — Dilmin Siriwardana</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
-:root{
---bg:#060e1a;--bg2:#0a1628;--bg3:#0d1f38;
---blue:#0078ff;--blue2:#3d9bff;--blue3:rgba(0,120,255,0.12);--blue4:rgba(0,120,255,0.06);
---grid:rgba(0,120,255,0.07);--text:#f0f6ff;--text2:#7aa3cc;--text3:#4d7fa8;
---border:rgba(0,120,255,0.18);--border2:rgba(0,120,255,0.08);--accent:#00e5ff;
-}
-html{scroll-behavior:smooth;}
-body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6;}
-.grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px;}
-.grid-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(0,120,255,0.08) 0%,transparent 70%);}
-nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(6,14,26,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border2);transition:border-color 0.3s;}
-nav.scrolled{border-bottom-color:var(--border);}
-.nav-inner{max-width:1320px;margin:0 auto;padding:0 2rem;height:68px;display:flex;align-items:center;justify-content:space-between;}
-.nav-logo{font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:500;color:var(--text);display:flex;align-items:center;gap:4px;text-decoration:none;}
-.nav-logo span{color:var(--blue);}
-.cursor{display:inline-block;width:2px;height:1em;background:var(--blue);margin-left:2px;animation:blink 1s step-end infinite;vertical-align:middle;}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
-.back-btn{font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--text2);text-decoration:none;display:flex;align-items:center;gap:6px;padding:0.5rem 1rem;border:1px solid var(--border2);border-radius:6px;background:var(--blue4);transition:all 0.2s;}
-.back-btn:hover{color:var(--text);border-color:var(--border);background:var(--blue3);}
-.proj-hero{padding:8rem 2rem 4rem;position:relative;z-index:1;}
-.proj-hero-inner{max-width:1000px;margin:0 auto;}
-.proj-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--blue);letter-spacing:0.1em;text-transform:uppercase;background:var(--blue4);border:1px solid var(--border);padding:0.4rem 0.875rem;border-radius:4px;margin-bottom:1.75rem;}
-.proj-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--blue);animation:pulse 2s ease infinite;flex-shrink:0;}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);}}
-.proj-hero h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700;line-height:1.1;letter-spacing:-0.02em;margin-bottom:1.25rem;}
-.proj-hero h1 span{background:linear-gradient(135deg,var(--blue) 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.proj-hero-desc{font-size:1rem;color:var(--text2);max-width:700px;line-height:1.8;margin-bottom:2rem;}
-.proj-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2.5rem;}
-.proj-tag{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--blue2);border:1px solid rgba(0,120,255,0.18);padding:0.25rem 0.65rem;border-radius:3px;background:var(--blue4);}
-.img-section{position:relative;z-index:1;max-width:1000px;margin:0 auto 3rem;padding:0 2rem;}
-.img-main{width:100%;border-radius:12px;border:1px solid var(--border);display:block;box-shadow:0 24px 64px rgba(0,0,0,0.5);margin-bottom:1.25rem;}
-.proj-content{max-width:1000px;margin:0 auto;padding:0 2rem 6rem;}
-.section-block{margin-bottom:3.5rem;}
-.block-label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--blue);letter-spacing:0.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:0.75rem;}
-.block-label::before{content:'//';opacity:0.5;}
-.section-block h2{font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:700;letter-spacing:-0.02em;margin-bottom:1.25rem;}
-.section-block p{color:var(--text2);font-size:0.925rem;line-height:1.85;margin-bottom:1rem;}
-.section-block h3{font-size:1.05rem;font-weight:600;color:var(--text);margin:1.75rem 0 0.6rem;}
-.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;margin:1.5rem 0;}
-.info-card{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:1.5rem;transition:all 0.2s;}
-.info-card:hover{border-color:var(--border);background:var(--bg3);}
-.info-card h4{font-size:0.9rem;font-weight:600;color:var(--blue);margin-bottom:0.6rem;}
-.info-card p{color:var(--text2);font-size:0.82rem;line-height:1.7;margin:0;}
-.metrics-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1px;background:var(--border2);border:1px solid var(--border2);border-radius:10px;overflow:hidden;margin:2rem 0;}
-.metric{background:var(--bg2);padding:1.5rem;text-align:center;}
-.metric-n{font-family:'JetBrains Mono',monospace;font-size:1.8rem;font-weight:700;color:var(--blue);line-height:1;}
-.metric-l{font-size:0.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-top:0.35rem;}
-.tech-row{display:flex;flex-wrap:wrap;gap:0.5rem;margin:1.25rem 0;}
-.tech-chip{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text2);border:1px solid var(--border2);padding:0.35rem 0.75rem;border-radius:4px;background:var(--blue4);transition:all 0.2s;}
-.tech-chip:hover{border-color:var(--border);color:var(--text);}
-.proj-list{list-style:none;padding:0;margin:1rem 0;}
-.proj-list li{padding-left:1.25rem;position:relative;color:var(--text2);font-size:0.9rem;line-height:1.8;margin-bottom:0.5rem;}
-.proj-list li::before{content:'→';position:absolute;left:0;color:var(--blue);font-size:0.8rem;}
-.divider{height:1px;background:var(--border2);margin:0;}
-footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative;z-index:1;}
-.footer-inner{max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
-.footer-logo{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:500;color:var(--text2);}
-.footer-logo span{color:var(--blue);}
-.footer-copy{font-size:0.78rem;color:var(--text3);}
-.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
-.reveal.visible{opacity:1;transform:translateY(0);}
-@media(max-width:768px){
-  .proj-hero{padding:6rem 1.25rem 3rem;}
-  .img-section{padding:0 1.25rem;}
-  .proj-content{padding:0 1.25rem 4rem;}
-  .cards-grid{grid-template-columns:1fr;}
-}
-</style>
+<meta name="description" content="An autonomous wall-following robot maintaining consistent distance from walls using real-time ultrasonic sensor feedback — designed and built for a competitive robotics event held within university premises.">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
 </head>
 <body>
-<div class="grid-bg"></div>
-
-<nav id="mainNav">
-  <div class="nav-inner">
-    <a class="nav-logo" href="index.html"><span>DS</span><span class="cursor"></span></a>
-    <a href="index.html#projects" class="back-btn">← Back to Projects</a>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html" aria-label="Dilmin Siriwardana, home"><span class="brand-mark">DS</span><span class="brand-name">Dilmin Siriwardana</span></a>
+    <a class="back-link" href="index.html#projects">← All projects</a>
   </div>
-</nav>
+</header>
 
+<main id="main">
 <div class="proj-hero">
   <div class="proj-hero-inner">
     <div class="proj-eyebrow">Robotics &nbsp;·&nbsp; Autonomous Navigation &nbsp;·&nbsp; University Competition</div>
@@ -216,22 +148,14 @@ footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative
   </div>
 
 </div>
+</main>
 
-<footer>
-  <div class="footer-inner">
-    <div class="footer-logo"><span>DS</span> · Dilmin Siriwardana</div>
-    <div class="footer-copy">© 2025 Dilmin Siriwardana. All Rights Reserved.</div>
-    <a href="index.html#projects" class="back-btn">← Back to Projects</a>
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <small>© <span id="year">2026</span> Dilmin Siriwardana. All rights reserved.</small>
+    <nav aria-label="Footer"><a href="index.html#projects">Projects</a><a href="index.html#contact">Contact</a><a href="https://www.linkedin.com/in/dilmin-siriwardana/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/Dilmins" target="_blank" rel="noopener">GitHub</a></nav>
   </div>
 </footer>
-
-<script>
-const nav=document.getElementById('mainNav');
-window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40));
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);obs.unobserve(e.target);}});
-},{threshold:0.06,rootMargin:'0px 0px -30px 0px'});
-document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
-</script>
+<script src="js/site.js"></script>
 </body>
 </html>
