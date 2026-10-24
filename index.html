@@ -160,6 +160,7 @@ nav.scrolled{border-bottom-color:var(--border);}
 .project-img-wrap{overflow:hidden;position:relative;}
 .project-img{width:100%;height:210px;object-fit:cover;display:block;transition:transform 0.4s;}
 .project-card:hover .project-img{transform:scale(1.04);}
+.project-img-ph{display:flex;align-items:center;justify-content:center;height:210px;background:linear-gradient(135deg,var(--bg3),var(--bg2));font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:500;letter-spacing:0.1em;color:var(--blue);}
 .project-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,14,26,0.85) 0%,transparent 55%);opacity:0;transition:opacity 0.3s;display:flex;align-items:flex-end;padding:1.25rem;}
 .project-card:hover .project-img-overlay{opacity:1;}
 .project-view-btn{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:#fff;background:var(--blue);padding:0.35rem 0.875rem;border-radius:4px;}
@@ -691,6 +692,81 @@ footer{border-top:1px solid var(--border2);padding:2.5rem 2rem;position:relative
           <p class="project-desc">Autonomous navigation robot using ultrasonic sensors and PID control optimised for competition scenarios. Demonstrates robust real-time closed-loop design.</p>
           <div class="project-tags">
             <span class="project-tag">Arduino</span><span class="project-tag">PID Control</span><span class="project-tag">Ultrasonic</span><span class="project-tag">Robotics</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" onclick="window.location.href='quadrotor-drone-simulation.html'">
+        <div class="project-img-wrap">
+          <img src="images/Projects/drone-teleop.png" alt="Quadrotor Simulation" class="project-img">
+          <div class="project-img-overlay"><span class="project-view-btn">View Project →</span></div>
+        </div>
+        <div class="project-body">
+          <div class="project-num">// 08 · Robotics · Simulation · In Progress</div>
+          <div class="project-title">Quadrotor Simulation</div>
+          <p class="project-desc">Simulating a quadrotor drone from scratch in ROS 2 Humble and Gazebo Classic.</p>
+          <div class="project-tags">
+            <span class="project-tag">ROS 2 Humble</span><span class="project-tag">Gazebo Classic</span><span class="project-tag">Robot Operating System</span><span class="project-tag">Simulation</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" onclick="window.location.href='transport-schedule-displays.html'">
+        <div class="project-img-wrap">
+          <div class="project-img project-img-ph">E-INK</div>
+          <div class="project-img-overlay"><span class="project-view-btn">View Project →</span></div>
+        </div>
+        <div class="project-body">
+          <div class="project-num">// 09 · C3 Labs · Public Infrastructure</div>
+          <div class="project-title">Transport Schedule E-Paper Displays</div>
+          <p class="project-desc">E-paper displays powered by Raspberry Pi and custom firmware, delivering real-time schedule information to hundreds of commuters daily.</p>
+          <div class="project-tags">
+            <span class="project-tag">Raspberry Pi</span><span class="project-tag">Python</span><span class="project-tag">E-Paper</span><span class="project-tag">Embedded Linux</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" onclick="window.location.href='nfc-power-trigger-pcb.html'">
+        <div class="project-img-wrap">
+          <img src="images/Projects/nfc-pcb-3d.png" alt="NFC Power-Triggering PCB" class="project-img">
+          <div class="project-img-overlay"><span class="project-view-btn">View Project →</span></div>
+        </div>
+        <div class="project-body">
+          <div class="project-num">// 10 · C3 Labs · PCB Design</div>
+          <div class="project-title">NFC Power-Triggering PCB</div>
+          <p class="project-desc">A PCB that uses Near Field Communication to contactlessly switch on electronic systems, designed in Altium Designer.</p>
+          <div class="project-tags">
+            <span class="project-tag">Altium Designer</span><span class="project-tag">PCB Design</span><span class="project-tag">NFC</span><span class="project-tag">13.56 MHz</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" onclick="window.location.href='qr-code-transaction-device.html'">
+        <div class="project-img-wrap">
+          <img src="images/Projects/qr-epaper-devices.png" alt="QR Code Scanning Device" class="project-img">
+          <div class="project-img-overlay"><span class="project-view-btn">View Project →</span></div>
+        </div>
+        <div class="project-body">
+          <div class="project-num">// 11 · C3 Labs · Embedded</div>
+          <div class="project-title">QR Code Scanning Device</div>
+          <p class="project-desc">A QR code scanning device for transactions, built with E-Paper and C++.</p>
+          <div class="project-tags">
+            <span class="project-tag">E-Paper</span><span class="project-tag">C++</span><span class="project-tag">Embedded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" onclick="window.location.href='plc-elevator-control.html'">
+        <div class="project-img-wrap">
+          <div class="project-img project-img-ph">PLC</div>
+          <div class="project-img-overlay"><span class="project-view-btn">View Project →</span></div>
+        </div>
+        <div class="project-body">
+          <div class="project-num">// 12 · Automation · Sri Lanka Institute of Robotics</div>
+          <div class="project-title">Elevator Control Using PLC</div>
+          <p class="project-desc">An elevator control system programmed in ladder logic on a Siemens S-400 PLC using Simatic Manager.</p>
+          <div class="project-tags">
+            <span class="project-tag">Siemens S-400 PLC</span><span class="project-tag">SIMATIC Manager</span><span class="project-tag">Ladder Logic</span><span class="project-tag">Automation</span>
           </div>
         </div>
       </div>
