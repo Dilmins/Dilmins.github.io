@@ -44,6 +44,35 @@
     reveals.forEach(function (r) { r.classList.add('visible'); });
   }
 
+
+  var zoomImgs = document.querySelectorAll('.img-main, .img-card img');
+  function openBox(src, alt) {
+    var box = document.createElement('div');
+    box.className = 'lightbox';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', alt || 'Enlarged image');
+    var img = document.createElement('img');
+    img.src = src; img.alt = alt || '';
+    var close = document.createElement('button');
+    close.type = 'button'; close.setAttribute('aria-label', 'Close image'); close.textContent = '×';
+    box.appendChild(img); box.appendChild(close);
+    function shut() { box.remove(); document.removeEventListener('keydown', onKey); }
+    function onKey(e) { if (e.key === 'Escape') shut(); }
+    box.addEventListener('click', shut);
+    document.addEventListener('keydown', onKey);
+    document.body.appendChild(box);
+    close.focus();
+  }
+  zoomImgs.forEach(function (im) {
+    im.classList.add('zoomable');
+    im.tabIndex = 0;
+    im.setAttribute('role', 'button');
+    im.setAttribute('aria-label', 'Enlarge image: ' + (im.alt || ''));
+    im.addEventListener('click', function () { openBox(im.currentSrc || im.src, im.alt); });
+    im.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openBox(im.currentSrc || im.src, im.alt); } });
+  });
+
   var form = document.getElementById('contactForm');
   if (form) {
     var msg = document.getElementById('formMsg');
