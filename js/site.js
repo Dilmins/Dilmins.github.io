@@ -119,7 +119,7 @@
       return tg;
     }
     function frame(now) {
-      var ink = col('--ink'), yel = col('--yellow'), line = col('--line'), panel = col('--panel'), dim = col('--ink-3');
+      var ink = col('--ink'), yel = col('--accent'), line = col('--line'), panel = col('--panel'), dim = col('--ink-3');
       var t = (now - t0) / 1000, tg, a, eff, x, y, i, s, wd, ang, open, gl, bw, a2;
       cx.setTransform(D, 0, 0, D, 0, 0);
       cx.clearRect(0, 0, W, H);
@@ -160,6 +160,87 @@
     size(); layout();
     if (reduce) { frame(0); } else { requestAnimationFrame(loop); }
   }
+
+  var bgc = document.createElement('canvas');
+  bgc.className = 'bg-live';
+  bgc.setAttribute('aria-hidden', 'true');
+  document.body.insertBefore(bgc, document.body.firstChild);
+  var bx = bgc.getContext('2d'), BW = 0, BH = 0, BD = 1, TH = 1500, traces = [], bcol = { ink: '#888', acc: '#7a1c2e' }, bframe = 0, blast = 0;
+  function cssv(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+  function seeded(n) { var s = n; return function () { s = (s * 16807) % 2147483647; return s / 2147483647; }; }
+  function buildTraces() {
+    var rnd = seeded(20260), count = Math.round(Math.min(26, Math.max(10, BW / 55))), g = 44, i, k, x, y, dx, dy, pts, len, d, steps, cum;
+    traces = [];
+    for (i = 0; i < count; i++) {
+      var left = rnd() < 0.5;
+      x = Math.round((left ? rnd() * BW * 0.32 : BW - rnd() * BW * 0.32) / g) * g;
+      y = Math.round(rnd() * TH / g) * g;
+      pts = [{ x: x, y: y }];
+      dx = left ? 1 : -1; dy = 0;
+      steps = 5 + Math.floor(rnd() * 7);
+      for (k = 0; k < steps; k++) {
+        len = (2 + Math.floor(rnd() * 5)) * g;
+        if (rnd() < 0.5) { x += dx * len; } else { y += (rnd() < 0.5 ? -1 : 1) * len; }
+        pts.push({ x: x, y: y });
+        if (rnd() < 0.35) { var j = (rnd() < 0.5 ? -1 : 1) * g; x += dx * Math.abs(j); y += j; pts.push({ x: x, y: y }); }
+      }
+      cum = [0];
+      for (k = 1; k < pts.length; k++) { cum.push(cum[k - 1] + Math.hypot(pts[k].x - pts[k - 1].x, pts[k].y - pts[k - 1].y)); }
+      traces.push({ p: pts, c: cum, L: cum[cum.length - 1], off: rnd() * cum[cum.length - 1], v: 38 + rnd() * 46 });
+    }
+  }
+  function bgSize() {
+    BD = Math.min(2, window.devicePixelRatio || 1);
+    BW = window.innerWidth; BH = window.innerHeight;
+    bgc.width = BW * BD; bgc.height = BH * BD;
+    buildTraces();
+  }
+  function pointAt(tr, d) {
+    var k = 1;
+    while (k < tr.c.length - 1 && tr.c[k] < d) k++;
+    var a = tr.p[k - 1], b = tr.p[k], f = (d - tr.c[k - 1]) / ((tr.c[k] - tr.c[k - 1]) || 1);
+    return { x: a.x + (b.x - a.x) * f, y: a.y + (b.y - a.y) * f };
+  }
+  function bgDraw(now) {
+    var t = now / 1000, scroll = reduce ? 0 : window.scrollY * 0.14, oy, tile, n, tr, k, p, d, s, q;
+    if (now - blast > 2000 || !bframe) { bcol.ink = cssv('--ink') || '#888'; bcol.acc = cssv('--accent') || '#7a1c2e'; blast = now; }
+    bframe++;
+    bx.setTransform(BD, 0, 0, BD, 0, 0);
+    bx.clearRect(0, 0, BW, BH);
+    oy = -(scroll % TH);
+    bx.lineCap = 'round'; bx.lineJoin = 'round';
+    for (tile = -1; tile <= Math.ceil(BH / TH) + 1; tile++) {
+      var base = oy + tile * TH;
+      if (base > BH || base + TH + 700 < 0) continue;
+      for (n = 0; n < traces.length; n++) {
+        tr = traces[n];
+        bx.globalAlpha = 0.075; bx.strokeStyle = bcol.ink; bx.lineWidth = 2;
+        bx.beginPath();
+        for (k = 0; k < tr.p.length; k++) { if (k) bx.lineTo(tr.p[k].x, tr.p[k].y + base); else bx.moveTo(tr.p[k].x, tr.p[k].y + base); }
+        bx.stroke();
+        bx.beginPath(); bx.arc(tr.p[0].x, tr.p[0].y + base, 5, 0, 7); bx.stroke();
+        bx.beginPath(); bx.arc(tr.p[tr.p.length - 1].x, tr.p[tr.p.length - 1].y + base, 5, 0, 7); bx.stroke();
+        if (!reduce) {
+          d = (tr.off + t * tr.v) % tr.L;
+          bx.strokeStyle = bcol.acc; bx.lineWidth = 3;
+          for (s = 0; s < 8; s++) {
+            q = Math.max(0, d - s * 5);
+            p = pointAt(tr, q);
+            bx.globalAlpha = 0.55 * (1 - s / 8);
+            bx.beginPath(); bx.arc(p.x, p.y + base, 3.4 - s * 0.25, 0, 7); bx.fillStyle = bcol.acc; bx.fill();
+          }
+        }
+      }
+    }
+    bx.globalAlpha = 1;
+  }
+  function bgLoop(now) {
+    if (now - blast >= 0) { bgDraw(now); }
+    setTimeout(function () { requestAnimationFrame(bgLoop); }, 28);
+  }
+  bgSize();
+  window.addEventListener('resize', function () { bgSize(); bgDraw(performance.now()); });
+  if (reduce) { bgDraw(0); window.addEventListener('scroll', function () {}, { passive: true }); } else { requestAnimationFrame(bgLoop); }
 
   var form = document.getElementById('contactForm');
   if (form) {
