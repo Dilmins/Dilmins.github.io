@@ -226,7 +226,7 @@
           for (s = 0; s < 8; s++) {
             q = Math.max(0, d - s * 5);
             p = pointAt(tr, q);
-            bx.globalAlpha = 0.55 * (1 - s / 8);
+            bx.globalAlpha = (BW < 700 ? 0.3 : 0.55) * (1 - s / 8);
             bx.beginPath(); bx.arc(p.x, p.y + base, 3.4 - s * 0.25, 0, 7); bx.fillStyle = bcol.acc; bx.fill();
           }
         }
@@ -261,7 +261,7 @@
       if (!g) { g = { el: block, n: 0 }; seen.set(block, g); groups.push(g); }
       var frag = document.createDocumentFragment(), whole = /flex|grid/.test(getComputedStyle(block).display);
       if (whole) {
-        var ws = document.createElement('span');
+        var ws = document.createElement('w-w');
         ws.className = 'w';
         ws.style.setProperty('--i', Math.min(g.n, 26));
         ws.textContent = node.nodeValue;
@@ -272,7 +272,7 @@
       node.nodeValue.split(/(\s+)/).forEach(function (part) {
         if (!part) return;
         if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
-        var s = document.createElement('span');
+        var s = document.createElement('w-w');
         s.className = 'w';
         s.style.setProperty('--i', Math.min(g.n, 26));
         s.textContent = part;
