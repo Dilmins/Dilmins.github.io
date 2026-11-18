@@ -331,3 +331,8 @@ a{color:inherit;}
   .js .reveal{opacity:1;transform:none;}
   .timeline::after{top:0;}
 }
+
+/* ===== Words appear on scroll (only when JS is on) ===== */
+.js .tw .w{display:inline-block;opacity:0;transform:translateY(.55em);transition:opacity .55s ease,transform .55s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0) * 24ms);}
+.js .tw.in .w{opacity:1;transform:none;}
+@media(prefers-reduced-motion:reduce){.js .tw .w{opacity:1;transform:none;}}
